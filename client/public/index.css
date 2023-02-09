@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&family=Montserrat&family=Poppins:wght@400;500&display=swap');
+
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    
+}
+
+body {
+    background-color: #0b0b16;
+}
+
+
+
+.dashboard-header {
+    height: 12vh;
+}
+
+.search-bar-container {
+    height: 7.5vh;
+}
+
+.p-inactive {
+    color: #343436;
+    
+}
+
+.jobs-user-container {
+    width: 80px;
+    border: 2px solid white;
+    height: 80px;
+    border-radius: 50%;
+}
+
+.jobs-user-container img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+
+.jobs-container{
+    margin-top: 4%;
+    
+}
+
+
+
+.jobs-wrapper {
+    padding: 10px;
+    border-radius: 15px;
+   
+ 
+    
+}
+
+
+.jobs-card{
+    background-color: #0e1926;
+    border-radius: 10px;
+}
+
+.jobs-card-user img{
+    width: 70px;
+    margin-left: 2%;
+    margin-top: 2%;   
+}
+
+
+.jobs-location-text {
+    color: white;
+    font-size: 0.8rem;
+    margin: 4%;
+}
+
+.jobs-category {
+    font-size: 0.8rem;
+    padding: 7px;
+    margin-bottom: 4%;
+    margin-left: 4%;
+    background-color: black;
+    color: #007be5;
+    border-radius: 10px;
+}
+
+.p-inactive {
+    color: #8694a8;
+}
