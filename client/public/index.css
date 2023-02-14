@@ -1,6 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter&family=Montserrat&family=Poppins:wght@400;500&display=swap');
 
 
+
+:root {
+    --inactive-text: #343436;
+    --primary-color: white;
+    --secondary-color: #F74473;
+}
+
+
+
 * {
     padding: 0;
     margin: 0;
@@ -10,13 +19,15 @@
 }
 
 body {
-    background-color: #0b0b16;
+    background-color: var(--primary-color);
 }
 
 
-
 .dashboard-header {
-    height: 12vh;
+    height: 9vh;
+    background-color: var(--secondary-color);
+    margin-bottom: 10px;
+    color: white;
 }
 
 .search-bar-container {
@@ -24,7 +35,7 @@ body {
 }
 
 .p-inactive {
-    color: #343436;
+    color: var(--inactive-text);
     
 }
 
@@ -44,6 +55,7 @@ body {
 
 .jobs-container{
     margin-top: 4%;
+    position: absolute;
     
 }
 
@@ -52,14 +64,10 @@ body {
 .jobs-wrapper {
     padding: 10px;
     border-radius: 15px;
-   
- 
-    
 }
 
-
 .jobs-card{
-    background-color: #0e1926;
+    background-color: var(--secondary-color);
     border-radius: 10px;
 }
 
@@ -79,13 +87,84 @@ body {
 .jobs-category {
     font-size: 0.8rem;
     padding: 7px;
-    margin-bottom: 4%;
-    margin-left: 4%;
-    background-color: black;
-    color: #007be5;
     border-radius: 10px;
+    background-color: white;
+    color: var(--secondary-color);
+    
 }
 
 .p-inactive {
     color: #8694a8;
+}
+
+.user-details-container {
+
+    height: 90vh;
+}
+
+.user-wrapper {
+
+    border-radius: 5%;
+}
+
+.user-info-container {
+    height: 30%;
+    color: var(--secondary-color);
+}
+
+.img-container {
+    width: 100px;
+    height: 100px;
+}
+
+.list {
+    margin-top: 20px;
+    border-radius: 10px;
+}
+
+.list li {
+    padding: 8px;
+    border-radius: 5px;
+    color: var(--secondary-color);
+
+}
+
+.list li:hover {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+
+.bio-details {
+    color: var(--inactive-text);
+}
+
+.bio-details li {
+    list-style-type: disc;
+}
+
+.bio-details h1 {
+    color: var(--secondary-color);
+}
+
+.footer {
+    position: fixed;
+    bottom: 0px;
+    background-color: white;
+    height: 8vh;
+    
+}
+
+.footer i {
+    font-size: 20px;
+    color: var(--secondary-color);
+}
+
+.hire-now-btn {
+    background-color: var(--secondary-color);
+}
+
+header {
+    height: 7vh;
+    background-color: var(--secondary-color);
 }
