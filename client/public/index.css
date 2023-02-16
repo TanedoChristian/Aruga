@@ -6,6 +6,7 @@
     --inactive-text: #343436;
     --primary-color: white;
     --secondary-color: #ec878f;
+    --gray-background: #f0f1f2;
 }
 
 
@@ -14,12 +15,12 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Poppins', sans-serif;
     
 }
 
 body {
-    background-color: var(--primary-color);
+    background-color: var(--gray-background);
 }
 
 
@@ -28,6 +29,10 @@ img {
     height: auto;
 }
 
+.pri-btn {
+    background-color: var(--secondary-color);
+    color: white;
+}
 
 .secondary-clr {
     background-color: var(--secondary-color);
@@ -40,9 +45,8 @@ img {
 
 .dashboard-header {
     height: 9vh;
-    background-color: var(--secondary-color);
-    margin-bottom: 10px;
-    color: white;
+    background-color: white;
+    color: black;
 }
 
 .search-bar-container {
@@ -57,6 +61,7 @@ img {
 .jobs-user-container {
     width: 80px;
     border: 2px solid white;
+    background-color: var(--gray-background);
     height: 80px;
     border-radius: 50%;
 }
@@ -69,8 +74,9 @@ img {
 
 
 .jobs-container {
-    margin-top: 4%;
-    position: absolute;
+
+    border-radius: 20px;
+    
     
 }
 
@@ -163,17 +169,18 @@ img {
 }
 
 .footer {
-    position: fixed;
-    bottom: 0px;
-    background-color: var(--secondary-color);
+    background-color: white;
     height: 8vh;
-    border-top: 2px solid white;
+    
 
 }
 
 .footer i {
     font-size: 20px;
-    color: whitesmoke;
+    color: var(--secondary-color);
+   
+    padding: 15px;
+    border-radius: 50%;
 }
 
 .hire-now-btn {
