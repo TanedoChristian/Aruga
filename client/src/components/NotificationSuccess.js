@@ -13,7 +13,7 @@ const NotificationSuccess = () => {
                 We already notify the babysitter!
                 </p>
                 </div>
-                <button class="hire-now-btn-white py-2 px-4 border border-pink-700 rounded w-4/5 mt-4">
+                <button className="hire-now-btn-white p-4 border rounded-3xl w-4/5">
                 Go back to Home Page
                 </button>
             </div>

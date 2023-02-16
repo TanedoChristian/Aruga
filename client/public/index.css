@@ -5,7 +5,7 @@
 :root {
     --inactive-text: #343436;
     --primary-color: white;
-    --secondary-color: #F74473;
+    --secondary-color: #ec878f;
 }
 
 
@@ -14,12 +14,27 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Inter', sans-serif;
     
 }
 
 body {
     background-color: var(--primary-color);
+}
+
+
+img {
+    width: 100%;
+    height: auto;
+}
+
+
+.secondary-clr {
+    background-color: var(--secondary-color);
+}
+
+.tite {
+    background-color: orange;
 }
 
 
@@ -150,14 +165,15 @@ body {
 .footer {
     position: fixed;
     bottom: 0px;
-    background-color: white;
+    background-color: var(--secondary-color);
     height: 8vh;
-    border-top: 1px solid var(--secondary-color);
+    border-top: 2px solid white;
+
 }
 
 .footer i {
     font-size: 20px;
-    color: var(--secondary-color);
+    color: whitesmoke;
 }
 
 .hire-now-btn {
@@ -165,13 +181,14 @@ body {
 }
 
 .hire-now-btn-white {
-    background-color: white;
-    color: black;
+    background-color: var(--secondary-color);
+    color: white;
 }
 
 header {
     height: 7vh;
-    background-color: var(--secondary-color);
+    background: var(--secondary-color);
+    
 }
 
 .test {
@@ -179,11 +196,32 @@ header {
 }
 
 .notification-sucess-container {
-    background-color: var(--secondary-color);
-    color: white;
+  
+    color: var(--secondary-color);
 }
 
 .ratings {
     color: black;
     
 }
+
+.login-container {
+    width: 90%;
+}
+
+.login-container button {
+    background-color: var(--secondary-color);
+}
+
+.login-container h1 {
+    color: black;
+    
+}
+
+.login-container input{
+    color: black;
+    outline: none;
+}
+
+
+

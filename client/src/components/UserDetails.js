@@ -45,7 +45,7 @@ const UserDetails = () => {
                 <Ratings />
 
                 <div className="w-full flex justify-center">
-                <button class=" hire-now-btn text-white font-bold py-2 px-4 border border-pink-700 rounded w-4/5 mt-5">
+                <button class=" hire-now-btn text-white font-bold py-2 px-4 border border-white rounded w-4/5 mt-5 ">
                 Hire Now
                 </button>
                 </div>
