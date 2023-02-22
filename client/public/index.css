@@ -6,7 +6,7 @@
     --inactive-text: #343436;
     --primary-color: white;
     --secondary-color: #ec878f;
-    --gray-background: #f0f1f2;
+    --gray-background: #f3f4f6;
 }
 
 
@@ -33,6 +33,36 @@ img {
     background-color: var(--secondary-color);
     color: white;
 }
+
+
+.rounded-header {
+  width:100%;
+  
+  
+  color: white;
+ 
+  
+}
+
+.width-95{
+    width: 95%;
+}
+
+.margin-negative {
+    margin-top: -10px;
+    
+}
+
+.card {
+    width: 100%;
+}
+
+
+.secondary-font {
+    color: var(--secondary-color);
+}
+
+
 
 .secondary-clr {
     background-color: var(--secondary-color);

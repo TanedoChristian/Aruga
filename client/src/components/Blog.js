@@ -21,7 +21,7 @@ const Blog = () => {
                         
                     </div>
                     <div className="flex bell-container">
-                        <span class="material-symbols-outlined mt-2">
+                        <span className="material-symbols-outlined mt-2">
                             notifications
                         </span>
                     </div>

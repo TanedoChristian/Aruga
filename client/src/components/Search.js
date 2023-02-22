@@ -3,8 +3,8 @@ import React from "react";
 
 const Search = () => {
     return (
-        <div className="flex justify-center w-full search-bar-container ">
-            <div className="w-11/12 border-gray-500 drop-shadow-xl bg-white rounded-xl">
+        <div className="flex justify-center w-full search-bar-container gap-1">
+            <div className="w-3/4 border-gray-500 drop-shadow-xl bg-white rounded-xl">
                 <input
                 type="search"
                 className="
@@ -30,6 +30,7 @@ const Search = () => {
                 placeholder="Search"
                 />
                 </div>
+                
             </div>
     )
 }

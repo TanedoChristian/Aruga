@@ -1,9 +1,9 @@
 import React from "react";
-import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import {BrowserRouter, Routes, Route, Form} from 'react-router-dom'
 import Dashboard from "./components/Dashboard";
 import UserDetails from "./components/UserDetails";
 import Footer from "./components/Footer";
-import Header from "./components/Header";
+import Header from "./components/Header"; 
 import Blog from "./components/Blog";
 import Notification from "./components/Notification";
 import NotificationDetail from "./components/NotificationDetail";
@@ -12,7 +12,7 @@ import Ratings from "./components/Ratings";
 import Login from "./components/Login";
 import LoginOtp from "./components/LoginOtp";
 import Frontpage from "./Frontpage";
-
+import Register from "./components/Register";
 
 
 const App = () => {
@@ -36,6 +36,7 @@ const App = () => {
           <Route path="/login" element={<Login />}></Route>
           <Route path="/login-otp" element={<LoginOtp />}></Route>
           <Route path="/frontpage" element={<Frontpage />}></Route>
+          <Route path="/register" element={<Register />}></Route>
         </Routes>
       </BrowserRouter>
     </div>

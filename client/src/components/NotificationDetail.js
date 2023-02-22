@@ -12,7 +12,7 @@ const NotificationDetail = () => {
                  <div className="img-container">
                     <img
                         src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
-                        class="rounded-full"
+                        className="rounded-full"
                         alt="Avatar"
                         />
                    
@@ -57,10 +57,10 @@ const NotificationDetail = () => {
                 </div>
 
                 <div className="w-full flex justify-center gap-2">
-                <button class=" hire-now-btn text-white font-bold py-2 px-4 border border-pink-700 rounded w-2/5 mt-4">
+                <button className=" hire-now-btn text-white font-bold py-2 px-4 border border-pink-700 rounded w-2/5 mt-4">
                 Accept
                 </button>
-                <button class=" hire-now-btn text-white font-bold py-2 px-4 border border-pink-700 rounded w-2/5 mt-4">
+                <button className=" hire-now-btn text-white font-bold py-2 px-4 border border-pink-700 rounded w-2/5 mt-4">
                 Reject
                 </button>
                 </div>
