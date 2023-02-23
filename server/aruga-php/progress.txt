@@ -1,4 +1,0 @@
-Dec 5 - Login 
-      - Register
-      - Hashing
-      - Creating Response
