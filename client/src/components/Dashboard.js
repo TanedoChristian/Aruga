@@ -2,103 +2,125 @@ import React from "react";
 import Search from "./Search";
 import Jobs from "./Jobs";
 import Footer from "./Footer";
-const Dashboard = () => {
-
-    return (
-        <div>
-            <div className="w-full dashboard-header flex justify-center items-center">
-                <div className="w-11/12 h-4/5  dashboard-wrapper flex justify-between">
-                    <div className="flex-col w-1/3">
-                        <span className="text-xl font-medium">
-                            Hello, 
-                        </span>
-                        
-                        <br /> 
-
-                        <span className="dashboard-username font-bold text-3xl">
-                            Josephine
-                        </span>
-                        
-                    </div>
-                    <div className="flex bell-container">
-
-                    <img className="w-10 h-10 rounded-full mt-3" src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp" alt="Bonnie image" />
-                    
-                    </div>
+import NavMenu from "./NavMenu";
+const Dashboard = (props) => {
+  return (
+    <div>
+      <div className=" flex flex-col">
+        <NavMenu />
+        <Footer>
+          <ul className="flex w-full justify-around footer border-b border-gray-200">
+            <li className="">
+              <div
+                className="flex flex-col justify-center items-center"
+                style={{ borderBottom: "3px solid #ec878f" }}
+              >
+                <i
+                  className={`fa-solid fa-house text-slate-600`}
+                  style={{ color: "#ec878f" }}
+                ></i>
+              </div>
+            </li>
+            <li className="">
+              <div className="flex flex-col justify-center items-center gap-1">
+                <i class={`fa-solid fa-pen-to-square text-slate-700`}></i>
+              </div>
+            </li>
+            <a href="/offer">
+              <li className="">
+                <div className="flex flex-col justify-center items-center gap-1">
+                  <i class="fa-regular fa-heart text-slate-700"></i>
                 </div>
-            </div>
-            <Footer />
-            <div>
-                
-            </div>
-          
-            <div className="p-5 mt-1 rounded flex flex-col gap-2">
-                <div className="flex items-center gap-2">
-                    <h1 className="text-2xl font-bold">Popular Categories</h1>
-                    
+              </li>
+            </a>
 
+            <li className="">
+              <div className="inline-flex relative w-fit">
+                <div className="absolute inline-block top-2 right-1 bottom-auto left-auto translate-x-2/4 -translate-y-1/2 rotate-0 skew-x-0 skew-y-0 scale-x-100 scale-y-100 p-0.5 px-1.5 text-xs leading-none text-center whitespace-nowrap align-baseline font-bold bg-indigo-700 text-white rounded-full z-10">
+                  8
                 </div>
-                
-                
+                <i className="fa-regular fa-bell text-slate-700"></i>
+              </div>
+            </li>
+          </ul>
+        </Footer>
+      </div>
 
-                <ul className="flex gap-3 overflow-x-auto items-center">
-                <li>
-                    <a href="#" className="text-center p-1 px-3 secondary-clr  text-white rounded-lg flex border-gray-400 mt-2">
-                        <span className="whitespace-nowrap">All</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" className="text-center p-2 bg-white text-black rounded-lg flex border-gray-400 mt-2">
-                        <span className="whitespace-nowrap">Full Time</span>
-                    </a>
-                </li>
+      <div></div>
 
-                <li>
-                    <a href="#" className="text-center p-2 bg-white  text-black rounded-lg flex border-gray-400  mt-2">
-                        <span className="whitespace-nowrap">Part Time</span>
-                    </a>
-                </li>
+      <div className="p-5 mt-1 rounded flex flex-col gap-2">
+        <div className="flex items-center gap-2">
+          <h1 className="text-2xl font-bold text-slate-800">
+            Popular Categories
+          </h1>
+        </div>
 
-                <li>
-                    <a href="#" className="text-center p-2 bg-white  text-black rounded-lg flex border-gray-400  mt-2">
-                        <span className="whitespace-nowrap">Teenager</span>
-                    </a>
-                </li>
+        <ul className="flex gap-3 overflow-x-auto items-center">
+          <li>
+            <a
+              href="#"
+              className="text-center p-1 px-3 secondary-clr  text-white rounded-lg flex border-gray-400 mt-2"
+            >
+              <span className="whitespace-nowrap">All</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="#"
+              className="text-center p-2 bg-white text-black rounded-lg flex border-gray-400 mt-2"
+            >
+              <span className="whitespace-nowrap">Full Time</span>
+            </a>
+          </li>
 
-                <li>
-                    <a href="#" className="text-center p-2 bg-white  text-black rounded-lg flex border-gray-400  mt-2">
-                        <span className="whitespace-nowrap">Man</span>
-                    </a>
-                </li>
+          <li>
+            <a
+              href="#"
+              className="text-center p-2 bg-white  text-black rounded-lg flex border-gray-400  mt-2"
+            >
+              <span className="whitespace-nowrap">Part Time</span>
+            </a>
+          </li>
 
-                <li>
-                    <a href="#" className="text-center p-2 bg-white  text-black rounded-lg flex border-gray-400  mt-2">
-                        <span className="whitespace-nowrap">Teenager</span>
-                    </a>
-                </li>
+          <li>
+            <a
+              href="#"
+              className="text-center p-2 bg-white  text-black rounded-lg flex border-gray-400  mt-2"
+            >
+              <span className="whitespace-nowrap">Teenager</span>
+            </a>
+          </li>
 
-   
-                </ul>
-            </div>
-           <div className="flex justify-center">
-            <div className="flex flex-col items-center width-95">
+          <li>
+            <a
+              href="#"
+              className="text-center p-2 bg-white  text-black rounded-lg flex border-gray-400  mt-2"
+            >
+              <span className="whitespace-nowrap">Man</span>
+            </a>
+          </li>
 
-                <Jobs />
+          <li>
+            <a
+              href="#"
+              className="text-center p-2 bg-white  text-black rounded-lg flex border-gray-400  mt-2"
+            >
+              <span className="whitespace-nowrap">Teenager</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div className="flex justify-center">
+        <div className="flex flex-col  w-full">
+          <Jobs url={props.url} />
+        </div>
+      </div>
 
-            </div>
-            </div>
-           
-                    
-
-            {/* <div className="flex justify-center">
+      {/* <div className="flex justify-center">
                 
             </div> */}
-
-            
-           
-        </div>
-    )
-
-}
+    </div>
+  );
+};
 
 export default Dashboard;

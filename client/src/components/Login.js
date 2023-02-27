@@ -1,44 +1,39 @@
 import React, { useState } from "react";
 import axios from "axios";
+import SetUp from "../Setup";
 const Login = () => {
+  const [user, setUser] = useState({});
+  const [error, setError] = useState(false);
 
+  const handleEmail = (e) => {
+    setUser((prev) => {
+      return { ...prev, email: e.target.value };
+    });
+  };
 
-    const [user, setUser] = useState({})
-    const [error, setError] = useState(false)
+  const handlePassword = (e) => {
+    setUser((prev) => {
+      return { ...prev, password: e.target.value };
+    });
+  };
 
-    const handleEmail = (e) => {
-        setUser((prev) => {
-            return {...prev, email: e.target.value}
-        })
-    }
-
-    const handlePassword = (e) => {
-        setUser((prev) => {
-            return {...prev, password: e.target.value}
-        })
-    }
-
-    const handleSubmit = () => {
-
-        console.log(user.email)
-        axios({
-            method: "post",
-            url: "http://192.168.1.9:8000/login",
-            data: {
-                email: user.email,
-                password: user.password
-            }
-        }).then(({data}) => {
-            if(data.message == "Success"){
-                window.location.href = "/dashboard"
-                
-            } else {
-                setError(true);
-            }
-        })
-
-    }
-
+  const handleSubmit = () => {
+    console.log(user.email);
+    axios({
+      method: "post",
+      url: SetUp.SERVER_URL() + "/login",
+      data: {
+        email: user.email,
+        password: user.password,
+      },
+    }).then(({ data }) => {
+      if (data.message == "Success") {
+        window.location.href = "/dashboard";
+      } else {
+        setError(true);
+      }
+    });
+  };
 
   const handleClickPhone = () => {
     window.location.href = "/login-otp";
@@ -54,7 +49,9 @@ const Login = () => {
           </div>
 
           <div className="w-full  flex flex-col gap-3">
-          <p className="text-sm text-red-500 mt-5">{error ? "Account not found" : ""} </p>
+            <p className="text-sm text-red-500 mt-5">
+              {error ? "Account not found" : ""}{" "}
+            </p>
             <div>
               <h2 className=" tracking-wide">Email</h2>
               <input
@@ -74,14 +71,13 @@ const Login = () => {
               />
 
               <p className="text-sm text-blue-500 mt-5">Forgot password? </p>
-              
             </div>
 
             <div className="w-full flex justify-end">
-              <button 
+              <button
                 className="bg-black hover:bg-blue-700 text-white font-bold py-3 px-10 rounded-full shadow-xl"
                 onClick={handleSubmit}
-                >
+              >
                 Login
                 <i className="fa-solid fa-arrow-right text-white ml-2"></i>
               </button>

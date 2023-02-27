@@ -1,15 +1,13 @@
 import React from "react";
 
-
 const Search = () => {
-    return (
-        <div className="flex justify-center w-full search-bar-container gap-1">
-            <div className="w-3/4 border-gray-500 drop-shadow-xl bg-white rounded-xl">
-                <input
-                type="search"
-                className="
+  return (
+    <div className="flex justify-center w-full search-bar-container gap-1">
+      <div className="w-3/4 border-gray-500 drop-shadow-xl bg-white rounded-xl">
+        <input
+          type="search"
+          className="
                     search-bar
-                    
                     form-control
                     w-full
                     h-full
@@ -26,13 +24,12 @@ const Search = () => {
                     m-0
                     focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none
                 "
-                id="exampleSearch2"
-                placeholder="Search"
-                />
-                </div>
-                
-            </div>
-    )
-}
+          id="exampleSearch2"
+          placeholder="Search"
+        />
+      </div>
+    </div>
+  );
+};
 
 export default Search;

@@ -1,46 +1,54 @@
 import React from "react";
 import Search from "./Search";
 import Jobs from "./Jobs";
-
+import NavMenu from "./NavMenu";
+import Footer from "./Footer";
 const Blog = () => {
+  return (
+    <div>
+      <NavMenu />
+      <Footer>
+        <ul className="flex w-full justify-around footer border-b border-gray-200">
+          <a href="/dashboard">
+            <li className="">
+              <div className="flex flex-col justify-center items-center">
+                <i className={`fa-solid fa-house text-slate-600`}></i>
+              </div>
+            </li>
+          </a>
+          <a href="/blog">
+            <li className="">
+              <div
+                className="flex flex-col justify-center items-center gap-1"
+                style={{ borderBottom: "3px solid #ec878f" }}
+              >
+                <i
+                  class={`fa-solid fa-pen-to-square text-slate-700`}
+                  style={{ color: "#ec878f" }}
+                ></i>
+              </div>
+            </li>
+          </a>
+          <a href="/offer">
+            <li className="">
+              <div className="flex flex-col justify-center items-center gap-1">
+                <i class="fa-regular fa-heart text-slate-700"></i>
+              </div>
+            </li>
+          </a>
 
-    return (
-        <div>
-            <div className="w-full dashboard-header flex justify-center items-center">
-                <div className="w-11/12 h-4/5  dashboard-wrapper flex justify-between">
-                    <div className="flex-col w-1/3">
-                        <span className="text-sm">
-                            Blog     
-                        </span>
-                        
-                        <br /> 
-
-                        <span className="dashboard-username font-bold">
-                            Josephine
-                        </span>
-                        
-                    </div>
-                    <div className="flex bell-container">
-                        <span className="material-symbols-outlined mt-2">
-                            notifications
-                        </span>
-                    </div>
-                </div>
+          <li className="">
+            <div className="inline-flex relative w-fit">
+              <div className="absolute inline-block top-2 right-1 bottom-auto left-auto translate-x-2/4 -translate-y-1/2 rotate-0 skew-x-0 skew-y-0 scale-x-100 scale-y-100 p-0.5 px-1.5 text-xs leading-none text-center whitespace-nowrap align-baseline font-bold bg-indigo-700 text-white rounded-full z-10">
+                8
+              </div>
+              <i className="fa-regular fa-bell text-slate-700"></i>
             </div>
-
-            <Search />
-
-            <div className="w-full flex justify-center mt-7">
-                <div className="w-11/12 flex justify-between">
-                    <h1 className="font-bold"> Hot Blog</h1>
-                    <p className="p-inactive" >See All</p>
-                </div>
-            </div>
-
-            <Jobs />
-        </div>
-    )
-
-}
+          </li>
+        </ul>
+      </Footer>
+    </div>
+  );
+};
 
 export default Blog;

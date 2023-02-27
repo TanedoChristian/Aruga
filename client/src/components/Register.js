@@ -1,82 +1,70 @@
 import React, { useEffect, useState } from "react";
-import axios from 'axios';
+import axios from "axios";
+import SetUp from "../Setup";
 const Register = () => {
-
-  
-  const [user, setUser] = useState({})
-
+  const [user, setUser] = useState({});
 
   const [file, setFile] = useState({});
   const [errorFile, setErrorFile] = useState(false);
 
-
-
   const handleFirstname = (e) => {
-    setUser(prev => {
-      return {...prev, firstname: e.target.value}
-    })
-  }
+    setUser((prev) => {
+      return { ...prev, firstname: e.target.value };
+    });
+  };
 
   const handleLastname = (e) => {
-    setUser(prev => {
-      return {...prev, lastname: e.target.value}
-    })
-  }
+    setUser((prev) => {
+      return { ...prev, lastname: e.target.value };
+    });
+  };
 
   const handleAddress = (e) => {
-    setUser(prev => {
-      return {...prev, address: e.target.value}
-    })
-  }
+    setUser((prev) => {
+      return { ...prev, address: e.target.value };
+    });
+  };
 
   const handleMobile = (e) => {
-    setUser(prev => {
-      return {...prev, mobileno: e.target.value}
-    })
-  }
+    setUser((prev) => {
+      return { ...prev, mobileno: e.target.value };
+    });
+  };
 
   const handleEmail = (e) => {
-    setUser(prev => {
-      return {...prev, email: e.target.value}
-    })
-  }
+    setUser((prev) => {
+      return { ...prev, email: e.target.value };
+    });
+  };
 
   const handleUsername = (e) => {
-    setUser(prev => {
-      return {...prev, username: e.target.value}
-    })
-  }
+    setUser((prev) => {
+      return { ...prev, username: e.target.value };
+    });
+  };
 
   const handlePassword = (e) => {
-    setUser(prev => {
-      return {...prev, password: e.target.value}
-    })
-  }
+    setUser((prev) => {
+      return { ...prev, password: e.target.value };
+    });
+  };
 
   const handleConfirm = (e) => {
-    setUser(prev => {
-      return {...prev, confirmpass: e.target.value}
-    })
-  }
-
-
-
+    setUser((prev) => {
+      return { ...prev, confirmpass: e.target.value };
+    });
+  };
 
   const changeHandlerFile = (e) => {
     e.preventDefault();
 
-    
-      console.log(e.target.files[0])
-    
-      setUser(prev => {
-        return {...prev, file: e.target.files[0]}
-      })
-    
+    console.log(e.target.files[0]);
 
+    setUser((prev) => {
+      return { ...prev, file: e.target.files[0] };
+    });
 
-    
-
-    if(e.target.files[0].size > 4 * 1024 * 1024) {
+    if (e.target.files[0].size > 4 * 1024 * 1024) {
       setErrorFile(true);
     } else {
       setErrorFile(false);
@@ -84,68 +72,51 @@ const Register = () => {
   };
 
   const handleType = (e) => {
-    setUser(prev => {
-      return {...prev, type: e.target.value}
-    })
-  }
+    setUser((prev) => {
+      return { ...prev, type: e.target.value };
+    });
+  };
 
   const handleSubmission = (e) => {
-    
     const fd = new FormData();
 
-    fd.append('img', user.file)
-   
+    fd.append("img", user.file);
 
     axios({
       method: "POST",
-      url: "http://192.168.1.9:8000/users",
-      data: {...user, status: "active", filename: user.file.name},
+      url: SetUp.SERVER_URL() + "/users",
+      data: { ...user, status: "active", filename: user.file.name },
       headers: { "Content-Type": "multipart/form-data" },
-    }).then((data) => {
-
-
-        window.location.href = "/login";
-  
-      
-
-    }).catch((err) => {
-      console.log(user)
-      console.log(err)
     })
-
-  
-
-
-
-    
-
-
-
-
-  
-    
-
-
-    
-
+      .then((data) => {
+        window.location.href = "/login";
+      })
+      .catch((err) => {
+        console.log(user);
+        console.log(err);
+      });
   };
 
   return (
     <section className="">
       <div className="flex flex-col items-center   lg:py-0 ">
-      <div className="p-6 z-1 rounded-header overflow-hidden bg-rose-400">
-
-<div className=" h-[5rem] flex  items-center">
-  <i class="fa-solid fa-arrow-left  text-3xl"></i>
-</div>
-
-<h1 className="text-4xl font-bold md:text-2xl tracking-wide">
-      Create new account
-</h1>
-</div>
+        <div className="p-6 z-1 rounded-header overflow-hidden bg-rose-400">
+          <div className=" h-[5rem] flex  items-center">
+            <i class="fa-solid fa-arrow-left  text-3xl"></i>
+          </div>
+          <h1 className="text-4xl font-bold md:text-2xl tracking-wide">
+            Create new account
+          </h1>
+        </div>
         <div className="w-full bg-gray-50 rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0  mt-[-10px] rounded-t-[20px] ">
           <div className="p-5">
-            <form className="space-y-4 md:space-y-6 w-full" method="post" onSubmit={e => {e.preventDefault()}} >
+            <form
+              className="space-y-4 md:space-y-6 w-full"
+              method="post"
+              onSubmit={(e) => {
+                e.preventDefault();
+              }}
+            >
               <div className="flex gap-5">
                 <div>
                   <label
@@ -319,15 +290,18 @@ const Register = () => {
                       <p className="text-xs text-gray-500 dark:text-gray-400">
                         PDF, PNG, JPG
                       </p>
-                      <p className=" text-blue-500 font-medium" style={{color: errorFile ? "red" : ""}}>{errorFile ? "File is too big" : user?.file?.name}</p>
-                    
+                      <p
+                        className=" text-blue-500 font-medium"
+                        style={{ color: errorFile ? "red" : "" }}
+                      >
+                        {errorFile ? "File is too big" : user?.file?.name}
+                      </p>
                     </div>
                     <input
                       id="dropzone-file"
                       type="file"
                       className="hidden "
                       onChange={changeHandlerFile}
-                      
                     />
                   </label>
                 </div>
@@ -348,7 +322,6 @@ const Register = () => {
                       name="option"
                       id="1"
                       class="peer hidden"
-                      
                     />
                     <label
                       for="1"

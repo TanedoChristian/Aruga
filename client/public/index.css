@@ -1,264 +1,220 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter&family=Montserrat&family=Poppins:wght@400;500&display=swap');
-
-
+@import url("https://fonts.googleapis.com/css2?family=Inter&family=Montserrat&family=Poppins:wght@400;500&display=swap");
 
 :root {
-    --inactive-text: #343436;
-    --primary-color: white;
-    --secondary-color: #ec878f;
-    --gray-background: #f3f4f6;
+  --inactive-text: #343436;
+  --primary-color: white;
+  --secondary-color: #ec878f;
+  --gray-background: #f3f4f6;
 }
 
-
-
 * {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-    
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 
 body {
-    background-color: var(--gray-background);
+  background-color: var(--gray-background);
 }
 
-
 img {
-    width: 100%;
-    height: auto;
+  width: 100%;
+  height: auto;
 }
 
 .pri-btn {
-    background-color: var(--secondary-color);
-    color: white;
+  background-color: var(--secondary-color);
+  color: white;
 }
-
 
 .rounded-header {
-  width:100%;
-  
-  
+  width: 100%;
+
   color: white;
- 
-  
 }
 
-.width-95{
-    width: 95%;
+.width-95 {
+  width: 95%;
 }
 
 .margin-negative {
-    margin-top: -10px;
-    
+  margin-top: -10px;
 }
 
 .card {
-    width: 100%;
+  width: 100%;
 }
-
 
 .secondary-font {
-    color: var(--secondary-color);
+  color: var(--secondary-color);
 }
 
-
-
 .secondary-clr {
-    background-color: var(--secondary-color);
+  background-color: var(--secondary-color);
 }
 
 .tite {
-    background-color: orange;
+  background-color: orange;
 }
 
-
 .dashboard-header {
-    height: 9vh;
-    background-color: white;
-    color: black;
+  height: 9vh;
+  background-color: white;
+  color: black;
 }
 
 .search-bar-container {
-    height: 7.5vh;
+  height: 7.5vh;
 }
 
 .p-inactive {
-    color: var(--inactive-text);
-    
+  color: var(--inactive-text);
 }
 
 .jobs-user-container {
-    width: 80px;
-    border: 2px solid white;
-    background-color: var(--gray-background);
-    height: 80px;
-    border-radius: 50%;
+  width: 80px;
+  border: 2px solid white;
+  background-color: var(--gray-background);
+  height: 80px;
+  border-radius: 50%;
 }
 
 .jobs-user-container img {
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
 }
-
 
 .jobs-container {
-
-    border-radius: 20px;
-    
-    
+  border-radius: 20px;
 }
-
-
 
 .jobs-wrapper {
-    padding: 10px;
-    border-radius: 15px;
+  padding: 10px;
+  border-radius: 15px;
 }
 
-.jobs-card{
-    background-color: var(--secondary-color);
-    border-radius: 10px;
+.jobs-card {
+  background-color: var(--secondary-color);
+  border-radius: 10px;
 }
 
-.jobs-card-user img{
-    width: 70px;
-    margin-left: 2%;
-    margin-top: 2%;   
+.jobs-card-user img {
+  width: 70px;
+  margin-left: 2%;
+  margin-top: 2%;
 }
-
 
 .jobs-location-text {
-    color: white;
-    font-size: 0.8rem;
-    margin: 4%;
+  color: white;
+  font-size: 0.8rem;
+  margin: 4%;
 }
 
 .jobs-category {
-    font-size: 0.8rem;
-    padding: 7px;
-    border-radius: 10px;
-    background-color: white;
-    color: var(--secondary-color);
-    
+  font-size: 0.8rem;
+  padding: 7px;
+  border-radius: 10px;
+  background-color: white;
+  color: var(--secondary-color);
 }
 
 .p-inactive {
-    color: #8694a8;
+  color: #8694a8;
 }
 
 .user-details-container {
-
-    height: 90vh;
+  height: 90vh;
 }
 
 .user-wrapper {
-
-    border-radius: 5%;
+  border-radius: 5%;
 }
 
 .user-info-container {
-    height: 30%;
-    color: var(--secondary-color);
+  height: 30%;
+  color: var(--secondary-color);
 }
 
 .img-container {
-    width: 100px;
-    height: 100px;
-}
-
-.list {
-    margin-top: 20px;
-    border-radius: 10px;
+  width: 100px;
+  height: 100px;
 }
 
 .list li {
-    padding: 8px;
-    border-radius: 5px;
-    color: var(--secondary-color);
-
+  padding: 10px;
+  border-radius: 5px;
 }
 
 .list li:hover {
-    background-color: var(--secondary-color);
-    color: white;
+  background-color: var(--secondary-color);
+  color: white;
 }
 
-
 .bio-details {
-    color: var(--inactive-text);
+  color: var(--inactive-text);
 }
 
 .bio-details li {
-    list-style-type: disc;
+  list-style-type: disc;
 }
 
 .bio-details h1 {
-    color: var(--secondary-color);
+  color: var(--secondary-color);
 }
 
 .footer {
-    background-color: white;
-    height: 8vh;
-    
-
+  background-color: white;
+  height: 6vh;
+  align-items: center;
 }
 
 .footer i {
-    font-size: 20px;
-    color: var(--secondary-color);
-   
-    padding: 15px;
-    border-radius: 50%;
+  font-size: 20px;
+  padding: 11px;
+  border-radius: 50%;
 }
 
 .hire-now-btn {
-    background-color: var(--secondary-color);
+  background-color: var(--secondary-color);
 }
 
 .hire-now-btn-white {
-    background-color: var(--secondary-color);
-    color: white;
+  background-color: var(--secondary-color);
+  color: white;
 }
 
 header {
-    height: 7vh;
-    background: var(--secondary-color);
-    
+  height: 7vh;
+  background: var(--secondary-color);
 }
 
 .test {
-    border: 2px solid red;
+  border: 2px solid red;
 }
 
 .notification-sucess-container {
-  
-    color: var(--secondary-color);
+  color: var(--secondary-color);
 }
 
 .ratings {
-    color: black;
-    
+  color: black;
 }
 
 .login-container {
-    width: 90%;
+  width: 90%;
 }
 
 .login-container button {
-    background-color: var(--secondary-color);
+  background-color: var(--secondary-color);
 }
 
 .login-container h1 {
-    color: black;
-    
+  color: black;
 }
 
-.login-container input{
-    color: black;
-    outline: none;
+.login-container input {
+  color: black;
+  outline: none;
 }
-
-
-
