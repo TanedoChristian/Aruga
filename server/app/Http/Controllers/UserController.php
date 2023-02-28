@@ -50,7 +50,7 @@ class UserController extends Controller
 
     public function sendMessage() {
         $sid = "AC8239eb606e924309de484fd150b2f5f8";
-        $token = "c6c7bd76ada16fecfee70c512f21fbe2";
+        $token = "d120e80b7ec08a100c1493b6adca9250";
         $twilio = new Client($sid, $token);
 
         $message = $twilio->messages

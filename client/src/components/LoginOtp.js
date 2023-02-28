@@ -75,7 +75,7 @@ const LoginOtp = () => {
                     </div>
 
                     <div className="flex flex-row items-center justify-center text-center text-sm font-medium space-x-1 text-gray-500">
-                      <p>Didn't recieve code?</p>{" "}
+                      <p>Didn't receive code?</p>{" "}
                       <a className="flex flex-row items-center text-blue-600">
                         Resend
                       </a>

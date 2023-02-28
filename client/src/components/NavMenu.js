@@ -1,6 +1,6 @@
 import React from "react";
 
-const NavMenu = () => {
+const NavMenu = (props) => {
   return (
     <nav class="bg-white  w-full  justify-center flex">
       <div class="flex justify-between items-center  w-[90%] p-2">
@@ -16,6 +16,7 @@ const NavMenu = () => {
             class="inline-flex items-center p-2 ml-1 text-sm text-gray-700 rounded-lg  focus:outline-none "
             aria-controls="mobile-menu-2"
             aria-expanded="false"
+            onClick={props.setShow}
           >
             <svg
               class="w-6 h-6"

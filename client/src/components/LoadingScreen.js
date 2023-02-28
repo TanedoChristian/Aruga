@@ -1,13 +1,13 @@
 import React from "react";
 import Aruga from "../img/aruga.png";
-
+import SetUp from "../Setup";
 const LoadingScreen = () => {
   setTimeout(() => {
-    window.location.href = "http://192.168.1.9:3000/login";
+    window.location.href = "/login";
   }, 2000);
 
   return (
-    <div className="flex w-full h-screen justify-center bg-gray-50 bg-rose-400">
+    <div className="flex w-full h-screen justify-center  bg-rose-400">
       <div className="flex flex-col items-center gap-5">
         <div className="flex items-start mt-[15rem]  w-[100%] justify-center">
           <h1 className="text-[4rem] text-white font-medium ml-4">Aruga</h1>

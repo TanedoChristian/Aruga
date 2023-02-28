@@ -96,10 +96,12 @@ const Login = () => {
               Via Phone Number
             </button>
             <div className="flex justify-center mt-7">
-              <p className="font-md">
-                Don't have an account?{" "}
-                <span className="text-blue-500">Sign Up</span>
-              </p>
+              <a href="/register">
+                <p className="font-md">
+                  Don't have an account?{" "}
+                  <span className="text-blue-500">Sign Up</span>
+                </p>
+              </a>
             </div>
           </div>
         </div>

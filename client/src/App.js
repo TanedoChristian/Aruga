@@ -16,11 +16,13 @@ import Register from "./components/Register";
 import OfferJobs from "./components/OfferJobs";
 import Setup from "./Setup";
 import LoadingScreen from "./components/LoadingScreen";
+import PostJobs from "./components/PostJobs";
 const App = () => {
   return (
     <div>
       <BrowserRouter>
         <Routes>
+          <Route path="/postjobs" element={<PostJobs />}></Route>
           <Route
             path="/"
             element={
