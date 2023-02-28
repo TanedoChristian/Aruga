@@ -3,13 +3,16 @@ import Search from "./Search";
 import Jobs from "./Jobs";
 import NavMenu from "./NavMenu";
 import Footer from "./Footer";
+import JobsCard from "./JobsCard";
 const Blog = () => {
+  const params = new URLSearchParams(window.location.search);
+  const userid = params.get("userid");
   return (
     <div>
       <NavMenu />
       <Footer>
         <ul className="flex w-full justify-around footer border-b border-gray-200">
-          <a href="/dashboard">
+          <a href={`/dashboard?userid=${userid}`}>
             <li className="">
               <div className="flex flex-col justify-center items-center">
                 <i className={`fa-solid fa-house text-slate-600`}></i>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\ArugaUser;
 use Illuminate\Http\Request;
+use Twilio\Rest\Client;
 
 class UserController extends Controller
 {
@@ -46,12 +47,30 @@ class UserController extends Controller
         return ArugaUser::where('user_id', $request->route('id'))->get();
     }
 
+
+    public function sendMessage() {
+        $sid = "AC8239eb606e924309de484fd150b2f5f8";
+        $token = "c6c7bd76ada16fecfee70c512f21fbe2";
+        $twilio = new Client($sid, $token);
+
+        $message = $twilio->messages
+                        ->create("+639608997323", // to
+                                [
+                                    "body" => "Your Aruga verification code is 4578",
+                                    "from" => "+12765985201"
+                                ]
+                        );
+
+        return $message->sid;
+    }
+
     public function login(Request $request) {
         $data = ArugaUser::where('email', $request->email)->value('password');
-
+        $userid = ArugaUser::where('email', $request->email)->value('user_id');
         if(password_verify($request->password, $data)){
             return array(
-                'message' => 'Success'
+                'message' => 'Success',
+                'userid'=> $userid
             );
         } else {
             return array(

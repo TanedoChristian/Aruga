@@ -2,8 +2,8 @@ import React from "react";
 
 const Search = () => {
   return (
-    <div className="flex justify-center w-full search-bar-container gap-1">
-      <div className="w-3/4 border-gray-500 drop-shadow-xl bg-white rounded-xl">
+    <div className="flex justify-center w-full search-bar-container gap-1 h-[5vh] mt-3">
+      <div className="w-[98%] drop-shadow-xl bg-white rounded-full">
         <input
           type="search"
           className="
@@ -11,14 +11,14 @@ const Search = () => {
                     form-control
                     w-full
                     h-full
-                    px-3
-                    py-1.5
+                    px-2
+                    py-1
                     text-base
                     font-normal
                     text-gray-700
                     bg-transparent bg-clip-padding
                     border border-solid border-gray-300
-                    rounded-lg
+                    rounded-full
                     transition
                     ease-in-out
                     m-0

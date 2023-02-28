@@ -15,7 +15,7 @@ const JobsCard = (props) => {
   return (
     <div
       href="#"
-      class="flex flex-col drop-shadow-xl  rounded-xl w-full px-3 py-2 shadow-sm bg-white border border-gray-50"
+      class="flex flex-col drop-shadow-xl  rounded-xl w-full px-3 py-2 shadow-sm bg-white border border-gray-50 test"
       onClick={handleCardClick}
     >
       <div class="flex justify-between items-center">

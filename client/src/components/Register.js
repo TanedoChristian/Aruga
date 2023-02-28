@@ -58,8 +58,6 @@ const Register = () => {
   const changeHandlerFile = (e) => {
     e.preventDefault();
 
-    console.log(e.target.files[0]);
-
     setUser((prev) => {
       return { ...prev, file: e.target.files[0] };
     });

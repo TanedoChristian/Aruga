@@ -24,7 +24,7 @@ const UserDetails = () => {
   const [descriptionBg, setDescriptionBg] = useState("red");
 
   const handleBack = () => {
-    window.location.href = "/dashboard";
+    window.location.href = `/dashboard?userid=${userid}`;
   };
 
   return (

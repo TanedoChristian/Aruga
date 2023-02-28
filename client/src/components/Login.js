@@ -28,7 +28,7 @@ const Login = () => {
       },
     }).then(({ data }) => {
       if (data.message == "Success") {
-        window.location.href = "/dashboard";
+        window.location.href = "/dashboard?userid=" + data.userid;
       } else {
         setError(true);
       }
@@ -36,11 +36,13 @@ const Login = () => {
   };
 
   const handleClickPhone = () => {
-    window.location.href = "/login-otp";
+    axios.get(`${SetUp.SERVER_URL()}/otp`).then((data) => {
+      window.location.href = "/login-otp";
+    });
   };
 
   return (
-    <div>
+    <div className="fade-in">
       <section className="h-screen flex flex-col w-full justify-center items-center login-wrapper bg-gray-50">
         <div className="h-4/5 login-container flex flex-col gap-20">
           <div className="flex flex-col gap-2">
@@ -93,12 +95,14 @@ const Login = () => {
             >
               Via Phone Number
             </button>
+            <div className="flex justify-center mt-7">
+              <p className="font-md">
+                Don't have an account?{" "}
+                <span className="text-blue-500">Sign Up</span>
+              </p>
+            </div>
           </div>
         </div>
-        <p className="font-md">
-          {" "}
-          Don't have an account? <span className="text-blue-500">Sign Up</span>
-        </p>
       </section>
     </div>
   );

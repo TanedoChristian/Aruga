@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\JobsController;
 use App\Http\Controllers\UserController;
 use App\Models\ArugaUser;
 use App\Models\User;
@@ -18,11 +19,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
 Route::post('/users', [UserController::class, 'insert']);
 Route::get('/users', [UserController::class, 'show']);
 Route::get('/users/{id}', [UserController::class, 'showID']);
-
 Route::post('/login', [UserController::class, 'login']);
-
-
-
+Route::post('/postjob', [JobsController::class, 'insert']);
+Route::get('/jobs', [JobsController::class, 'show']);
+Route::get('/otp', [UserController::class, 'sendMessage']);

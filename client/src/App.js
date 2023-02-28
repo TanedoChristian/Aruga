@@ -15,6 +15,7 @@ import Frontpage from "./Frontpage";
 import Register from "./components/Register";
 import OfferJobs from "./components/OfferJobs";
 import Setup from "./Setup";
+import LoadingScreen from "./components/LoadingScreen";
 const App = () => {
   return (
     <div>
@@ -24,7 +25,7 @@ const App = () => {
             path="/"
             element={
               <div>
-                <a href="/login">Login</a>
+                <LoadingScreen />
               </div>
             }
           ></Route>

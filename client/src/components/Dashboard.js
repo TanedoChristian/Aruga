@@ -4,6 +4,8 @@ import Jobs from "./Jobs";
 import Footer from "./Footer";
 import NavMenu from "./NavMenu";
 const Dashboard = (props) => {
+  const params = new URLSearchParams(window.location.search);
+  const userid = params.get("userid");
   return (
     <div>
       <div className=" flex flex-col">
@@ -21,12 +23,14 @@ const Dashboard = (props) => {
                 ></i>
               </div>
             </li>
-            <li className="">
-              <div className="flex flex-col justify-center items-center gap-1">
-                <i class={`fa-solid fa-pen-to-square text-slate-700`}></i>
-              </div>
-            </li>
-            <a href="/offer">
+            <a href={`/blog?userid=${userid}`}>
+              <li className="">
+                <div className="flex flex-col justify-center items-center gap-1">
+                  <i class={`fa-solid fa-pen-to-square text-slate-700`}></i>
+                </div>
+              </li>
+            </a>
+            <a href={`/offer?userid=${userid}`}>
               <li className="">
                 <div className="flex flex-col justify-center items-center gap-1">
                   <i class="fa-regular fa-heart text-slate-700"></i>
