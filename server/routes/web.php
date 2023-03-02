@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BlogController;
 use App\Http\Controllers\JobsController;
 use App\Http\Controllers\UserController;
 use App\Models\ArugaUser;
@@ -27,3 +28,5 @@ Route::post('/login', [UserController::class, 'login']);
 Route::post('/postjob', [JobsController::class, 'insert']);
 Route::get('/jobs', [JobsController::class, 'show']);
 Route::get('/otp', [UserController::class, 'sendMessage']);
+Route::post('/blog', [BlogController::class, 'insert']);
+Route::get('/blog', [BlogController::class, 'show']);

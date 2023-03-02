@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import SetUp from "../Setup";
+import Compressor from "compressorjs";
+
 const Register = () => {
   const [user, setUser] = useState({});
 
@@ -56,10 +58,10 @@ const Register = () => {
   };
 
   const changeHandlerFile = (e) => {
-    e.preventDefault();
+    const file = e.target.files[0];
 
     setUser((prev) => {
-      return { ...prev, file: e.target.files[0] };
+      return { ...prev, file: file };
     });
 
     if (e.target.files[0].size > 4 * 1024 * 1024) {
@@ -76,23 +78,28 @@ const Register = () => {
   };
 
   const handleSubmission = (e) => {
-    const fd = new FormData();
-
-    fd.append("img", user.file);
-
-    axios({
-      method: "POST",
-      url: SetUp.SERVER_URL() + "/users",
-      data: { ...user, status: "active", filename: user.file.name },
-      headers: { "Content-Type": "multipart/form-data" },
-    })
-      .then((data) => {
-        window.location.href = "/login";
-      })
-      .catch((err) => {
-        console.log(user);
-        console.log(err);
-      });
+    new Compressor(user?.file, {
+      quality: 0.6,
+      success(result) {
+        axios({
+          method: "POST",
+          url: SetUp.SERVER_URL() + "/users",
+          data: { ...user, file: result, status: "active" },
+          headers: { "Content-Type": "multipart/form-data" },
+        })
+          .then((data) => {
+            console.log(data);
+            window.location.href = "/login";
+          })
+          .catch((err) => {
+            console.log(user);
+            console.log(err);
+          });
+      },
+      error(err) {
+        console.log(err.message);
+      },
+    });
   };
 
   return (

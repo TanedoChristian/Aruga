@@ -4,7 +4,7 @@
   --inactive-text: #343436;
   --primary-color: white;
   --secondary-color: #ec878f;
-  --gray-background: #f3f4f6;
+  --gray-background: #f9fafb;
 }
 
 * {
@@ -14,6 +14,10 @@
   font-family: "Poppins", sans-serif;
 }
 
+.title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
 body {
   background-color: var(--gray-background);
 }
@@ -29,6 +33,14 @@ img {
   -moz-animation: fadeIn ease 2s;
   -o-animation: fadeIn ease 2s;
   -ms-animation: fadeIn ease 2s;
+}
+
+.fade-in-1 {
+  animation: fadeIn ease 0.5s;
+  -webkit-animation: fadeIn ease 0.5s;
+  -moz-animation: fadeIn ease 0.5s;
+  -o-animation: fadeIn ease 0.5s;
+  -ms-animation: fadeIn ease 0.5s;
 }
 
 @keyframes fadeIn {

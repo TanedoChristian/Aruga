@@ -3,23 +3,15 @@ import Footer from "./Footer";
 import JobsCard from "./JobsCard";
 import axios from "axios";
 import SetUp from "../Setup";
+import useFetchApi from "../hooks/useFetchApi";
 
-const Jobs = (props) => {
-  const [users, setUser] = useState([]);
-  console.log(process.env.SERVER_URL);
-  useEffect(() => {
-    axios({
-      method: "get",
-      url: props.url + "/users",
-    }).then(({ data }) => {
-      setUser(data);
-    });
-  }, []);
+const Jobs = () => {
+  const { datas } = useFetchApi(`${SetUp.SERVER_URL()}/users`);
 
   return (
-    <div className="flex justify-center w-full">
-      <div className="w-[95%]  flex flex-col gap-2">
-        {users.map((user) => (
+    <div className="w-full overflow-auto flex justify-center mt-2">
+      <div className="flex flex-col-reverse w-[95%] gap-1">
+        {datas.map((user) => (
           <JobsCard
             img={`${SetUp.SERVER_URL()}/${user.img}`}
             name={`${user.firstname} ${user.lastname}`}

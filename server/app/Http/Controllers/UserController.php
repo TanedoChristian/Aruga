@@ -25,9 +25,7 @@ class UserController extends Controller
 
 
     $filename = $request->file->store('public');
-
     $storeFile = str_replace("public", "storage", $filename);
-
     $user->img = $storeFile;
 
 
@@ -67,10 +65,12 @@ class UserController extends Controller
     public function login(Request $request) {
         $data = ArugaUser::where('email', $request->email)->value('password');
         $userid = ArugaUser::where('email', $request->email)->value('user_id');
+        $userimg = ArugaUser::where('email', $request->email)->value('img');
         if(password_verify($request->password, $data)){
             return array(
                 'message' => 'Success',
-                'userid'=> $userid
+                'userid'=> $userid,
+                'userimg' => $userimg
             );
         } else {
             return array(
@@ -79,3 +79,5 @@ class UserController extends Controller
         }
     }
 }
+
+?>

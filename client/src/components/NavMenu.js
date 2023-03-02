@@ -10,6 +10,10 @@ const NavMenu = (props) => {
           </span>
         </div>
         <div class="flex items-center lg:order-2">
+          <img
+            src={sessionStorage.getItem("userimg")}
+            className="h-9 w-9 rounded-full object-cover shadow-sm"
+          />
           <button
             data-collapse-toggle="mobile-menu-2"
             type="button"

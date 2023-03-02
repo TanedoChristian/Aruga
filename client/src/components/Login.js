@@ -1,9 +1,16 @@
 import React, { useState } from "react";
 import axios from "axios";
 import SetUp from "../Setup";
+
+import { ReactSession } from "react-client-session";
+
 const Login = () => {
   const [user, setUser] = useState({});
   const [error, setError] = useState(false);
+
+  if (sessionStorage.getItem("userid")) {
+    window.location.href = "/dashboard";
+  }
 
   const handleEmail = (e) => {
     setUser((prev) => {
@@ -17,7 +24,8 @@ const Login = () => {
     });
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     console.log(user.email);
     axios({
       method: "post",
@@ -28,7 +36,12 @@ const Login = () => {
       },
     }).then(({ data }) => {
       if (data.message == "Success") {
-        window.location.href = "/dashboard?userid=" + data.userid;
+        sessionStorage.setItem("userid", data.userid);
+        sessionStorage.setItem(
+          "userimg",
+          `${SetUp.SERVER_URL()}/${data.userimg}`
+        );
+        window.location.href = "/dashboard";
       } else {
         setError(true);
       }
@@ -63,27 +76,29 @@ const Login = () => {
                 onChange={handleEmail}
               />
             </div>
-            <div>
-              <h2 className=" font-thin">Password</h2>
-              <input
-                type="password"
-                className=" hello shadow-md bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-4  dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="Password"
-                onChange={handlePassword}
-              />
+            <form onSubmit={handleSubmit}>
+              <div>
+                <h2 className=" font-thin">Password</h2>
+                <input
+                  type="password"
+                  className=" hello shadow-md bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-4  dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  placeholder="Password"
+                  onChange={handlePassword}
+                />
 
-              <p className="text-sm text-blue-500 mt-5">Forgot password? </p>
-            </div>
+                <p className="text-sm text-blue-500 mt-5">Forgot password? </p>
+              </div>
 
-            <div className="w-full flex justify-end">
-              <button
-                className="bg-black hover:bg-blue-700 text-white font-bold py-3 px-10 rounded-full shadow-xl"
-                onClick={handleSubmit}
-              >
-                Login
-                <i className="fa-solid fa-arrow-right text-white ml-2"></i>
-              </button>
-            </div>
+              <div className="w-full flex justify-end">
+                <button
+                  className="bg-black hover:bg-blue-700 text-white font-bold py-3 px-10 rounded-full shadow-xl"
+                  onClick={handleSubmit}
+                >
+                  Login
+                  <i className="fa-solid fa-arrow-right text-white ml-2"></i>
+                </button>
+              </div>
+            </form>
 
             <div className="flex items-center my-4 before:flex-1 before:border-t before:border-gray-300 before:mt-0.5 after:flex-1 after:border-t after:border-gray-300 after:mt-0.5">
               <p className="text-center font-semibold mx-4 mb-0">Or</p>

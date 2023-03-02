@@ -24,6 +24,8 @@ class JobsController extends Controller
         $job->jobpost_type = $request->type;
         $job->jobpost_status = "active";
         $job->salary = $request->salary;
+        $job->jobpost_address = $request->address;
+        $job->jobpost_title = $request->title;
 
         $job->save();
 
@@ -32,3 +34,5 @@ class JobsController extends Controller
 
     }
 }
+
+?>

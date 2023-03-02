@@ -1,41 +1,53 @@
 import React, { useCallback, useEffect, useState } from "react";
-import Search from "./Search";
 import Jobs from "./Jobs";
 import Footer from "./Footer";
 import NavMenu from "./NavMenu";
 import SideNav from "./SideNav";
+import SetUp from "../Setup";
+import axios from "axios";
+
 const Dashboard = (props) => {
-  const params = new URLSearchParams(window.location.search);
-  const userid = params.get("userid");
-
   const [showNav, setShowNav] = useState(false);
-
   const handleShow = () => {
     setShowNav(!showNav);
   };
 
+  useEffect(() => {
+    axios
+      .get(`${SetUp.SERVER_URL()}/users/${sessionStorage.getItem("userid")}`)
+      .then(({ data }) => {
+        console.log(data);
+      });
+  });
+
   return (
-    <div>
-      <SideNav isShow={showNav} />
-      <div className=" flex flex-col">
+    <div className="">
+      <div className=" flex flex-col gap-2 bg-white">
         <nav class="bg-white  w-full  justify-center flex">
-          <div class="flex justify-between items-center  w-[90%] p-2">
+          <div class="flex justify-between items-center  w-[98%] p-2">
             <div class="flex items-center gap-2 ">
               <span class="self-center text-2xl font-semibold whitespace-nowrap text-rose-400 tracking-wider">
                 Aruga
               </span>
             </div>
-            <div class="flex items-center lg:order-2">
+
+            <div class="flex items-center gap-2 w-full justify-end">
+              <div className="">
+                <img
+                  src={sessionStorage.getItem("userimg")}
+                  className="h-9 w-9 rounded-full object-cover shadow-sm"
+                />
+              </div>
               <button
                 data-collapse-toggle="mobile-menu-2"
                 type="button"
-                class="inline-flex items-center p-2 ml-1 text-sm text-gray-700 rounded-lg  focus:outline-none "
+                class="inline-flex items-center p-1  text-sm text-gray-700 rounded-lg  focus:outline-none "
                 aria-controls="mobile-menu-2"
                 aria-expanded="false"
                 onClick={handleShow}
               >
                 <svg
-                  class="w-6 h-6"
+                  class="w-7 h-7"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
@@ -62,6 +74,8 @@ const Dashboard = (props) => {
             </div>
           </div>
         </nav>
+        <SideNav isShow={showNav} />
+
         <Footer>
           <ul className="flex w-full justify-around footer border-b border-gray-200">
             <li className="">
@@ -75,14 +89,14 @@ const Dashboard = (props) => {
                 ></i>
               </div>
             </li>
-            <a href={`/blog?userid=${userid}`}>
+            <a href={`/blog`}>
               <li className="">
                 <div className="flex flex-col justify-center items-center gap-1">
                   <i class={`fa-solid fa-pen-to-square text-slate-700`}></i>
                 </div>
               </li>
             </a>
-            <a href={`/offer?userid=${userid}`}>
+            <a href={`/offer`}>
               <li className="">
                 <div className="flex flex-col justify-center items-center gap-1">
                   <i class="fa-regular fa-heart text-slate-700"></i>
@@ -102,15 +116,7 @@ const Dashboard = (props) => {
         </Footer>
       </div>
 
-      <div></div>
-
-      <div className="p-5 mt-1 rounded flex flex-col gap-2">
-        <div className="flex items-center gap-2">
-          <h1 className="text-2xl font-bold text-slate-800">
-            Popular Categories
-          </h1>
-        </div>
-
+      <div className="p-3  flex flex-col gap-2 bg-gray-50 ">
         <ul className="flex gap-3 overflow-x-auto items-center">
           <li>
             <a
@@ -166,11 +172,50 @@ const Dashboard = (props) => {
           </li>
         </ul>
       </div>
-      <div className="flex justify-center">
-        <div className="flex flex-col  w-full">
-          <Jobs url={props.url} />
+      <Jobs url={props.url} />
+
+      <footer class="p-4 bg-white shadow  dark:bg-gray-700  flex flex-col">
+        <div class="sm:flex sm:items-center sm:justify-between ">
+          <a
+            href="https://flowbite.com/"
+            class="flex items-center mb-4 sm:mb-0"
+          >
+            <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+              Aruga
+            </span>
+          </a>
+          <ul class="flex flex-wrap items-center  text-sm text-gray-500 sm:mb-0 dark:text-gray-400">
+            <li>
+              <a href="#" class="mr-4 hover:underline md:mr-6 ">
+                About
+              </a>
+            </li>
+            <li>
+              <a href="#" class="mr-4 hover:underline md:mr-6">
+                Privacy Policy
+              </a>
+            </li>
+            <li>
+              <a href="#" class="mr-4 hover:underline md:mr-6 ">
+                Licensing
+              </a>
+            </li>
+            <li>
+              <a href="#" class="hover:underline">
+                Contact
+              </a>
+            </li>
+          </ul>
         </div>
-      </div>
+        <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+        <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">
+          ©
+          <a href="https://flowbite.com/" class="hover:underline">
+            Aruga™
+          </a>
+          . All Rights Reserved.
+        </span>
+      </footer>
     </div>
   );
 };
