@@ -19,7 +19,14 @@ const Blog = () => {
   const [errorFile, setErrorFile] = useState(false);
   const [isShowSideNav, setShowNav] = useState(false);
 
+  const [type, setType] = useState();
+
   useEffect(() => {
+    if (sessionStorage.getItem("type") == "parent") {
+      setType("/dashboard");
+    } else {
+      setType("/dashboard-babysitter");
+    }
     axios.get(`${SetUp.SERVER_URL()}/blog`).then(({ data }) => {
       setData(data);
     });
@@ -131,7 +138,7 @@ const Blog = () => {
         <SideNav isShow={isShowSideNav} />
         <Footer>
           <ul className="flex w-full justify-around footer border-b border-gray-200">
-            <a href={`/dashboard`}>
+            <a href={type}>
               <li className="">
                 <div className="flex flex-col justify-center items-center">
                   <i className={`fa-solid fa-house text-slate-600`}></i>

@@ -18,11 +18,14 @@ import Setup from "./Setup";
 import LoadingScreen from "./components/LoadingScreen";
 import PostJobs from "./components/PostJobs";
 import DashboardBabysitter from "./components/DashboardBabysitter";
+import EditProfile from "./components/EditProfile";
 const App = () => {
   return (
     <div>
       <BrowserRouter>
         <Routes>
+          <Route path="/edit-profile" element={<EditProfile />}></Route>
+
           <Route
             path="/dashboard-babysitter"
             element={<DashboardBabysitter />}
