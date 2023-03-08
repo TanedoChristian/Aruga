@@ -5,6 +5,7 @@ import NavMenu from "./NavMenu";
 import SideNav from "./SideNav";
 import SetUp from "../Setup";
 import axios from "axios";
+import Background from "../img/background.png";
 
 const Dashboard = (props) => {
   const [showNav, setShowNav] = useState(false);
@@ -172,8 +173,16 @@ const Dashboard = (props) => {
           </li>
         </ul>
       </div> */}
-
-      <Jobs url={props.url} />
+      <div
+        className="h-screen"
+        style={{
+          backgroundImage: `url(${Background})`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+        }}
+      >
+        <Jobs url={props.url} />
+      </div>
     </div>
   );
 };

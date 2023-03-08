@@ -62,6 +62,13 @@ class UserController extends Controller
         return $message->sid;
     }
 
+    public function edit(Request $request) {
+
+        ArugaUser::where('user_id', $request->userid)->update(['mobileno' => $request->mobileno]);
+
+        return $request;
+    }
+
     public function login(Request $request) {
         $data = ArugaUser::where('email', $request->email)->value('password');
         $userid = ArugaUser::where('email', $request->email)->value('user_id');
@@ -80,6 +87,8 @@ class UserController extends Controller
             );
         }
     }
+
+
 }
 
 ?>

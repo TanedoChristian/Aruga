@@ -1,6 +1,7 @@
 import React from "react";
 import Aruga from "../img/aruga.png";
 import SetUp from "../Setup";
+
 const LoadingScreen = () => {
   setTimeout(() => {
     window.location.href = "/login";

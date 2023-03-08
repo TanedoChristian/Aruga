@@ -113,7 +113,7 @@ const Register = () => {
             Create new account
           </h1>
         </div>
-        <div className="w-full bg-gray-50 rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0  mt-[-10px] rounded-t-[20px] ">
+        <div className="w-full bg-gray-50 rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0  mt-[-10px] rounded-t-[20px]">
           <div className="p-5">
             <form
               className="space-y-4 md:space-y-6 w-full"

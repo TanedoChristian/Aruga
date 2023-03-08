@@ -4,6 +4,7 @@ import JobsCard from "./JobsCard";
 import axios from "axios";
 import SetUp from "../Setup";
 import useFetchApi from "../hooks/useFetchApi";
+import Background from "../img/background.png";
 
 const Jobs = () => {
   const { datas } = useFetchApi(`${SetUp.SERVER_URL()}/users`);

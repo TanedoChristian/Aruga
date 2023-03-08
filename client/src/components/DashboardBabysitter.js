@@ -5,12 +5,12 @@ import NavMenu from "./NavMenu";
 import SideNav from "./SideNav";
 import SetUp from "../Setup";
 import axios from "axios";
-
+import Modal from "react-modal";
 const DashboardBabysitter = (props) => {
   const [jobs, setJobs] = useState([]);
 
   const [applicant, setApplicant] = useState({});
-
+  const [showModal, setShowModal] = useState(false);
   const [showNav, setShowNav] = useState(false);
 
   const handleShow = () => {
@@ -158,6 +158,42 @@ const DashboardBabysitter = (props) => {
       <h1 className="mt-5 text-xl font-bold tracking-wide ml-3">
         Available Jobs
       </h1>
+
+      <div
+        id="defaultModal"
+        tabindex="-1"
+        class="fixed top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full bg-gray-100 bg-opacity-75"
+        style={{ display: showModal ? "block" : "none" }}
+      >
+        <div class="flex w-full items-center h-full justify-center">
+          <div class="relative  rounded-lg shadow bg-indigo-400">
+            <div class="flex items-start justify-between p-4  rounded-t">
+              <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                Application Submitted
+              </h3>
+            </div>
+
+            <div class="flex items-center p-6 space-x-2  rounded-b dark:border-gray-600">
+              <button
+                data-modal-hide="defaultModal"
+                type="button"
+                onClick={() => setShowModal(false)}
+                class="text-white  text-md font-bold focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm px-5 py-2.5 text-center dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              >
+                Confirm
+              </button>
+              <button
+                data-modal-hide="defaultModal"
+                type="button"
+                onClick={() => setShowModal(false)}
+                class=" text-white text-md font-bold focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-md  text-sm font-medium px-5 py-2.5"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
       <div className="flex  flex-col items-center gap-2 h-full">
         <div className="flex w-full px-5 py-2"></div>
 
@@ -194,6 +230,7 @@ const DashboardBabysitter = (props) => {
                   <button
                     className="text-xs text-indigo-700"
                     onClick={() => {
+                      setShowModal(true);
                       handleApply(job.jobpost_id, job.parent_id);
                     }}
                   >

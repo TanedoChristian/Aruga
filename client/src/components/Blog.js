@@ -286,7 +286,7 @@ const Blog = () => {
         id="defaultModal"
         tabindex="-1"
         aria-hidden="true"
-        class="absolute h-full fade-in-1 top-0  animation-fade w-[100%] bg-white "
+        class="absolute h-full fade-in-1 top-0  animation-fade w-[100%] bg-white  w3-animate-top"
         style={{ display: isShowModal ? "block" : "none" }}
       >
         <div class="relative w-full h-full max-w-2xl md:h-auto">

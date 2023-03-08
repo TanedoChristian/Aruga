@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import SetUp from "../Setup";
-
+import Background from "../img/background.png";
 import { ReactSession } from "react-client-session";
 
 const Login = () => {
@@ -62,12 +62,21 @@ const Login = () => {
   };
 
   return (
-    <div className="fade-in">
-      <section className="h-screen flex flex-col w-full justify-center items-center login-wrapper bg-gray-50">
+    <div
+      className="fade-in login"
+      style={{
+        backgroundImage: `url(${Background})`,
+        backgroundRepeat: "no-repeat",
+        backgroundSize: "cover",
+      }}
+    >
+      <section className="h-screen flex flex-col w-full justify-center items-center login-wrapper">
         <div className="h-4/5 login-container flex flex-col gap-20">
           <div className="flex flex-col gap-2">
-            <h1 className="text-4xl font-medium">Login</h1>
-            <p className="text-md text-gray-700">Please sign in to continue.</p>
+            <h1 className="text-4xl font-medium  text-right">Login</h1>
+            <p className="text-md text-gray-700 text-right">
+              Please sign in to continue.
+            </p>
           </div>
 
           <div className="w-full  flex flex-col gap-3">
