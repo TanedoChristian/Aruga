@@ -41,7 +41,14 @@ const Login = () => {
           "userimg",
           `${SetUp.SERVER_URL()}/${data.userimg}`
         );
-        window.location.href = "/dashboard";
+
+        sessionStorage.setItem("type", data.type);
+
+        if (data.type == "parent") {
+          window.location.href = "/dashboard";
+        } else {
+          window.location.href = "/dashboard-babysitter";
+        }
       } else {
         setError(true);
       }

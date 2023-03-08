@@ -9,7 +9,7 @@ use Twilio\Rest\Client;
 class UserController extends Controller
 {
     public function show(){
-        return ArugaUser::all();
+        return ArugaUser::where('type', 'babysitter')->get();
     }
 
     public function insert(Request $request) {
@@ -66,11 +66,13 @@ class UserController extends Controller
         $data = ArugaUser::where('email', $request->email)->value('password');
         $userid = ArugaUser::where('email', $request->email)->value('user_id');
         $userimg = ArugaUser::where('email', $request->email)->value('img');
+        $usertype = ArugaUser::where('email', $request->email)->value('type');
         if(password_verify($request->password, $data)){
             return array(
                 'message' => 'Success',
                 'userid'=> $userid,
-                'userimg' => $userimg
+                'userimg' => $userimg,
+                'type' => $usertype
             );
         } else {
             return array(

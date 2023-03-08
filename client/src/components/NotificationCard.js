@@ -1,70 +1,38 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Footer from "./Footer";
-
-
-
+import SetUp from "../Setup";
+import axios from "axios";
+import JobsCard from "./JobsCard";
 const NotificationCard = () => {
+  const [notification, setNotification] = useState([]);
 
-    return (
-        <div className="jobs-container flex justify-center w-full">
-            <div className="flex w-11/12 jobs-wrapper flex-col gap-3">
+  useEffect(() => {
+    axios
+      .get(
+        `${SetUp.SERVER_URL()}/application/${sessionStorage.getItem("userid")}}`
+      )
+      .then(({ data }) => {
+        console.log(data);
+        setNotification(data);
+      });
+  }, []);
 
-            <div className="jobs-card flex flex-col shadow-inner">
-                    <div className="flex gap-3 jobs-card-user">
-                        <img
-                        src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
-                        className="rounded-full"
-                        alt="Avatar"
-                        />
-                        <div className="flex flex-col justify-center">
-                            <p className="text-slate-100">Nerry</p>
-                            <h2 className="text-slate-100 font-bold">Weekdays Babysitter</h2>
-                        </div>
-                    </div>
-
-                    <span className="jobs-location-text flex gap-1">
-                        <span className="material-symbols-outlined">
-                            pin_drop
-                        </span>
-                        <p>Sambag 1, Cebu City</p>
-                    </span>
-                    <div className="jobs-category-container flex w-full gap-3 m-4">
-                        <span className="jobs-category"> View</span>
-                    </div>
-                </div>
-
-                <div className="jobs-card flex flex-col shadow-inner">
-                    <div className="flex gap-3 jobs-card-user">
-                        <img
-                        src="https://mdbcdn.b-cdn.net/img/new/avatars/2.webp"
-                        className="rounded-full"
-                        alt="Avatar"
-                        />
-                        <div className="flex flex-col justify-center">
-                            <p className="text-slate-100">Nerry</p>
-                            <h2 className="text-slate-100 font-bold">Weekdays Babysitter</h2>
-                        </div>
-                    </div>
-
-                    <span className="jobs-location-text flex gap-1">
-                        <span className="material-symbols-outlined">
-                            pin_drop
-                        </span>
-                        <p>Sambag 1, Cebu City</p>
-                    </span>
-                    <div className="jobs-category-container flex w-full gap-3 m-4">
-                        <span className="jobs-category"> View</span>
-                    </div>
-                </div>
-
-                
-                
-
-            </div>
+  return (
+    <div className="jobs-container flex justify-center w-full">
+      <div className="flex w-11/12 jobs-wrapper flex-col gap-3">
+        <div className="jobs-card flex flex-col shadow-inner">
+          {notification.map((user) => (
+            <JobsCard
+              img={`${SetUp.SERVER_URL()}/${user.img}`}
+              name={`${user.firstname} ${user.lastname}`}
+              address={user.address}
+              userid={user.user_id}
+            />
+          ))}
         </div>
-        
-    )
-
-}
+      </div>
+    </div>
+  );
+};
 
 export default NotificationCard;

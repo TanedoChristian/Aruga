@@ -17,11 +17,17 @@ import OfferJobs from "./components/OfferJobs";
 import Setup from "./Setup";
 import LoadingScreen from "./components/LoadingScreen";
 import PostJobs from "./components/PostJobs";
+import DashboardBabysitter from "./components/DashboardBabysitter";
 const App = () => {
   return (
     <div>
       <BrowserRouter>
         <Routes>
+          <Route
+            path="/dashboard-babysitter"
+            element={<DashboardBabysitter />}
+          ></Route>
+
           <Route path="/postjobs" element={<PostJobs />}></Route>
           <Route
             path="/"

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\JobsController;
 use App\Http\Controllers\UserController;
@@ -30,3 +31,8 @@ Route::get('/jobs', [JobsController::class, 'show']);
 Route::get('/otp', [UserController::class, 'sendMessage']);
 Route::post('/blog', [BlogController::class, 'insert']);
 Route::get('/blog', [BlogController::class, 'show']);
+Route::post('/application', [ApplicationController::class, 'insert']);
+Route::get('/application/{id}', [ApplicationController::class, 'show']);
+
+?>
+

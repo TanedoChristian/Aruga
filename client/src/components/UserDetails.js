@@ -28,57 +28,58 @@ const UserDetails = () => {
   };
 
   return (
-    <div class=" bg-gray-200  flex flex-wrap items-center justify-center">
+    <div class=" bg-rose-200  flex flex-wrap items-center justify-center ">
       <div class="container bg-white rounded  shadow-lg transform duration-200 easy-in-out w-full  h-screen">
-        <div className="absolute top-2 left-3" onClick={handleBack}>
-          <div className="flex rounded-full border border-gray-300 w-10 h-10 justify-center items-center">
-            <i class="fa-solid fa-angle-left text-2xl"></i>
+        <div className="absolute top-3 left-3" onClick={handleBack}>
+          <div className="flex rounded-full w-10 h-10 justify-center items-center">
+            <i class="fa-solid fa-angle-left text-3xl text-white"></i>
           </div>
         </div>
-        <div class="h-[10rem]  flex">
-          <img
-            class="w-full rounded-t"
-            src="https://images.unsplash.com/photo-1638803040283-7a5ffd48dad5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80"
-            alt="Photo by aldi sigun on Unsplash"
-          />
-        </div>
-        <div class="flex justify-start px-5 -mt-10 mb-3">
-          <span clspanss="block relative h-32 w-32">
-            <img
-              alt="Photo by aldi sigun on Unsplash"
-              src={`${SetUp.SERVER_URL()}/${user?.img}`}
-              class="mx-auto object-cover rounded-full h-24 w-24 bg-white p-1"
-            />
-          </span>
-        </div>
 
-        <div className="w-full flex justify-center  items-center mb-5">
-          <div className="w-[95%] flex items-center">
-            <ul className="flex gap-4 justify-evenly w-full items-center list">
-              <li
-                className="p-2"
-                style={{
-                  backgroundColor: isDescription ? "#ec878f" : "white",
-                  color: isDescription ? "white" : "",
-                }}
-                onClick={() => {
-                  setDescription(true);
-                  setReviews(false);
-                }}
-              >
-                Description
-              </li>
-              <li
-                className="p-2"
-                onClick={() => {
-                  setReviews(true);
-                  setDescription(false);
-                }}
-              >
-                Reviews
-              </li>
-              <li className="p-2">Resume</li>
-            </ul>
+        <div class="flex w-full flex-col bg-rose-400">
+          <div class="flex  w-full flex-col items-center mt-10 gap-3">
+            <div class="w-48 h-48 bg-indigo-100 mx-auto rounded-full shadow-2xl  flex items-center justify-center text-indigo-500 flex">
+              <img
+                src={`${SetUp.SERVER_URL()}/${user?.img}`}
+                className="rounded-full object-cover h-full w-full border border-white"
+              />
+            </div>
+            <div className="mb-10">
+              <h1 class="text-2xl font-medium text-gray-50">
+                {`${user.firstname ?? ""} ${user.lastname ?? ""}`}
+              </h1>
+            </div>
+          </div>
+        </div>
+        <div class="flex justify-between items-center -mt-5 bg-white rounded-b rounded-[40px]">
+          <div className="w-full flex justify-center  items-center mb-5 p-3  rounded-b rounded-3xl">
+            <div className="w-[95%] flex items-center">
+              <ul className="flex gap-4 justify-evenly w-full items-center list text-rose-400">
+                <li
+                  className="p-2 w-[30%] text-center"
+                  style={{
+                    backgroundColor: isDescription ? "#ec878f" : "",
+                    color: isDescription ? "white" : "black",
+                  }}
+                  onClick={() => {
+                    setDescription(true);
+                    setReviews(false);
+                  }}
+                >
+                  Details
+                </li>
+                <li
+                  className="p-2 w-[30%] text-center"
+                  onClick={() => {
+                    setReviews(true);
+                    setDescription(false);
+                  }}
+                >
+                  Reviews
+                </li>
+                <li className="p-2 w-[30%] text-center">Resume</li>
+              </ul>
+            </div>
           </div>
         </div>
 
@@ -93,25 +94,12 @@ const UserDetails = () => {
 
         {component}
       </div>
+      <div className="flex  w-full justify-center fixed bottom-2">
+        <button class="py-3 px-4  font-medium  w-[70%] bg-indigo-500 text-white rounded-lg">
+          Hire Now
+        </button>
+      </div>
     </div>
-
-    // <div className="user-details-container w-full bg-white">
-    //   <div className="h-full user-wrapper flex flex-col">
-
-    //     </div>
-    //     <div className="h-[40vh] flex w-full border ">
-    //       <img src={data.img} className="object-cover" />
-    //     </div>
-
-    //     {component}
-
-    //     <div className="w-full flex justify-center p-5 bg-white">
-    //       <button class=" hire-now-btn text-white font-bold py-2 px-4 border border-white rounded w-4/5 mt-5 ">
-    //         Hire Now
-    //       </button>
-    //     </div>
-    //   </div>
-    // </div>
   );
 };
 

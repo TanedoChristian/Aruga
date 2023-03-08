@@ -24,9 +24,9 @@ const Dashboard = (props) => {
     <div className="">
       <div className=" flex flex-col gap-2 bg-white">
         <nav class="bg-white  w-full  justify-center flex">
-          <div class="flex justify-between items-center  w-[98%] p-2">
+          <div class="flex justify-between items-center  w-[98%] p-2  gap-3">
             <div class="flex items-center gap-2 ">
-              <span class="self-center text-2xl font-semibold whitespace-nowrap text-rose-400 tracking-wider">
+              <span class="self-center text-2xl font-semibold whitespace-nowrap text-rose-400 tracking-wider ml-2">
                 Aruga
               </span>
             </div>
@@ -75,7 +75,6 @@ const Dashboard = (props) => {
           </div>
         </nav>
         <SideNav isShow={showNav} />
-
         <Footer>
           <ul className="flex w-full justify-around footer border-b border-gray-200">
             <li className="">
@@ -103,20 +102,21 @@ const Dashboard = (props) => {
                 </div>
               </li>
             </a>
-
-            <li className="">
-              <div className="inline-flex relative w-fit">
-                <div className="absolute inline-block top-2 right-1 bottom-auto left-auto translate-x-2/4 -translate-y-1/2 rotate-0 skew-x-0 skew-y-0 scale-x-100 scale-y-100 p-0.5 px-1.5 text-xs leading-none text-center whitespace-nowrap align-baseline font-bold bg-indigo-700 text-white rounded-full z-10">
-                  8
+            <a href={`/notification`}>
+              <li className="">
+                <div className="inline-flex relative w-fit">
+                  <div className="absolute inline-block top-2 right-1 bottom-auto left-auto translate-x-2/4 -translate-y-1/2 rotate-0 skew-x-0 skew-y-0 scale-x-100 scale-y-100 p-0.5 px-1.5 text-xs leading-none text-center whitespace-nowrap align-baseline font-bold bg-indigo-700 text-white rounded-full z-10">
+                    8
+                  </div>
+                  <i className="fa-regular fa-bell text-slate-700"></i>
                 </div>
-                <i className="fa-regular fa-bell text-slate-700"></i>
-              </div>
-            </li>
+              </li>
+            </a>
           </ul>
         </Footer>
       </div>
 
-      <div className="p-3  flex flex-col gap-2 bg-gray-50 ">
+      {/* <div className="p-3  flex flex-col gap-2 bg-gray-50 ">
         <ul className="flex gap-3 overflow-x-auto items-center">
           <li>
             <a
@@ -171,51 +171,9 @@ const Dashboard = (props) => {
             </a>
           </li>
         </ul>
-      </div>
-      <Jobs url={props.url} />
+      </div> */}
 
-      <footer class="p-4 bg-white shadow  dark:bg-gray-700  flex flex-col">
-        <div class="sm:flex sm:items-center sm:justify-between ">
-          <a
-            href="https://flowbite.com/"
-            class="flex items-center mb-4 sm:mb-0"
-          >
-            <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
-              Aruga
-            </span>
-          </a>
-          <ul class="flex flex-wrap items-center  text-sm text-gray-500 sm:mb-0 dark:text-gray-400">
-            <li>
-              <a href="#" class="mr-4 hover:underline md:mr-6 ">
-                About
-              </a>
-            </li>
-            <li>
-              <a href="#" class="mr-4 hover:underline md:mr-6">
-                Privacy Policy
-              </a>
-            </li>
-            <li>
-              <a href="#" class="mr-4 hover:underline md:mr-6 ">
-                Licensing
-              </a>
-            </li>
-            <li>
-              <a href="#" class="hover:underline">
-                Contact
-              </a>
-            </li>
-          </ul>
-        </div>
-        <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
-        <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">
-          ©
-          <a href="https://flowbite.com/" class="hover:underline">
-            Aruga™
-          </a>
-          . All Rights Reserved.
-        </span>
-      </footer>
+      <Jobs url={props.url} />
     </div>
   );
 };

@@ -3,6 +3,7 @@ import Footer from "./Footer";
 import NavMenu from "./NavMenu";
 import Search from "./Search";
 import axios from "axios";
+import SideNav from "./SideNav";
 import SetUp from "../Setup";
 const OfferJobs = () => {
   const [jobs, setJobs] = useState([]);
@@ -13,7 +14,7 @@ const OfferJobs = () => {
   const [showModal, setShowModal] = useState(false);
   const [showDropDown, setShowDropDown] = useState(false);
   const [selectValue, setSelectValue] = useState("Select");
-  const [isSuccess, setSuccess] = useState(false);
+  const [showNav, setShowNav] = useState(false);
   const [postJob, setPostJob] = useState({});
 
   useEffect(() => {
@@ -44,6 +45,10 @@ const OfferJobs = () => {
     setPostJob((prev) => {
       return { ...postJob, description: e.target.value };
     });
+  };
+
+  const handleShow = () => {
+    setShowNav(!showNav);
   };
 
   const handleModal = () => {
@@ -82,12 +87,63 @@ const OfferJobs = () => {
   };
 
   return (
-    <div>
-      <div className="">
-        <NavMenu />
+    <div className="bg-white">
+      <div className=" flex flex-col gap-2 bg-white">
+        <nav class="bg-white  w-full  justify-center flex">
+          <div class="flex justify-between items-center  w-[98%] p-2  gap-3">
+            <div class="flex items-center gap-2 ">
+              <span class="self-center text-2xl font-semibold whitespace-nowrap text-rose-400 tracking-wider ml-2">
+                Aruga
+              </span>
+            </div>
+
+            <div class="flex items-center gap-2 w-full justify-end">
+              <div className="">
+                <img
+                  src={sessionStorage.getItem("userimg")}
+                  className="h-9 w-9 rounded-full object-cover shadow-sm"
+                />
+              </div>
+              <button
+                data-collapse-toggle="mobile-menu-2"
+                type="button"
+                class="inline-flex items-center p-1  text-sm text-gray-700 rounded-lg  focus:outline-none "
+                aria-controls="mobile-menu-2"
+                aria-expanded="false"
+                onClick={handleShow}
+              >
+                <svg
+                  class="w-7 h-7"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+                <svg
+                  class="hidden w-6 h-6"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                    clip-rule="evenodd"
+                  ></path>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </nav>
+        <SideNav isShow={showNav} />
         <Footer>
           <ul className="flex w-full justify-around footer border-b border-gray-200">
-            <a href={`/dashboard`}>
+            <a href="/dashboard">
               <li className="">
                 <div className="flex flex-col justify-center items-center">
                   <i className={`fa-solid fa-house text-slate-600`}></i>
@@ -97,50 +153,53 @@ const OfferJobs = () => {
             <a href={`/blog`}>
               <li className="">
                 <div className="flex flex-col justify-center items-center gap-1">
-                  <i className={`fa-solid fa-pen-to-square text-slate-700`}></i>
+                  <i class={`fa-solid fa-pen-to-square text-slate-700`}></i>
                 </div>
               </li>
             </a>
-            <a href="/offer">
+            <a href={`/offer`}>
               <li className="">
                 <div
                   className="flex flex-col justify-center items-center gap-1"
                   style={{ borderBottom: "3px solid #ec878f" }}
                 >
                   <i
-                    className="fa-regular fa-heart text-slate-700"
+                    class="fa-regular fa-heart text-slate-700"
                     style={{ color: "#ec878f" }}
                   ></i>
                 </div>
               </li>
             </a>
-            <li className="">
-              <div className="inline-flex relative w-fit">
-                <div className="absolute inline-block top-2 right-1 bottom-auto left-auto translate-x-2/4 -translate-y-1/2 rotate-0 skew-x-0 skew-y-0 scale-x-100 scale-y-100 p-0.5 px-1.5 text-xs leading-none text-center whitespace-nowrap align-baseline font-bold bg-indigo-700 text-white rounded-full z-10">
-                  8
+            <a href={`/notification`}>
+              <li className="">
+                <div className="inline-flex relative w-fit">
+                  <div className="absolute inline-block top-2 right-1 bottom-auto left-auto translate-x-2/4 -translate-y-1/2 rotate-0 skew-x-0 skew-y-0 scale-x-100 scale-y-100 p-0.5 px-1.5 text-xs leading-none text-center whitespace-nowrap align-baseline font-bold bg-indigo-700 text-white rounded-full z-10">
+                    8
+                  </div>
+                  <i className="fa-regular fa-bell text-slate-700"></i>
                 </div>
-                <i className="fa-regular fa-bell text-slate-700"></i>
-              </div>
-            </li>
+              </li>
+            </a>
           </ul>
         </Footer>
       </div>
-
-      <div className="w-full  flex justify-center">
-        <form className="w-[90%] mt-3">
+      <div class="flex justify-center w-full ">
+        <div className="w-[90%] flex items-center gap-2  p-1 shadow-md border border-gray-300 rounded-xl mt-3">
+          <i class="fa fa-search text-gray-400 top-5 text-xl text-slate-600 ml-2"></i>
           <input
             type="text"
-            className="p-3 w-full rounded-md outline-none focus:border-blue-500 focus:bg-white"
+            class="h-10  rounded-lg focus:outline-none hover:cursor-pointer bg-white"
+            name=""
             placeholder="Post a Job"
             onClick={handleModal}
           />
-        </form>
+        </div>
       </div>
 
       <div
         id="defaultModal"
         aria-hidden="true"
-        className="fixed top-0 animation-fade w-[100%] z-10 overflow-hidden fade-in-1"
+        className="absolute h-full fade-in-1 top-0  animation-fade w-[100%] bg-white"
         style={{ display: showModal ? "block" : "none" }}
       >
         <div className="relative w-full h-full max-w-2xl md:h-auto">
@@ -314,32 +373,40 @@ const OfferJobs = () => {
         </div>
       </div>
 
-      <div className="mt-2 flex  flex-col items-center gap-2 h-full">
-        <div className="flex w-full px-5 py-2"></div>
-
+      <div className="mt-5 flex  flex-col gap-5  h-full    bg-white">
         {jobs
           .slice(0)
           .reverse()
           .map((job) => (
-            <div className="w-[95%] px-3 py-2  bg-white rounded-md border border-gray-200">
-              <div className="flex flex-col gap-1">
-                <h1 className="font-bold tracking-wide text-slate-800">
-                  {job.jobpost_desc}
-                </h1>
-                <p className="text-slate-500 font-medium">{job.salary}</p>
-                <div className="flex justify-between items-center">
-                  <p className="text-slate-500 font-medium">Tisa, Cebu City</p>
-
-                  <p className="px-3 bg-gray-200 text-slate-700">
-                    {job.jobpost_type}
+            <div className="flex justify-center">
+              <div className="w-[95%] border-t border-gray-200 rounded-md flex flex-col shadow-md">
+                <div class="p-4">
+                  <h2 class="mt-2 mb-2  font-bold">{job.jobpost_title}</h2>
+                  <p class="text-sm">
+                    Cras justo odio, dapibus ac facilisis in, egestas eget quam.
+                    Donec ullamcorper nulla non metus auctor fringilla.
                   </p>
+                  <div class="mt-3 flex items-center gap-2">
+                    <span class="inline-block px-2 py-1.5 leading-none bg-rose-500 text-white rounded font-semibold  tracking-wide text-xs">
+                      {job.salary}.00 per month
+                    </span>
+                    <span class="inline-block px-2 py-1.5 leading-none  bg-rose-500 text-white rounded font-semibold  tracking-wide text-xs">
+                      {job.jobpost_type}
+                    </span>
+                  </div>
                 </div>
-              </div>
-              <div className="border border-rose-300 mt-3"></div>
-              <div className="flex justify-end">
-                <button className="p-2 bg-rose-400 mt-3 text-white rounded-md">
-                  Apply Now
-                </button>
+                <div class="p-4 border-t  text-xs text-gray-700">
+                  <span class="flex items-center mb-1">
+                    <i class="far fa-clock fa-fw mr-2 text-gray-900"></i> 3
+                    hours ago
+                  </span>
+                  <span class="flex items-center justify-between">
+                    <div>
+                      <i class="far fa-address-card fa-fw text-gray-900 mr-2"></i>
+                      {job.jobpost_address}
+                    </div>
+                  </span>
+                </div>
               </div>
             </div>
           ))}
