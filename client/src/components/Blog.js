@@ -22,7 +22,7 @@ const Blog = () => {
   const [type, setType] = useState();
 
   useEffect(() => {
-    if (sessionStorage.getItem("type") == "parent") {
+    if (sessionStorage.getItem("type") == "Parent") {
       setType("/dashboard");
     } else {
       setType("/dashboard-babysitter");

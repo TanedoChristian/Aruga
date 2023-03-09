@@ -44,7 +44,7 @@ const Login = () => {
 
         sessionStorage.setItem("type", data.type);
 
-        if (data.type == "parent") {
+        if (data.type === "Parent") {
           window.location.href = "/dashboard";
         } else {
           window.location.href = "/dashboard-babysitter";

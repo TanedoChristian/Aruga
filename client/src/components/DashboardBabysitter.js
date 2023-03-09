@@ -140,20 +140,6 @@ const DashboardBabysitter = (props) => {
           </ul>
         </Footer>
       </div>
-      {/* <div className="p-3  flex flex-col gap-2  w-full justify-center bg-white">
-        <div className="w-[99%]">
-          <h1 className="text-2xl font-bold">Find your job</h1>
-
-          <div className="flex justify-center gap-3 mt-5 w-full">
-            <button className="p-5 px-10  bg-gradient-to-tr from-pink-400 via-pink-500 to-pink-500 rounded-md font-bold tracking-wide text-white ">
-              Full Time
-            </button>
-            <button className="p-5 px-10   bg-gradient-to-tr from-pink-400 via-pink-500 to-pink-500 rounded-md font-bold tracking-wide text-white ">
-              Part Time
-            </button>
-          </div>
-        </div>
-      </div> */}
 
       <h1 className="mt-5 text-xl font-bold tracking-wide ml-3">
         Available Jobs

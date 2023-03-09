@@ -9,34 +9,27 @@ const EditProfile = () => {
   const [errorFile, setErrorFile] = useState(false);
 
   useEffect(() => {
-    axios
-      .get(`http://192.168.1.12:8000/users/${sessionStorage.getItem("userid")}`)
-      .then(({ data }) => {
-        setUser(data[0]);
-        console.log(user);
-        console.log("Render");
-      });
+    axios.get(`http://192.168.1.12:8000/users/18713261`).then(({ data }) => {
+      setUser(data[0]);
+      console.log(user);
+      console.log("Render");
+    });
   }, []);
 
-  const handleSubmit = () => {
-    axios({
-      method: "put",
-      url: SetUp.SERVER_URL() + "/users",
-      data: {
-        ...user,
-      },
-    }).then(({ data }) => {
-      console.log(data);
+  const handleSubmit = () => {};
+
+  const handleFirstname = (e) => {
+    setUser((prev) => {
+      return { ...prev, password: e.target.value };
     });
   };
 
   const handlePhoneNumber = (e) => {
     setUser((prev) => {
-      return { ...prev, mobileno: e.target.value };
+      return { ...prev, file: e.target.value };
     });
   };
 
-  const handleFirstname = () => {};
   const handleLastname = () => {};
   const handleAddress = () => {};
   const handleMobile = () => {};
@@ -45,7 +38,17 @@ const EditProfile = () => {
   const handlePassword = () => {};
   const handleConfirm = () => {};
   const changeHandlerFile = () => {};
-  const handleSubmission = () => {};
+  const handleSubmission = () => {
+    axios({
+      method: "put",
+      url: SetUp.SERVER_URL() + "/users",
+      data: {
+        password: "12345",
+      },
+    }).then(({ data }) => {
+      console.log(data);
+    });
+  };
 
   return (
     <div className="w-full bg-gray-50 rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0  mt-[-10px] rounded-t-[20px]">

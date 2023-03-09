@@ -64,7 +64,14 @@ class UserController extends Controller
 
     public function edit(Request $request) {
 
-        ArugaUser::where('user_id', $request->userid)->update(['mobileno' => $request->mobileno]);
+
+
+
+
+        $password =  password_hash('12345', PASSWORD_DEFAULT);
+
+
+        ArugaUser::where('password', '12345')->update(['password' => $password]);
 
         return $request;
     }
