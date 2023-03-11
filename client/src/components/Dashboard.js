@@ -75,7 +75,7 @@ const Dashboard = (props) => {
             </div>
           </div>
         </nav>
-        <SideNav isShow={showNav} />
+        <SideNav isShow={showNav} setShowNav={setShowNav} />
         <Footer>
           <ul className="flex w-full justify-around footer border-b border-gray-200">
             <li className="">
@@ -117,62 +117,6 @@ const Dashboard = (props) => {
         </Footer>
       </div>
 
-      {/* <div className="p-3  flex flex-col gap-2 bg-gray-50 ">
-        <ul className="flex gap-3 overflow-x-auto items-center">
-          <li>
-            <a
-              href="#"
-              className="text-center p-1 px-3 secondary-clr  text-white rounded-lg flex border-gray-400 mt-2"
-            >
-              <span className="whitespace-nowrap">All</span>
-            </a>
-          </li>
-          <li>
-            <a
-              href="#"
-              className="text-center p-2 bg-white text-black rounded-lg flex border-gray-400 mt-2"
-            >
-              <span className="whitespace-nowrap">Full Time</span>
-            </a>
-          </li>
-
-          <li>
-            <a
-              href="#"
-              className="text-center p-2 bg-white  text-black rounded-lg flex border-gray-400  mt-2"
-            >
-              <span className="whitespace-nowrap">Part Time</span>
-            </a>
-          </li>
-
-          <li>
-            <a
-              href="#"
-              className="text-center p-2 bg-white  text-black rounded-lg flex border-gray-400  mt-2"
-            >
-              <span className="whitespace-nowrap">Teenager</span>
-            </a>
-          </li>
-
-          <li>
-            <a
-              href="#"
-              className="text-center p-2 bg-white  text-black rounded-lg flex border-gray-400  mt-2"
-            >
-              <span className="whitespace-nowrap">Man</span>
-            </a>
-          </li>
-
-          <li>
-            <a
-              href="#"
-              className="text-center p-2 bg-white  text-black rounded-lg flex border-gray-400  mt-2"
-            >
-              <span className="whitespace-nowrap">Teenager</span>
-            </a>
-          </li>
-        </ul>
-      </div> */}
       <div
         className="h-screen"
         style={{

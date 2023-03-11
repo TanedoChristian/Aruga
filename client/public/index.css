@@ -7,11 +7,21 @@
   --gray-background: #f9fafb;
 }
 
+.dropdown:focus-within .dropdown-menu {
+  opacity: 1;
+  transform: translate(0) scale(1);
+  visibility: visible;
+}
+
 * {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
+}
+
+body {
+  background-color: #f8f1f1;
 }
 
 input:focus {
