@@ -8,28 +8,29 @@ const Header = (props) => {
   };
 
   return (
-    <div className="flex h-[6rem]  w-full justify-center">
-      <div className="flex w-[90%]  justify-between items-center">
-        <div className="flex flex-col gap-2 items-center">
-          <h1
-            className=" font-bold text-2xl tracking-wide"
-            style={{ fontFamily: "Poppins", fontWeight: 600 }}
-          >
-            <span className="text-sm font-medium">Welcome, </span> <br />{" "}
-            Cherrie Pearl
-          </h1>
+    <div className="flex flex-col gap-2 bg-white p-3">
+      <nav class="w-full  justify-center flex  bg-gray-100 rounded-2xl">
+        <div class="flex justify-between items-center  w-[98%] p-2  gap-3">
+          <div class="flex items-center gap-2 ">
+            <div className="w-full">
+              <img
+                src={sessionStorage.getItem("userimg")}
+                className="h-11 w-12 rounded-full object-cover shadow-sm"
+              />
+            </div>
+          </div>
+
+          <div class="flex items-center gap-5 w-full justify-end">
+            <span class="self-center text-2xl font-semibold whitespace-nowrap text-rose-400 tracking-wider ml-2 w-full text-center">
+              Aruga
+            </span>
+            <i
+              class="fa-solid fa-bars-staggered text-xl font-bold text-slate-700"
+              onClick={handleShow}
+            ></i>
+          </div>
         </div>
-        <div className="flex gap-3 items-center">
-          <img
-            src={sessionStorage.getItem("userimg")}
-            className="w-11 h-11 rounded-full"
-          />
-          <i
-            class="fa-solid fa-bars-staggered text-xl font-bold text-rose-400"
-            onClick={handleShow}
-          ></i>
-        </div>
-      </div>
+      </nav>
 
       <SideNav isShow={showNav} setShowNav={setShowNav} />
     </div>
