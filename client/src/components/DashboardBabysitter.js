@@ -9,6 +9,8 @@ import Header from "./Header";
 import Banner from "../img/banner.png";
 import Modal from "./Modal";
 import moment from "moment";
+import Popup from "react-popup";
+
 const DashboardBabysitter = (props) => {
   const [jobs, setJobs] = useState([]);
 
@@ -125,7 +127,7 @@ const DashboardBabysitter = (props) => {
               type="radio"
               value=""
               name="default-radio"
-              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+              className="w-4 h-4 text-rose-400 bg-gray-100 border-gray-300 focus:ring-rose-100 "
             />
             <label className="ml-2 text-sm font-medium text-gray-700 ">
               Latest
@@ -138,7 +140,7 @@ const DashboardBabysitter = (props) => {
               type="radio"
               value=""
               name="default-radio"
-              className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600     dark:border-gray-600"
+              className="w-4 h-4 text-rose-400 bg-gray-100 border-gray-300  focus:ring-rose-100   "
             />
             <label className="ml-2 text-sm font-medium text-gray-700">
               Old
@@ -186,7 +188,7 @@ const DashboardBabysitter = (props) => {
             </div>
           </h3>
         </div>
-        <button className="fixed bottom-5 p-3 bg-blue-500 text-white font-medium text-lg  right-5 w-[50%] rounded-md">
+        <button className="fixed bottom-5 p-3 bg-rose-400 text-white font-medium text-lg  right-5 w-[50%] rounded-md">
           Apply
         </button>
       </div>
@@ -335,7 +337,7 @@ const DashboardBabysitter = (props) => {
                       <p>{job.jobpost_address}</p>
                     </div>
                     <button
-                      className="text-xs text-indigo-700 bg-blue-500"
+                      className="text-xs text-indigo-700 font-medium"
                       onClick={() => {
                         handleApply(job.jobpost_id, job.parent_id);
                       }}
@@ -392,7 +394,7 @@ const DashboardBabysitter = (props) => {
                     <p>{job.jobpost_address}</p>
                   </div>
                   <button
-                    className="text-xs text-indigo-700"
+                    className="text-xs text-indigo-700 font-medium"
                     onClick={() => {
                       handleApply(job.jobpost_id, job.parent_id);
                     }}

@@ -89,7 +89,7 @@ const Blog = () => {
 
         <Footer>
           <ul className="flex w-full justify-around footer border-t border-gray-200 fixed bottom-0 ">
-            <a href={type}>
+            <a href={`/dashboard`}>
               <li className="">
                 <div className="flex flex-col justify-center items-center">
                   <i className={`fa-solid fa-house text-slate-600`}></i>

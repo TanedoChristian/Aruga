@@ -21,6 +21,7 @@ import DashboardBabysitter from "./components/DashboardBabysitter";
 import EditProfile from "./components/EditProfile";
 import BlogDetails from "./components/BlogDetails";
 import JobDetails from "./components/JobDetails";
+
 const App = () => {
   return (
     <div>

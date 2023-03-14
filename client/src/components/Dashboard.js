@@ -15,12 +15,16 @@ const Dashboard = (props) => {
   };
 
   useEffect(() => {
+    if (sessionStorage.getItem("type").toString() != "parent") {
+      window.location.href = "/dashboard-babysitter";
+    }
+
     axios
       .get(`${SetUp.SERVER_URL()}/users/${sessionStorage.getItem("userid")}`)
       .then(({ data }) => {
         console.log(data);
       });
-  });
+  }, []);
 
   return (
     <div className="">

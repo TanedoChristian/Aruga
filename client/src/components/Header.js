@@ -21,11 +21,15 @@ const Header = (props) => {
           </div>
 
           <div class="flex items-center gap-5 w-full justify-end">
-            <span class="self-center text-2xl font-semibold whitespace-nowrap text-rose-400 tracking-wider ml-2 w-full text-center">
+            <a
+              href="/dashboard"
+              class="self-center text-2xl font-semibold whitespace-nowrap text-rose-400 tracking-wider ml-2 w-full text-center"
+              style={{ fontFamily: "Poppins" }}
+            >
               Aruga
-            </span>
+            </a>
             <i
-              class="fa-solid fa-bars-staggered text-xl font-bold text-slate-700"
+              class="fa-solid fa-bars-staggered text-xl font-bold text-rose-400"
               onClick={handleShow}
             ></i>
           </div>

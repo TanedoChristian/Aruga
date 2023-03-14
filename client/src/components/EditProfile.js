@@ -3,6 +3,8 @@ import useFetchApi from "../hooks/useFetchApi";
 import SetUp from "../Setup";
 import axios from "axios";
 import { useState } from "react";
+import Header from "./Header";
+import Footer from "./Footer";
 
 const EditProfile = () => {
   const [user, setUser] = useState([]);
@@ -52,6 +54,7 @@ const EditProfile = () => {
 
   return (
     <div className="w-full bg-gray-50 rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0  mt-[-10px] rounded-t-[20px]">
+      <Header />
       <h1 className="p-5 text-xl font-bold tracking-wide">Edit Profile</h1>
       <div className="p-5">
         <form
