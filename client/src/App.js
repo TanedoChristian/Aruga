@@ -19,6 +19,8 @@ import LoadingScreen from "./components/LoadingScreen";
 import PostJobs from "./components/PostJobs";
 import DashboardBabysitter from "./components/DashboardBabysitter";
 import EditProfile from "./components/EditProfile";
+import BlogDetails from "./components/BlogDetails";
+import JobDetails from "./components/JobDetails";
 const App = () => {
   return (
     <div>
@@ -57,6 +59,8 @@ const App = () => {
               </div>
             }
           ></Route>
+
+          <Route path="/blog-details" element={<BlogDetails />}></Route>
           <Route
             path="/blog"
             element={
@@ -79,6 +83,7 @@ const App = () => {
             path="/notification-success"
             element={<NotificationSuccess />}
           ></Route>
+          <Route path="/job-details" element={<JobDetails />}></Route>
           <Route path="/ratings" element={<Ratings />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/login-otp" element={<LoginOtp />}></Route>

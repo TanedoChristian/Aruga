@@ -5,6 +5,7 @@ import Search from "./Search";
 import axios from "axios";
 import SideNav from "./SideNav";
 import SetUp from "../Setup";
+import moment from "moment";
 const OfferJobs = () => {
   const [jobs, setJobs] = useState([]);
 
@@ -188,7 +189,7 @@ const OfferJobs = () => {
           <i class="fa fa-search text-gray-400 top-5 text-xl text-slate-600 ml-2"></i>
           <input
             type="text"
-            class="h-10  rounded-lg focus:outline-none hover:cursor-pointer bg-white"
+            class="h-10  rounded-lg focus:outline-none hover:cursor-pointer bg-white border-none"
             name=""
             placeholder="Post a Job"
             onClick={handleModal}
@@ -397,8 +398,8 @@ const OfferJobs = () => {
                 </div>
                 <div class="p-4 border-t  text-xs text-gray-700">
                   <span class="flex items-center mb-1">
-                    <i class="far fa-clock fa-fw mr-2 text-gray-900"></i> 3
-                    hours ago
+                    <i class="far fa-clock fa-fw mr-2 text-gray-900"></i>
+                    {moment(job.jobpost_date).fromNow()}
                   </span>
                   <span class="flex items-center justify-between">
                     <div>
