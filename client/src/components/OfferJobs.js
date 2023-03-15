@@ -18,6 +18,7 @@ const OfferJobs = () => {
   const [selectValue, setSelectValue] = useState("Select");
   const [showNav, setShowNav] = useState(false);
   const [postJob, setPostJob] = useState({});
+  const [isActiveJob, setActiveJob] = useState(false);
 
   useEffect(() => {
     axios.get(`${SetUp.SERVER_URL()}/jobs`).then(({ data }) => {
@@ -67,6 +68,14 @@ const OfferJobs = () => {
   };
 
   const handlePostJob = () => {
+    let isActive = {
+      parent_id: sessionStorage.getItem("userid"),
+      status: "ongoing",
+    };
+
+    sessionStorage.setItem("job_status", JSON.stringify(isActive));
+    setActiveJob(true);
+
     axios({
       method: "post",
       url: SetUp.SERVER_URL() + "/postjob",
@@ -105,7 +114,7 @@ const OfferJobs = () => {
             <a href={`/blog`}>
               <li className="">
                 <div className="flex flex-col justify-center items-center gap-1">
-                  <i class={`fa-solid fa-pen-to-square text-slate-700`}></i>
+                  <i className={`fa-solid fa-pen-to-square text-slate-700`}></i>
                 </div>
               </li>
             </a>
@@ -116,7 +125,7 @@ const OfferJobs = () => {
                   style={{ borderBottom: "3px solid #ec878f" }}
                 >
                   <i
-                    class="fa-regular fa-heart text-slate-700"
+                    className="fa-regular fa-heart text-slate-700"
                     style={{ color: "#ec878f" }}
                   ></i>
                 </div>
@@ -135,12 +144,15 @@ const OfferJobs = () => {
           </ul>
         </Footer>
       </div>
-      <div class="flex justify-center w-full ">
-        <div className="w-[90%] flex items-center gap-2  p-1 shadow-md border border-gray-300 rounded-xl mt-3">
-          <i class="fa fa-search text-gray-400 top-5 text-xl text-slate-600 ml-2"></i>
+      <div className="flex justify-center w-full ">
+        <div
+          className="w-[90%] flex items-center gap-2  p-1 shadow-md border border-gray-300 rounded-xl mt-3"
+          style={{ display: !isActiveJob ? "flex" : "none" }}
+        >
+          <i className="fa fa-search  top-5 text-xl text-slate-600 ml-2"></i>
           <input
             type="text"
-            class="h-10  rounded-lg focus:outline-none hover:cursor-pointer bg-white border-none"
+            className="h-10  rounded-lg focus:outline-none hover:cursor-pointer bg-white border-none w-full"
             name=""
             placeholder="Post a Job"
             onClick={handleModal}
@@ -332,29 +344,29 @@ const OfferJobs = () => {
           .map((job) => (
             <div className="flex justify-center">
               <div className="w-[95%] border-t border-gray-200 rounded-md flex flex-col shadow-md">
-                <div class="p-4">
-                  <h2 class="mt-2 mb-2  font-bold">{job.jobpost_title}</h2>
-                  <p class="text-sm">
+                <div className="p-4">
+                  <h2 className="mt-2 mb-2  font-bold">{job.jobpost_title}</h2>
+                  <p className="text-sm">
                     Cras justo odio, dapibus ac facilisis in, egestas eget quam.
                     Donec ullamcorper nulla non metus auctor fringilla.
                   </p>
-                  <div class="mt-3 flex items-center gap-2">
-                    <span class="inline-block px-2 py-1.5 leading-none bg-rose-500 text-white rounded font-semibold  tracking-wide text-xs">
+                  <div className="mt-3 flex items-center gap-2">
+                    <span className="inline-block px-2 py-1.5 leading-none bg-rose-500 text-white rounded font-semibold  tracking-wide text-xs">
                       {job.salary}.00 per month
                     </span>
-                    <span class="inline-block px-2 py-1.5 leading-none  bg-rose-500 text-white rounded font-semibold  tracking-wide text-xs">
+                    <span className="inline-block px-2 py-1.5 leading-none  bg-rose-500 text-white rounded font-semibold  tracking-wide text-xs">
                       {job.jobpost_type}
                     </span>
                   </div>
                 </div>
-                <div class="p-4 border-t  text-xs text-gray-700">
-                  <span class="flex items-center mb-1">
-                    <i class="far fa-clock fa-fw mr-2 text-gray-900"></i>
+                <div className="p-4 border-t  text-xs text-gray-700">
+                  <span className="flex items-center mb-1">
+                    <i className="far fa-clock fa-fw mr-2 text-gray-900"></i>
                     {moment(job.jobpost_date).fromNow()}
                   </span>
-                  <span class="flex items-center justify-between">
+                  <span className="flex items-center justify-between">
                     <div>
-                      <i class="far fa-address-card fa-fw text-gray-900 mr-2"></i>
+                      <i className="far fa-address-card fa-fw text-gray-900 mr-2"></i>
                       {job.jobpost_address}
                     </div>
                   </span>

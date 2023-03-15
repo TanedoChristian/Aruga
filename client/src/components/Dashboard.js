@@ -7,8 +7,10 @@ import SetUp from "../Setup";
 import axios from "axios";
 import Background from "../img/background.png";
 import Header from "./Header";
+import ParentBanner from "../img/parentsbanner.png";
 
 const Dashboard = (props) => {
+  const [user, setUser] = useState([]);
   const [showNav, setShowNav] = useState(false);
   const handleShow = () => {
     setShowNav(!showNav);
@@ -23,12 +25,35 @@ const Dashboard = (props) => {
       .get(`${SetUp.SERVER_URL()}/users/${sessionStorage.getItem("userid")}`)
       .then(({ data }) => {
         console.log(data);
+        setUser(data[0]);
       });
   }, []);
 
   return (
     <div className="">
       <Header />
+
+      <div className="flex w-full justify-center mt-7">
+        <div className="w-[90%]">
+          <h1
+            className="text-2xl font-bold text-neutral-800 tracking-wide"
+            style={{ fontFamily: "Poppins" }}
+          >
+            Hello, {user.firstname}
+          </h1>
+        </div>
+      </div>
+      <div className="w-full flex justify-center mt-2 p-3  pb-8 ">
+        <div className="w-[98%] flex justify-center">
+          <div className="w-[full] h-[10rem] flex">
+            <img
+              src={ParentBanner}
+              className="object-cover rounded-2xl border border-gray-200"
+            />
+          </div>
+        </div>
+      </div>
+
       <Jobs url={props.url} />
 
       <Footer>
@@ -47,14 +72,14 @@ const Dashboard = (props) => {
           <a href={`/blog`}>
             <li className="">
               <div className="flex flex-col justify-center items-center gap-1">
-                <i class={`fa-solid fa-pen-to-square text-slate-700`}></i>
+                <i className={`fa-solid fa-pen-to-square text-slate-700`}></i>
               </div>
             </li>
           </a>
           <a href={`/offer`}>
             <li className="">
               <div className="flex flex-col justify-center items-center gap-1">
-                <i class="fa-regular fa-heart text-slate-700"></i>
+                <i className="fa-regular fa-heart text-slate-700"></i>
               </div>
             </li>
           </a>

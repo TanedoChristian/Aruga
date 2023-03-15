@@ -112,7 +112,7 @@ const Blog = () => {
             <a href={`/offer`}>
               <li className="">
                 <div className="flex flex-col justify-center items-center gap-1">
-                  <i class="fa-regular fa-heart text-slate-700"></i>
+                  <i className="fa-regular fa-heart text-slate-700"></i>
                 </div>
               </li>
             </a>
@@ -129,15 +129,15 @@ const Blog = () => {
           </ul>
         </Footer>
       </div>
-      {/* <nav class="bg-white  w-full  justify-center flex">
-        <div class="flex justify-between items-center  w-[98%] p-2">
-          <div class="flex items-center gap-2 ">
-            <span class="self-center text-2xl font-semibold whitespace-nowrap text-rose-400 tracking-wider">
+      {/* <nav className="bg-white  w-full  justify-center flex">
+        <div className="flex justify-between items-center  w-[98%] p-2">
+          <div className="flex items-center gap-2 ">
+            <span className="self-center text-2xl font-semibold whitespace-nowrap text-rose-400 tracking-wider">
               Aruga
             </span>
           </div>
 
-          <div class="flex items-center gap-2 w-full justify-end">
+          <div className="flex items-center gap-2 w-full justify-end">
             <div className="">
               <img
                 src={sessionStorage.getItem("userimg")}
@@ -147,13 +147,13 @@ const Blog = () => {
             <button
               data-collapse-toggle="mobile-menu-2"
               type="button"
-              class="inline-flex items-center p-1  text-sm text-gray-700 rounded-lg  focus:outline-none "
+              className="inline-flex items-center p-1  text-sm text-gray-700 rounded-lg  focus:outline-none "
               aria-controls="mobile-menu-2"
               aria-expanded="false"
               onClick={handleShow}
             >
               <svg
-                class="w-7 h-7"
+                className="w-7 h-7"
                 fill="currentColor"
                 viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg"
@@ -165,7 +165,7 @@ const Blog = () => {
                 ></path>
               </svg>
               <svg
-                class="hidden w-6 h-6"
+                className="hidden w-6 h-6"
                 fill="currentColor"
                 viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg"
@@ -197,7 +197,7 @@ const Blog = () => {
                 style={{ borderBottom: "3px solid #ec878f" }}
               >
                 <i
-                  class={`fa-solid fa-pen-to-square text-slate-700`}
+                  className={`fa-solid fa-pen-to-square text-slate-700`}
                   style={{ color: "#ec878f" }}
                 ></i>
               </div>
@@ -206,7 +206,7 @@ const Blog = () => {
           <a href="/offer">
             <li className="">
               <div className="flex flex-col justify-center items-center gap-1">
-                <i class="fa-regular fa-heart text-slate-700"></i>
+                <i className="fa-regular fa-heart text-slate-700"></i>
               </div>
             </li>
           </a>
@@ -237,27 +237,27 @@ const Blog = () => {
         id="defaultModal"
         tabindex="-1"
         aria-hidden="true"
-        class="absolute h-full fade-in-1 top-0  animation-fade w-[100%] bg-white  w3-animate-top"
+        className="absolute h-full fade-in-1 top-0  animation-fade w-[100%] bg-white  w3-animate-top"
         style={{ display: isShowModal ? "block" : "none" }}
       >
-        <div class="relative w-full h-full max-w-2xl md:h-auto">
-          <div class="relative bg-white rounded-lg  h-screen shadow-xl">
-            <div class="flex items-center justify-between p-3  w-[100%] border-t border-gray-200 gap-2">
+        <div className="relative w-full h-full max-w-2xl md:h-auto">
+          <div className="relative bg-white rounded-lg  h-screen shadow-xl">
+            <div className="flex items-center justify-between p-3  w-[100%] border-t border-gray-200 gap-2">
               <img
                 src={sessionStorage.getItem("userimg")}
                 className="h-9 w-9 rounded-full object-cover shadow-sm"
               />
-              <h3 class="text-2xl font-semibold text-gray-900 ">
+              <h3 className="text-2xl font-semibold text-gray-900 ">
                 Create a Blog
               </h3>
               <button
                 type="button"
-                class="text-gray-600 bg-transparent  hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                className="text-gray-600 bg-transparent  hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
                 onClick={handleModal}
               >
                 <svg
                   aria-hidden="true"
-                  class="w-5 h-5"
+                  className="w-5 h-5"
                   fill="currentColor"
                   viewBox="0 0 20 20"
                   xmlns="http://www.w3.org/2000/svg"
@@ -268,11 +268,11 @@ const Blog = () => {
                     clip-rule="evenodd"
                   ></path>
                 </svg>
-                <span class="sr-only">Close modal</span>
+                <span className="sr-only">Close modal</span>
               </button>
             </div>
 
-            <div class="p-4  flex flex-col gap-5 bg-white ">
+            <div className="p-4  flex flex-col gap-5 bg-white ">
               <div className="flex flex-col gap-1">
                 <label className="text-lg font-medium">Title</label>
                 <input
@@ -288,7 +288,7 @@ const Blog = () => {
                 <textarea
                   id="message"
                   rows="12"
-                  class="bg-gray-50 outline-none p-3  rounded-lg"
+                  className="bg-gray-50 outline-none p-3  rounded-lg"
                   placeholder="Write Something"
                   onChange={handleDescription}
                 ></textarea>

@@ -13,7 +13,7 @@ const SideNav = (props) => {
       style={{ display: props.isShow ? "block" : "none" }}
     >
       <i
-        class="fa-solid fa-arrow-left ml-[5%] mt-[1rem] text-xl font-bold"
+        className="fa-solid fa-arrow-left ml-[5%] mt-[1rem] text-xl font-bold"
         onClick={() => props.setShowNav(!props.isShow)}
       ></i>
 
@@ -27,7 +27,7 @@ const SideNav = (props) => {
               >
                 Edit Profile
               </p>
-              <i class="fa-solid fa-angle-right text-3xl"></i>
+              <i className="fa-solid fa-angle-right text-3xl"></i>
             </a>
           </li>
 
@@ -39,12 +39,36 @@ const SideNav = (props) => {
               >
                 Change Password
               </p>
-              <i class="fa-solid fa-angle-right text-3xl"></i>
+              <i className="fa-solid fa-angle-right text-3xl"></i>
+            </a>
+          </li>
+
+          <li className=" p-3 text-slate-700   px-5 items-center border-t border-gray-300">
+            <a href="/edit-profile" className="flex justify-between">
+              <p
+                className="text-xl text-slate-700 tracking-wide"
+                style={{ fontFamily: "Poppins", fontWeight: 400 }}
+              >
+                My Blog
+              </p>
+              <i className="fa-solid fa-angle-right text-3xl"></i>
+            </a>
+          </li>
+
+          <li className=" p-3 text-slate-700   px-5 items-center border-t border-gray-200">
+            <a href="/edit-profile" className="flex justify-between">
+              <p
+                className="text-xl text-slate-700 tracking-wide"
+                style={{ fontFamily: "Poppins", fontWeight: 400 }}
+              >
+                Job Posted
+              </p>
+              <i className="fa-solid fa-angle-right text-3xl"></i>
             </a>
           </li>
         </div>
         <button
-          className="p-4 fixed  bottom-2 w-full bg-rose-500 text-white text-xl font-medium"
+          className="p-4 fixed  bottom-2 w-full bg-rose-500 text-white text-xl font-medium test"
           onClick={handleLogout}
         >
           Logout <i className="ml-2 fa-solid fa-arrow-right-from-bracket"></i>

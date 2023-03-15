@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/users', [UserController::class, 'insert']);
 Route::get('/users', [UserController::class, 'show']);
-Route::put('/users', [UserController::class, 'edit']);
+Route::post('/edit-user', [UserController::class, 'edit']);
 Route::get('/users/{id}', [UserController::class, 'showID']);
 Route::post('/login', [UserController::class, 'login']);
 Route::post('/postjob', [JobsController::class, 'insert']);

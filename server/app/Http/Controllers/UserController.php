@@ -20,23 +20,14 @@ class UserController extends Controller
     $user->lastname = $request->lastname;
     $user->address = $request->address;
     $user->email = $request->email;
-
-
-
-
     $filename = $request->file->store('public');
     $storeFile = str_replace("public", "storage", $filename);
     $user->img = $storeFile;
-
-
     $user->user_id = uniqid('user');
     $user->mobileno = $request->mobileno;
     $user->password = password_hash($request->password, PASSWORD_DEFAULT);
     $user->type = $request->type;
     $user->status = $request->status;
-
-
-
     $user->save();
     return 'Success';
     }
@@ -64,16 +55,15 @@ class UserController extends Controller
 
     public function edit(Request $request) {
 
+        $userid = $request->userid;
+        $address = $request->address;
+        $mobileno = $request->mobileno;
+        $email = $request->email;
+        $filename = $request->file->store('public');
+        $storeFile = str_replace("public", "storage", $filename);
+        return ArugaUser::where('email', 'admin')->update(['img' => $storeFile, 'address' => $address, 'mobileno' => $mobileno, 'email' => $email]);
 
 
-
-
-        $password =  password_hash('12345', PASSWORD_DEFAULT);
-
-
-        ArugaUser::where('password', '12345')->update(['password' => $password]);
-
-        return $request;
     }
 
     public function login(Request $request) {

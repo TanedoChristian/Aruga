@@ -5,17 +5,19 @@ import axios from "axios";
 import { useState } from "react";
 import Header from "./Header";
 import Footer from "./Footer";
+import Compressor from "compressorjs";
 
 const EditProfile = () => {
-  const [user, setUser] = useState([]);
+  const [user, setUser] = useState({});
+  const [file, setFile] = useState();
   const [errorFile, setErrorFile] = useState(false);
 
   useEffect(() => {
-    axios.get(`http://192.168.1.12:8000/users/18713261`).then(({ data }) => {
-      setUser(data[0]);
-      console.log(user);
-      console.log("Render");
-    });
+    axios
+      .get(`${SetUp.SERVER_URL()}/users/${sessionStorage.getItem("userid")}`)
+      .then(({ data }) => {
+        setUser(data[0]);
+      });
   }, []);
 
   const handleSubmit = () => {};
@@ -26,27 +28,48 @@ const EditProfile = () => {
     });
   };
 
-  const handlePhoneNumber = (e) => {
+  const handleLastname = () => {};
+
+  const handleAddress = (e) => {
     setUser((prev) => {
-      return { ...prev, file: e.target.value };
+      return { ...prev, address: e.target.value };
     });
   };
 
-  const handleLastname = () => {};
-  const handleAddress = () => {};
-  const handleMobile = () => {};
-  const handleEmail = () => {};
+  const handleMobile = (e) => {
+    setUser((prev) => {
+      return { ...prev, mobileno: e.target.value };
+    });
+  };
+  const handleEmail = (e) => {
+    setUser((prev) => {
+      return { ...prev, email: e.target.value };
+    });
+  };
   const handleUsername = () => {};
   const handlePassword = () => {};
   const handleConfirm = () => {};
-  const changeHandlerFile = () => {};
+
+  const changeHandlerFile = (e) => {
+    const newFile = e.target.files[0];
+    setFile(newFile);
+
+    if (e.target.files[0].size > 4 * 1024 * 1024) {
+      setErrorFile(true);
+    } else {
+      setErrorFile(false);
+    }
+  };
+
   const handleSubmission = () => {
     axios({
-      method: "put",
-      url: SetUp.SERVER_URL() + "/users",
+      method: "post",
+      url: SetUp.SERVER_URL() + "/edit-user",
       data: {
-        password: "12345",
+        ...user,
+        file: file,
       },
+      headers: { "Content-Type": '"multipart/form-data' },
     }).then(({ data }) => {
       console.log(data);
     });
@@ -67,7 +90,7 @@ const EditProfile = () => {
           <div className="flex gap-5">
             <div>
               <label
-                for="email"
+                htmlFor="email"
                 className="block mb-2 text-sm font-medium text-gray-900 "
               >
                 First Name
@@ -84,7 +107,7 @@ const EditProfile = () => {
 
             <div>
               <label
-                for="email"
+                htmlFor="email"
                 className="block mb-2 text-sm font-medium text-gray-900 "
               >
                 Last Name
@@ -102,7 +125,7 @@ const EditProfile = () => {
 
           <div>
             <label
-              for="email"
+              htmlFor="email"
               className="block mb-2 text-sm font-medium text-gray-900 "
             >
               Address
@@ -119,7 +142,7 @@ const EditProfile = () => {
 
           <div>
             <label
-              for="email"
+              htmlFor="email"
               className="block mb-2 text-sm font-medium text-gray-900 "
             >
               Mobile Number
@@ -136,7 +159,7 @@ const EditProfile = () => {
 
           <div>
             <label
-              for="email"
+              htmlFor="email"
               className="block mb-2 text-sm font-medium text-gray-900 "
             >
               Your email
@@ -153,14 +176,14 @@ const EditProfile = () => {
 
           <div>
             <label
-              for="email"
+              htmlFor="email"
               className="block mb-2 text-sm font-medium text-gray-900 "
             >
               Change Profile
             </label>
             <div className="flex items-center justify-center w-full border">
               <label
-                for="dropzone-file"
+                htmlFor="dropzone-file"
                 className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50"
               >
                 <div className="flex flex-col items-center justify-center pt-5 pb-6">
@@ -173,9 +196,9 @@ const EditProfile = () => {
                     xmlns="http://www.w3.org/2000/svg"
                   >
                     <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
                       d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
                     ></path>
                   </svg>
@@ -190,7 +213,7 @@ const EditProfile = () => {
                     className=" text-blue-500 font-medium"
                     style={{ color: errorFile ? "red" : "" }}
                   >
-                    {errorFile ? "File is too big" : user?.file?.name}
+                    {errorFile ? "File is too big" : file?.name}
                   </p>
                 </div>
                 <input

@@ -15,29 +15,29 @@ const JobsCard = (props) => {
   return (
     <div
       href="#"
-      class="flex flex-col w-full p-2 bg-white  rounded-md border border-gray-100"
+      className="flex flex-col w-full p-2 bg-white  rounded-md border border-gray-100"
       onClick={handleCardClick}
     >
-      <div class="flex justify-between items-center">
+      <div className="flex justify-between items-center">
         <div>
-          <h3 class="text-lg font-bold tracking-wide text-slate-800 sm:text-xl">
+          <h3 className="text-lg font-bold tracking-wide text-slate-800 sm:text-xl">
             {props.name}
           </h3>
           <div className="flex items-center gap-1">
-            <i class="fa-solid fa-location-dot text-xs text-gray-500"></i>
-            <p class="mt text-xs font-medium text-gray-600">{props.address}</p>
+            <i className="fa-solid fa-location-dot text-xs text-gray-500"></i>
+            <p className="mt text-xs font-medium text-gray-600">{props.address}</p>
           </div>
         </div>
 
-        <div class="sm:block sm:shrink-0">
+        <div className="sm:block sm:shrink-0">
           <img
             src={props.img}
-            class="h-16 w-16 rounded-full object-cover shadow-sm"
+            className="h-16 w-16 rounded-full object-cover shadow-sm"
           />
         </div>
       </div>
 
-      <dl class="mt-3 flex justify-between">
+      <dl className="mt-3 flex justify-between">
         <div className="flex items-center mt-2">
           <p className="mr-2 text-slate-700 text-sm">5 stars</p>
           <svg
@@ -101,13 +101,13 @@ const JobsCard = (props) => {
       </dl>
     </div>
 
-    //     <div class="rounded-lg shadow-xl bg-gray-50  flex flex-col " onClick={handleCardClick}>
+    //     <div className="rounded-lg shadow-xl bg-gray-50  flex flex-col " onClick={handleCardClick}>
     //     <div className="h-[300px] w-[350px] flex">
-    //         <img class="rounded-t-lg object-cover" src={props.img} alt="" />
+    //         <img className="rounded-t-lg object-cover" src={props.img} alt="" />
     //     </div>
-    //     <div class="p-6">
+    //     <div className="p-6">
     //         <div className="flex justify-between items-center">
-    //             <h5 class=" text-md font-bold tracking-wide text-gray-800">{props.name}</h5>
+    //             <h5 className=" text-md font-bold tracking-wide text-gray-800">{props.name}</h5>
     //             <p className="text-gray-400 text-sm">{props.address}</p>
     //         </div>
 

@@ -2,17 +2,17 @@ import React from "react";
 
 const BioInfo = (props) => {
   return (
-    <div class="">
+    <div className="">
       <div>
-        <div class="mt-10 text-center pb-8">
-          <p class="font-light text-gray-600 mt-3">Bucharest, Romania</p>
-          <p class="mt-8 text-gray-500">
+        <div className="mt-10 text-center pb-8">
+          <p className="font-light text-gray-600 mt-3">Bucharest, Romania</p>
+          <p className="mt-8 text-gray-500">
             Solution Manager - Creative Tim Officer
           </p>
-          <p class="mt-2 text-gray-500">University of Computer Science</p>
+          <p className="mt-2 text-gray-500">University of Computer Science</p>
         </div>
-        <div class="flex flex-col justify-center  bg-white">
-          <p class="text-gray-600 text-center font-light lg:px-16 p-3 mb-5">
+        <div className="flex flex-col justify-center  bg-white">
+          <p className="text-gray-600 text-center font-light lg:px-16 p-3 mb-5">
             An artist of considerable range, Ryan — the name taken by
             Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and
             records all of his own music, giving it a warm, intimate feel with a
@@ -28,15 +28,15 @@ export default BioInfo;
 
 // <div className="">
 //   <div className=" flex flex-col gap-2 bg-white">
-//     <nav class="bg-white  w-full  justify-center flex">
-//       <div class="flex justify-between items-center  w-[98%] p-2">
-//         <div class="flex items-center gap-2 ">
-//           <span class="self-center text-2xl font-semibold whitespace-nowrap text-rose-400 tracking-wider">
+//     <nav className="bg-white  w-full  justify-center flex">
+//       <div className="flex justify-between items-center  w-[98%] p-2">
+//         <div className="flex items-center gap-2 ">
+//           <span className="self-center text-2xl font-semibold whitespace-nowrap text-rose-400 tracking-wider">
 //             Aruga
 //           </span>
 //         </div>
 
-//         <div class="flex items-center gap-2 w-full justify-end">
+//         <div className="flex items-center gap-2 w-full justify-end">
 //           <div className="">
 //             <img
 //               src={sessionStorage.getItem("userimg")}
@@ -46,13 +46,13 @@ export default BioInfo;
 //           <button
 //             data-collapse-toggle="mobile-menu-2"
 //             type="button"
-//             class="inline-flex items-center p-1  text-sm text-gray-700 rounded-lg  focus:outline-none "
+//             className="inline-flex items-center p-1  text-sm text-gray-700 rounded-lg  focus:outline-none "
 //             aria-controls="mobile-menu-2"
 //             aria-expanded="false"
 //             onClick={handleShow}
 //           >
 //             <svg
-//               class="w-7 h-7"
+//               className="w-7 h-7"
 //               fill="currentColor"
 //               viewBox="0 0 20 20"
 //               xmlns="http://www.w3.org/2000/svg"
@@ -64,7 +64,7 @@ export default BioInfo;
 //               ></path>
 //             </svg>
 //             <svg
-//               class="hidden w-6 h-6"
+//               className="hidden w-6 h-6"
 //               fill="currentColor"
 //               viewBox="0 0 20 20"
 //               xmlns="http://www.w3.org/2000/svg"
@@ -97,14 +97,14 @@ export default BioInfo;
 //         <a href={`/blog`}>
 //           <li className="">
 //             <div className="flex flex-col justify-center items-center gap-1">
-//               <i class={`fa-solid fa-pen-to-square text-slate-700`}></i>
+//               <i className={`fa-solid fa-pen-to-square text-slate-700`}></i>
 //             </div>
 //           </li>
 //         </a>
 //         <a href={`/offer`}>
 //           <li className="">
 //             <div className="flex flex-col justify-center items-center gap-1">
-//               <i class="fa-regular fa-heart text-slate-700"></i>
+//               <i className="fa-regular fa-heart text-slate-700"></i>
 //             </div>
 //           </li>
 //         </a>
@@ -128,23 +128,23 @@ export default BioInfo;
 //   <div
 //     id="defaultModal"
 //     tabindex="-1"
-//     class="fixed top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full bg-gray-100 bg-opacity-75"
+//     className="fixed top-0 left-0 right-0 z-50 w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full bg-gray-100 bg-opacity-75"
 //     style={{ display: showModal ? "block" : "none" }}
 //   >
-//     <div class="flex w-full items-center h-full justify-center">
-//       <div class="relative  rounded-lg shadow bg-indigo-400">
-//         <div class="flex items-start justify-between p-4  rounded-t">
-//           <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+//     <div className="flex w-full items-center h-full justify-center">
+//       <div className="relative  rounded-lg shadow bg-indigo-400">
+//         <div className="flex items-start justify-between p-4  rounded-t">
+//           <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
 //             Application Submitted
 //           </h3>
 //         </div>
 
-//         <div class="flex items-center p-6 space-x-2  rounded-b dark:border-gray-600">
+//         <div className="flex items-center p-6 space-x-2  rounded-b dark:border-gray-600">
 //           <button
 //             data-modal-hide="defaultModal"
 //             type="button"
 //             onClick={() => setShowModal(false)}
-//             class="text-white  text-md font-bold focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm px-5 py-2.5 text-center dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+//             className="text-white  text-md font-bold focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-md text-sm px-5 py-2.5 text-center dark:hover:bg-blue-700 dark:focus:ring-blue-800"
 //           >
 //             Confirm
 //           </button>
@@ -152,7 +152,7 @@ export default BioInfo;
 //             data-modal-hide="defaultModal"
 //             type="button"
 //             onClick={() => setShowModal(false)}
-//             class=" text-white text-md font-bold focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-md  text-sm font-medium px-5 py-2.5"
+//             className=" text-white text-md font-bold focus:ring-4 focus:outline-none focus:ring-blue-300 rounded-md  text-sm font-medium px-5 py-2.5"
 //           >
 //             Cancel
 //           </button>
@@ -167,30 +167,30 @@ export default BioInfo;
 //     .slice(0)
 //     .reverse()
 //     .map((job) => (
-//       <div class="border border-gray-200">
-//         <div class="p-4">
-//           <h2 class="mt-2 mb-2  font-bold">{job.jobpost_title}</h2>
-//           <p class="text-sm">
+//       <div className="border border-gray-200">
+//         <div className="p-4">
+//           <h2 className="mt-2 mb-2  font-bold">{job.jobpost_title}</h2>
+//           <p className="text-sm">
 //             Cras justo odio, dapibus ac facilisis in, egestas eget quam.
 //             Donec ullamcorper nulla non metus auctor fringilla.
 //           </p>
-//           <div class="mt-3 flex items-center gap-2">
-//             <span class="inline-block px-2 py-1.5 leading-none bg-gray-200 text-slate-500 rounded font-semibold  tracking-wide text-xs">
+//           <div className="mt-3 flex items-center gap-2">
+//             <span className="inline-block px-2 py-1.5 leading-none bg-gray-200 text-slate-500 rounded font-semibold  tracking-wide text-xs">
 //               20,000 a month
 //             </span>
-//             <span class="inline-block px-2 py-1.5 leading-none bg-gray-200 text-slate-500 rounded font-semibold  tracking-wide text-xs">
+//             <span className="inline-block px-2 py-1.5 leading-none bg-gray-200 text-slate-500 rounded font-semibold  tracking-wide text-xs">
 //               {job.jobpost_type}
 //             </span>
 //           </div>
 //         </div>
-//         <div class="p-4 border-t  text-xs text-gray-700">
-//           <span class="flex items-center mb-1">
-//             <i class="far fa-clock fa-fw mr-2 text-gray-900"></i> 3 hours
+//         <div className="p-4 border-t  text-xs text-gray-700">
+//           <span className="flex items-center mb-1">
+//             <i className="far fa-clock fa-fw mr-2 text-gray-900"></i> 3 hours
 //             ago
 //           </span>
-//           <span class="flex items-center justify-between">
+//           <span className="flex items-center justify-between">
 //             <div className="flex items-center">
-//               <i class="far fa-address-card fa-fw text-gray-900 mr-2"></i>
+//               <i className="far fa-address-card fa-fw text-gray-900 mr-2"></i>
 //               <p>{job.jobpost_address}</p>
 //             </div>
 //             <button

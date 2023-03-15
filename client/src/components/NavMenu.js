@@ -11,15 +11,15 @@ const NavMenu = (props) => {
 
   return (
     <div>
-      <nav class="bg-white  w-full  justify-center flex">
-        <div class="flex justify-between items-center  w-[98%] p-2  gap-3">
-          <div class="flex items-center gap-2 ">
-            <span class="self-center text-2xl font-semibold whitespace-nowrap text-rose-400 tracking-wider ml-2">
+      <nav className="bg-white  w-full  justify-center flex">
+        <div className="flex justify-between items-center  w-[98%] p-2  gap-3">
+          <div className="flex items-center gap-2 ">
+            <span className="self-center text-2xl font-semibold whitespace-nowrap text-rose-400 tracking-wider ml-2">
               Aruga
             </span>
           </div>
 
-          <div class="flex items-center gap-2 w-full justify-end">
+          <div className="flex items-center gap-2 w-full justify-end">
             <div className="">
               <img
                 src={sessionStorage.getItem("userimg")}
@@ -29,13 +29,13 @@ const NavMenu = (props) => {
             <button
               data-collapse-toggle="mobile-menu-2"
               type="button"
-              class="inline-flex items-center p-1  text-sm text-gray-700 rounded-lg  focus:outline-none "
+              className="inline-flex items-center p-1  text-sm text-gray-700 rounded-lg  focus:outline-none "
               aria-controls="mobile-menu-2"
               aria-expanded="false"
               onClick={handleShow}
             >
               <svg
-                class="w-7 h-7"
+                className="w-7 h-7"
                 fill="currentColor"
                 viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg"
@@ -47,7 +47,7 @@ const NavMenu = (props) => {
                 ></path>
               </svg>
               <svg
-                class="hidden w-6 h-6"
+                className="hidden w-6 h-6"
                 fill="currentColor"
                 viewBox="0 0 20 20"
                 xmlns="http://www.w3.org/2000/svg"

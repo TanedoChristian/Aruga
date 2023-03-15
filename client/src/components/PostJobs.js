@@ -100,7 +100,7 @@ const PostJobs = () => {
       <div className="flex flex-col items-center   lg:py-0 ">
         <div className="p-6 z-1 rounded-header overflow-hidden bg-rose-400">
           <div className=" h-[5rem] flex  items-center">
-            <i class="fa-solid fa-arrow-left  text-3xl"></i>
+            <i className="fa-solid fa-arrow-left  text-3xl"></i>
           </div>
           <h1 className="text-4xl font-bold md:text-2xl tracking-wide">
             Create new account
@@ -307,9 +307,9 @@ const PostJobs = () => {
 
               <p className="font-md">Type</p>
 
-              <main class="flex w-full items-center justify-center">
+              <main className="flex w-full items-center justify-center">
                 <div
-                  class="flex w-full  rounded-xl justify-between bg-gray-300 p-3"
+                  className="flex w-full  rounded-xl justify-between bg-gray-300 p-3"
                   x-data="app"
                 >
                   <div>
@@ -319,11 +319,11 @@ const PostJobs = () => {
                       value="parent"
                       name="option"
                       id="1"
-                      class="peer hidden"
+                      className="peer hidden"
                     />
                     <label
                       for="1"
-                      class="flex cursor-pointer select-none rounded-xl p-3 px-10 text-center peer-checked:bg-rose-400 peer-checked:font-bold peer-checked:text-white"
+                      className="flex cursor-pointer select-none rounded-xl p-3 px-10 text-center peer-checked:bg-rose-400 peer-checked:font-bold peer-checked:text-white"
                     >
                       Parents
                     </label>
@@ -335,11 +335,11 @@ const PostJobs = () => {
                       onChange={handleType}
                       value="babysitter"
                       id="4"
-                      class="peer hidden"
+                      className="peer hidden"
                     />
                     <label
                       for="4"
-                      class="flex cursor-pointer select-none rounded-xl text-center p-3 px-10 peer-checked:bg-rose-400 peer-checked:font-bold peer-checked:text-white mr-5"
+                      className="flex cursor-pointer select-none rounded-xl text-center p-3 px-10 peer-checked:bg-rose-400 peer-checked:font-bold peer-checked:text-white mr-5"
                     >
                       Babysitter
                     </label>

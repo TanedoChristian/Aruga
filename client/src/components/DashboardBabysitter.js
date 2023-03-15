@@ -210,7 +210,7 @@ const DashboardBabysitter = (props) => {
               className="w-11 h-11 rounded-full"
             />
             <i
-              class="fa-solid fa-bars-staggered text-xl font-bold text-rose-400"
+              className="fa-solid fa-bars-staggered text-xl font-bold text-rose-400"
               onClick={handleShow}
             ></i>
           </div>

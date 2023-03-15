@@ -17,26 +17,42 @@ const NotificationCard = (props) => {
       });
   }, []);
 
+  const handleNotification = (id) => {
+    window.location.href = "/user-details?userid=" + id;
+  };
+
   return (
     <div className="flex flex-col mt-2 items-center gap-1">
-      {props.children}
-      <div class="flex items-center p-4 bg-white  border border-gray-200 w-[95%] rounded-2xl shadow-xl">
-        <img
-          class="h-12 w-12 rounded-full"
-          alt="John Doe's avatar"
-          src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&faces=1&faceindex=1&facepad=2.5&w=500&h=500&q=80"
-        />
-
-        <div class="ml-5 mt-1 overflow-hidden flex flex-col">
-          <p class="text-sm text-gray-600 truncate">
-            <span className="text-md font-semibold leading-tight text-gray-900">
-              John Doe{" "}
+      {notification.map((data) => (
+        <div className="jobs-container flex justify-center w-full">
+          <div className="flex items-center p-4 bg-white shadow-sm relative border border-gray-200">
+            <span className="text-xs font-semibold uppercase m-1 py-1 mr-3 text-gray-500 absolute bottom-0 right-0">
+              4:36 PM
             </span>
-            and 8 others submitted an application in your job post and 8 others
-            submitted an application in your job post
-          </p>
+
+            <img
+              className="h-12 w-12 rounded-full"
+              alt="John Doe's avatar"
+              src={`${SetUp.SERVER_URL()}/${data.img}`}
+            />
+
+            <div className="ml-5 mt-1">
+              <p className="text-sm text-gray-600">
+                <span
+                  className="text-md font-semibold leading-tight text-gray-900"
+                  onClick={() => handleNotification(data.babysitter_id)}
+                >
+                  {`${data.firstname} ${data.lastname}`}
+                </span>
+                <span className="text-ellipsis">
+                  {" "}
+                  submitted an application in your job post
+                </span>
+              </p>
+            </div>
+          </div>
         </div>
-      </div>
+      ))}
     </div>
   );
 };
