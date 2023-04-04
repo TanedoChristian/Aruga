@@ -7,8 +7,6 @@ import Header from "./components/Header";
 import Blog from "./components/Blog";
 import Notification from "./components/Notification";
 import NotificationDetail from "./components/NotificationDetail";
-import NotificationSuccess from "./components/NotificationSuccess";
-import Ratings from "./components/Ratings";
 import Login from "./components/Login";
 import LoginOtp from "./components/LoginOtp";
 import Frontpage from "./Frontpage";
@@ -21,12 +19,15 @@ import DashboardBabysitter from "./components/DashboardBabysitter";
 import EditProfile from "./components/EditProfile";
 import BlogDetails from "./components/BlogDetails";
 import JobDetails from "./components/JobDetails";
+import Subscription from "./components/Subscription";
+import UserBlog from "./components/UserBlog";
 
 const App = () => {
   return (
     <div>
       <BrowserRouter>
         <Routes>
+          <Route path="/subscription" element={<Subscription />}></Route>
           <Route path="/edit-profile" element={<EditProfile />}></Route>
 
           <Route
@@ -60,7 +61,7 @@ const App = () => {
               </div>
             }
           ></Route>
-
+          <Route path="/user-blog" element={<UserBlog />}></Route>
           <Route path="/blog-details" element={<BlogDetails />}></Route>
           <Route
             path="/blog"
@@ -80,12 +81,8 @@ const App = () => {
               </div>
             }
           ></Route>
-          <Route
-            path="/notification-success"
-            element={<NotificationSuccess />}
-          ></Route>
+
           <Route path="/job-details" element={<JobDetails />}></Route>
-          <Route path="/ratings" element={<Ratings />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/login-otp" element={<LoginOtp />}></Route>
           <Route path="/frontpage" element={<Frontpage />}></Route>

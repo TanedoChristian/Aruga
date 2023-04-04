@@ -9,7 +9,7 @@ const SideNav = (props) => {
   return (
     <nav
       id=""
-      className="fixed  top-0 z-10 h-screen animation-fade w-[100%] bg-white  w3-animate-right overflow-hidden  "
+      className="fixed  top-0 z-10 h-screen animation-fade w-[100%] bg-white  w3-animate-right test "
       style={{ display: props.isShow ? "block" : "none" }}
     >
       <i
@@ -44,7 +44,7 @@ const SideNav = (props) => {
           </li>
 
           <li className=" p-3 text-slate-700   px-5 items-center border-t border-gray-300">
-            <a href="/edit-profile" className="flex justify-between">
+            <a href={`user-blog`} className="flex justify-between">
               <p
                 className="text-xl text-slate-700 tracking-wide"
                 style={{ fontFamily: "Poppins", fontWeight: 400 }}

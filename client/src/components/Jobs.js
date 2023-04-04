@@ -11,7 +11,7 @@ const Jobs = () => {
 
   return (
     <div className="w-full overflow-auto flex justify-center mt-2">
-      <div className="flex flex-col-reverse w-[95%] gap-1">
+      <div className="flex flex-col-reverse w-[95%] gap-5 ">
         {datas.map((user) => (
           <JobsCard
             img={`${SetUp.SERVER_URL()}/${user.img}`}

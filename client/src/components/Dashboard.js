@@ -8,8 +8,13 @@ import axios from "axios";
 import Background from "../img/background.png";
 import Header from "./Header";
 import ParentBanner from "../img/parentsbanner.png";
+import Banner from "./Banner";
 
 const Dashboard = (props) => {
+  if (sessionStorage.getItem("type") != "parent") {
+    window.location.href = "/dashboard-babysitter";
+  }
+
   const [user, setUser] = useState([]);
   const [showNav, setShowNav] = useState(false);
   const handleShow = () => {
@@ -17,47 +22,46 @@ const Dashboard = (props) => {
   };
 
   useEffect(() => {
-    if (sessionStorage.getItem("type").toString() != "parent") {
-      window.location.href = "/dashboard-babysitter";
-    }
-
     axios
       .get(`${SetUp.SERVER_URL()}/users/${sessionStorage.getItem("userid")}`)
       .then(({ data }) => {
-        console.log(data);
         setUser(data[0]);
+        sessionStorage.setItem("user", JSON.stringify(data[0]));
+        sessionStorage.setItem("userimg", data[0].img);
       });
   }, []);
 
   return (
-    <div className="">
+    <div className="h-screen bg-rose-50">
       <Header />
-
-      <div className="flex w-full justify-center mt-7">
-        <div className="w-[90%]">
-          <h1
-            className="text-2xl font-bold text-neutral-800 tracking-wide"
-            style={{ fontFamily: "Poppins" }}
-          >
-            Hello, {user.firstname}
-          </h1>
-        </div>
-      </div>
-      <div className="w-full flex justify-center mt-2 p-3  pb-8 ">
-        <div className="w-[98%] flex justify-center">
-          <div className="w-[full] h-[10rem] flex">
-            <img
-              src={ParentBanner}
-              className="object-cover rounded-2xl border border-gray-200"
-            />
+      <Banner>
+        <div className="flex w-full justify-center mt-7">
+          <div className="w-[90%]">
+            <h1
+              className="text-2xl font-bold text-neutral-800 tracking-wide"
+              style={{ fontFamily: "Poppins" }}
+            >
+              Hello, {user.firstname}
+            </h1>
           </div>
         </div>
-      </div>
+
+        <div className="w-full flex justify-center mt-2 p-3  pb-8 ">
+          <div className="w-[98%] flex justify-center">
+            <div className="w-[full] h-[10rem] flex">
+              <img
+                src={ParentBanner}
+                className="object-cover rounded-2xl border border-gray-200 shadow-md"
+              />
+            </div>
+          </div>
+        </div>
+      </Banner>
 
       <Jobs url={props.url} />
 
       <Footer>
-        <ul className="flex w-full justify-around footer border-b border-gray-200 fixed bg-white bottom-0">
+        <ul className="flex w-full justify-around footer border-t border-gray-300  fixed bg-white rounded-t bottom-0">
           <li className="">
             <div
               className="flex flex-col justify-center items-center"

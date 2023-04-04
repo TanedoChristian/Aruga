@@ -20,15 +20,17 @@ const EditProfile = () => {
       });
   }, []);
 
-  const handleSubmit = () => {};
-
   const handleFirstname = (e) => {
     setUser((prev) => {
-      return { ...prev, password: e.target.value };
+      return { ...prev, firstname: e.target.value };
     });
   };
 
-  const handleLastname = () => {};
+  const handleLastname = (e) => {
+    setUser((prev) => {
+      return { ...prev, lastname: e.target.value };
+    });
+  };
 
   const handleAddress = (e) => {
     setUser((prev) => {
@@ -67,11 +69,14 @@ const EditProfile = () => {
       url: SetUp.SERVER_URL() + "/edit-user",
       data: {
         ...user,
+        userid: sessionStorage.getItem("userid"),
         file: file,
       },
       headers: { "Content-Type": '"multipart/form-data' },
     }).then(({ data }) => {
-      console.log(data);
+      if (data == 1) {
+        window.location.href = "/dashboard";
+      }
     });
   };
 

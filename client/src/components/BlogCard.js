@@ -11,7 +11,7 @@ const BlogCard = ({ datas }) => {
             .slice(0)
             .reverse()
             .map((data) => (
-              <article className="p-4 bg-white rounded-xl  shadow-sm dark:bg-white-400 flex flex-col">
+              <article className="p-4 bg-white rounded-xl  border-gray-100 flex flex-col shadow-md">
                 <div className="flex justify-between items-center mb-2 text-gray-500">
                   <span className="text-xs p-1">{data.blog_postdate}</span>
 

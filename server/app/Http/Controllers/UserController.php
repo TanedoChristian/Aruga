@@ -59,9 +59,11 @@ class UserController extends Controller
         $address = $request->address;
         $mobileno = $request->mobileno;
         $email = $request->email;
+        $firstname = $request->firstname;
+        $lastname = $request->lastname;
         $filename = $request->file->store('public');
         $storeFile = str_replace("public", "storage", $filename);
-        return ArugaUser::where('email', 'admin')->update(['img' => $storeFile, 'address' => $address, 'mobileno' => $mobileno, 'email' => $email]);
+        return ArugaUser::where('user_id', $userid)->update(['img' => $storeFile, 'address' => $address, 'mobileno' => $mobileno, 'email' => $email, 'firstname' => $firstname, 'lastname' => $lastname]);
 
 
     }

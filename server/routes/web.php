@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\HireController;
 use App\Http\Controllers\JobsController;
 use App\Http\Controllers\UserController;
 use App\Models\ArugaUser;
@@ -34,6 +35,9 @@ Route::post('/blog', [BlogController::class, 'insert']);
 Route::get('/blog', [BlogController::class, 'show']);
 Route::post('/application', [ApplicationController::class, 'insert']);
 Route::get('/application/{id}', [ApplicationController::class, 'show']);
+Route::get('/blog/{id}', [BlogController::class, 'showById']);
+Route::post('/hire', [HireController::class, 'insert']);
+Route::get('/hire', [HireController::class, 'show']);
 
 ?>
 

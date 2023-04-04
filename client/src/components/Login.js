@@ -37,13 +37,8 @@ const Login = () => {
     }).then(({ data }) => {
       if (data.message == "Success") {
         sessionStorage.setItem("userid", data.userid);
-        sessionStorage.setItem(
-          "userimg",
-          `${SetUp.SERVER_URL()}/${data.userimg}`
-        );
-
+        sessionStorage.setItem("userimg", `${data.userimg}`);
         sessionStorage.setItem("type", data.type.toString().toLowerCase());
-
         if (data.type.toString().toLowerCase() === "parent") {
           window.location.href = "/dashboard";
         } else {

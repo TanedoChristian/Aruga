@@ -28,9 +28,12 @@ class BlogController extends Controller
 
         return 'Success';
     }
-
     public function show() {
         return BlogModel::all();
+    }
+
+    public function showById(Request $request) {
+        return BlogModel::where('user_id', $request->route('id'))->get();
     }
 }
 

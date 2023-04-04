@@ -77,6 +77,7 @@ const Blog = () => {
       },
       headers: { "Content-Type": "multipart/form-data" },
     }).then(({ data }) => {
+      console.log(data);
       setIsShowModal(!isShowModal);
       setSuccess(!isSuccess);
     });
@@ -84,7 +85,7 @@ const Blog = () => {
 
   return (
     <div>
-      <div className=" flex flex-col gap-2 bg-white">
+      <div className=" flex flex-col gap-2 bg-white overflow-x-hidden">
         <Header />
 
         <Footer>
@@ -129,98 +130,6 @@ const Blog = () => {
           </ul>
         </Footer>
       </div>
-      {/* <nav className="bg-white  w-full  justify-center flex">
-        <div className="flex justify-between items-center  w-[98%] p-2">
-          <div className="flex items-center gap-2 ">
-            <span className="self-center text-2xl font-semibold whitespace-nowrap text-rose-400 tracking-wider">
-              Aruga
-            </span>
-          </div>
-
-          <div className="flex items-center gap-2 w-full justify-end">
-            <div className="">
-              <img
-                src={sessionStorage.getItem("userimg")}
-                className="h-9 w-9 rounded-full object-cover shadow-sm"
-              />
-            </div>
-            <button
-              data-collapse-toggle="mobile-menu-2"
-              type="button"
-              className="inline-flex items-center p-1  text-sm text-gray-700 rounded-lg  focus:outline-none "
-              aria-controls="mobile-menu-2"
-              aria-expanded="false"
-              onClick={handleShow}
-            >
-              <svg
-                className="w-7 h-7"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                  clip-rule="evenodd"
-                ></path>
-              </svg>
-              <svg
-                className="hidden w-6 h-6"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                  clip-rule="evenodd"
-                ></path>
-              </svg>
-            </button>
-          </div>
-        </div>
-      </nav> */}
-      {/* <SideNav isShow={isShowSideNav} /> */}
-      {/* <Footer>
-        <ul className="flex w-full justify-around footer border-b border-gray-200">
-          <a href={`/dashboard`}>
-            <li className="">
-              <div className="flex flex-col justify-center items-center">
-                <i className={`fa-solid fa-house text-slate-600`}></i>
-              </div>
-            </li>
-          </a>
-          <a href="/blog">
-            <li className="">
-              <div
-                className="flex flex-col justify-center items-center gap-1"
-                style={{ borderBottom: "3px solid #ec878f" }}
-              >
-                <i
-                  className={`fa-solid fa-pen-to-square text-slate-700`}
-                  style={{ color: "#ec878f" }}
-                ></i>
-              </div>
-            </li>
-          </a>
-          <a href="/offer">
-            <li className="">
-              <div className="flex flex-col justify-center items-center gap-1">
-                <i className="fa-regular fa-heart text-slate-700"></i>
-              </div>
-            </li>
-          </a>
-
-          <li className="">
-            <div className="flex flex-row-reverse w-fit">
-              <div className="rounded-full w-4 h-4 absolute bg-rose-400">
-                <p className="text-xs text-center text-white">5</p>
-              </div>
-              <i className="fa-regular fa-bell text-slate-700"></i>
-            </div>
-          </li>
-        </ul>
-      </Footer> */}
 
       <div className="w-full  flex justify-center">
         <form className="w-[90%] mt-3">
@@ -235,18 +144,13 @@ const Blog = () => {
 
       <div
         id="defaultModal"
-        tabindex="-1"
         aria-hidden="true"
-        className="absolute h-full fade-in-1 top-0  animation-fade w-[100%] bg-white  w3-animate-top"
+        className="fixed fade-in-1 top-0 animation-fade w-[100%] bg-white  w3-animate-top "
         style={{ display: isShowModal ? "block" : "none" }}
       >
         <div className="relative w-full h-full max-w-2xl md:h-auto">
           <div className="relative bg-white rounded-lg  h-screen shadow-xl">
             <div className="flex items-center justify-between p-3  w-[100%] border-t border-gray-200 gap-2">
-              <img
-                src={sessionStorage.getItem("userimg")}
-                className="h-9 w-9 rounded-full object-cover shadow-sm"
-              />
               <h3 className="text-2xl font-semibold text-gray-900 ">
                 Create a Blog
               </h3>
@@ -286,12 +190,13 @@ const Blog = () => {
               <div className="flex flex-col gap-1">
                 <label className="text-lg font-medium">Details</label>
                 <textarea
+                  type="text"
                   id="message"
                   rows="12"
-                  className="bg-gray-50 outline-none p-3  rounded-lg"
+                  className="bg-gray-50 outline-none h-[20vh]  rounded-lg"
                   placeholder="Write Something"
                   onChange={handleDescription}
-                ></textarea>
+                />
               </div>
 
               <div>
@@ -346,9 +251,9 @@ const Blog = () => {
                 </div>
               </div>
 
-              <div className="flex flex-col gap-1">
+              <div className="flex  gap-1 absolute bottom-2  w-[90%] overflow-x-hidden">
                 <button
-                  className="p-4 bg-rose-400 text-white text-md rounded-lg"
+                  className="p-4 bg-rose-400 text-white text-md rounded-lg w-full"
                   onClick={handleSubmit}
                 >
                   Post Now

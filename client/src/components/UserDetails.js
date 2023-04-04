@@ -1,10 +1,11 @@
 import React, { StrictMode, useEffect, useState } from "react";
-import BioInfo from "./BioInfo";
+
 import Ratings from "./Ratings";
 import ProfileCategory from "./ProfileCategory";
 import axios from "axios";
 import { useSearchParams } from "react-router-dom";
 import SetUp from "../Setup";
+import BioInfo from "./BioInfo";
 const UserDetails = () => {
   const params = new URLSearchParams(window.location.search);
   const userid = params.get("userid");
@@ -95,7 +96,24 @@ const UserDetails = () => {
         {component}
       </div>
       <div className="flex  w-full justify-center fixed bottom-2">
-        <button className="py-3 px-4  font-medium  w-[70%] bg-indigo-500 text-white rounded-lg">
+        <button
+          className="py-3 px-4  font-medium  w-[70%] bg-indigo-500 text-white rounded-lg"
+          onClick={() => {
+            console.log(userid);
+            console.log(sessionStorage.getItem("userid"));
+
+            axios({
+              method: "POST",
+              url: `${SetUp.SERVER_URL()}/hire`,
+              data: {
+                parent_id: sessionStorage.getItem("userid"),
+                babysitter_id: userid,
+              },
+            }).then((data) => {
+              console.log(data);
+            });
+          }}
+        >
           Hire Now
         </button>
       </div>

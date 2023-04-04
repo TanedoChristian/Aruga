@@ -84,7 +84,7 @@ const DashboardBabysitter = (props) => {
       <Modal isShowModal={isShowModal}></Modal>
 
       <div
-        className="h-[10%] w-[70%] top-[50%] left-[15%] bg-rose-400 fixed flex-col z-50 w3-animate-right border border-gray-200 rounded-lg shadow-2xl"
+        className="h-[10%] w-[70%] top-[50%] left-[15%] bg-rose-400 fixed flex-col z-50 w3-animate-right rounded-lg shadow-2xl "
         style={{ display: isShowAlert ? "block" : "none" }}
       >
         <div className="flex flex-col justify-center items-center">
@@ -206,7 +206,7 @@ const DashboardBabysitter = (props) => {
           </div>
           <div className="flex gap-3 items-center">
             <img
-              src={sessionStorage.getItem("userimg")}
+              src={`${SetUp.SERVER_URL()}/${sessionStorage.getItem("userimg")}`}
               className="w-11 h-11 rounded-full"
             />
             <i
@@ -290,7 +290,7 @@ const DashboardBabysitter = (props) => {
         </div>
       </div>
       {isSort ? (
-        <div className="flex  flex-col items-center gap-4 h-full border mt-5 border-gray-100 rounded-t-3xl bg-white">
+        <div className="flex  flex-col items-center gap-4 h-full border mt-5  rounded-t-3xl bg-white ">
           {jobs
             .slice(0)
             .reverse()
