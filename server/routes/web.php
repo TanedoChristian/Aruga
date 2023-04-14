@@ -53,6 +53,7 @@ Route::get('/review/{id}', [ReviewController::class, 'getById']);
 Route::post('/review', [ReviewController::class, 'insert']);
 
 Route::get('/resume',[ResumeController::class, 'get']);
+Route::get('/resume/{id}',[ResumeController::class, 'getById']);
 Route::post('/resume', [ResumeController::class, 'insert']);
 Route::delete('/resume/{id}', [ResumeController::class, 'delete']);
 Route::put('/resume/{id}', [ResumeController::class, 'update']);

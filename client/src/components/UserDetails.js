@@ -7,10 +7,11 @@ import { useSearchParams } from "react-router-dom";
 import SetUp from "../Setup";
 import BioInfo from "./BioInfo";
 import Modal from "./Modal";
+import Resume from "./Resume";
 const UserDetails = () => {
   const params = new URLSearchParams(window.location.search);
   const userid = params.get("userid");
-  const [component, setComponent] = useState();
+  const [component, setComponent] = useState("bio");
   const [user, setUser] = useState({});
   const [showModal, setShowModal] = useState(false);
   const [reviewsData, setReviewsData] = useState([]);
@@ -205,120 +206,134 @@ const UserDetails = () => {
                   onClick={() => {
                     setReviews(true);
                     setDescription(false);
+                    setComponent("bio");
                   }}
                 >
                   Reviews
                 </li>
-                <li className="p-2 w-[30%] text-center">Resume</li>
+                <li
+                  className="p-2 w-[30%] text-center"
+                  onClick={() => {
+                    setComponent("reviews");
+                  }}
+                >
+                  Resume
+                </li>
               </ul>
             </div>
           </div>
         </div>
         <div>
-          <BioInfo
-            name={`${user.firstname ?? ""} ${user.lastname ?? ""}`}
-            address={user.address ?? ""}
-          />
-          <h1
-            className="text-xl font-medium p-2 px-6 border border-gray-200 rounded-t-xl shadow-xl"
-            style={{ fontFamily: "Poppins" }}
-          >
-            Reviews
-          </h1>
-          <div
-            className="flex flex-col h-full bg-white mb-20 h-[screen] h-[250px] overflow-auto relative"
-            style={{
-              display: showModal ? "none" : "flex",
-            }}
-          >
-            <div className="flex justify-end p-2 ">
-              <button
-                className="p-2 bg-rose-400 text-white text-xs rounded-md fixed"
-                onClick={() => {
-                  setShowModal(true);
+          {component === "bio" ? (
+            <div>
+              <BioInfo
+                name={`${user.firstname ?? ""} ${user.lastname ?? ""}`}
+                address={user.address ?? ""}
+              />
+              <h1
+                className="text-xl font-medium p-2 px-6 border border-gray-200 rounded-t-xl shadow-xl"
+                style={{ fontFamily: "Poppins" }}
+              >
+                Reviews
+              </h1>
+              <div
+                className="flex flex-col h-full bg-white mb-20 h-[screen] h-[250px] overflow-auto relative"
+                style={{
+                  display: showModal ? "none" : "flex",
                 }}
               >
-                Add Reviews
-              </button>
-            </div>
-
-            {reviewsData.map((item) => (
-              <article className="px-5 rounded-lg border-slate-400 mt-2 h-full">
-                <div className="flex items-center mb-4 space-x-4">
-                  <img
-                    className="w-10 h-10 rounded-full"
-                    src={`${SetUp.SERVER_URL()}/${item.img}`}
-                    alt=""
-                  />
-
-                  <div className="space-y-1 font-medium">
-                    <p>
-                      {item.firstname}
-                      <div className="flex">
-                        {item.review_ratings === 1 ? (
-                          <div>
-                            <i className="fa-solid fa-star text-yellow-500"></i>
-                            <i className="fa-solid fa-star text-gray-300"></i>
-                            <i className="fa-solid fa-star text-gray-300"></i>
-                            <i className="fa-solid fa-star text-gray-300"></i>
-                            <i className="fa-solid fa-star text-gray-300"></i>
-                          </div>
-                        ) : item.review_ratings === 2 ? (
-                          <div>
-                            <i className="fa-solid fa-star text-yellow-500"></i>
-                            <i className="fa-solid fa-star text-yellow-500"></i>
-                            <i className="fa-solid fa-star text-gray-300"></i>
-                            <i className="fa-solid fa-star text-gray-300"></i>
-                            <i className="fa-solid fa-star text-gray-300"></i>
-                          </div>
-                        ) : item.review_ratings === 3 ? (
-                          <div>
-                            <i className="fa-solid fa-star text-yellow-500"></i>
-                            <i className="fa-solid fa-star text-yellow-500"></i>
-                            <i className="fa-solid fa-star text-yellow-500"></i>
-                            <i className="fa-solid fa-star text-gray-300"></i>
-                            <i className="fa-solid fa-star text-gray-300"></i>
-                          </div>
-                        ) : item.review_ratings === 4 ? (
-                          <div>
-                            <i className="fa-solid fa-star text-yellow-500"></i>
-                            <i className="fa-solid fa-star text-yellow-500"></i>
-                            <i className="fa-solid fa-star text-yellow-500"></i>
-                            <i className="fa-solid fa-star text-yellow-300"></i>
-                            <i className="fa-solid fa-star text-gray-300"></i>
-                          </div>
-                        ) : item.review_ratings === 5 ? (
-                          <div>
-                            <i className="fa-solid fa-star text-yellow-500"></i>
-                            <i className="fa-solid fa-star text-yellow-500"></i>
-                            <i className="fa-solid fa-star text-yellow-500"></i>
-                            <i className="fa-solid fa-star text-yellow-300"></i>
-                            <i className="fa-solid fa-star text-yellow-300"></i>
-                          </div>
-                        ) : (
-                          ""
-                        )}
-                      </div>
-                    </p>
-                  </div>
+                <div className="flex justify-end p-2 ">
+                  <button
+                    className="p-2 bg-rose-400 text-white text-xs rounded-md fixed"
+                    onClick={() => {
+                      setShowModal(true);
+                    }}
+                  >
+                    Add Reviews
+                  </button>
                 </div>
 
-                <footer className="text-sm text-gray-500 dark:text-gray-400">
-                  <p>Verified Parent</p>
-                </footer>
-                <p className="font-light text-gray-500 dark:text-gray-400">
-                  {item.review_details}.
-                </p>
+                {reviewsData.map((item) => (
+                  <article className="px-5 rounded-lg border-slate-400 mt-2 h-full">
+                    <div className="flex items-center mb-4 space-x-4">
+                      <img
+                        className="w-10 h-10 rounded-full"
+                        src={`${SetUp.SERVER_URL()}/${item.img}`}
+                        alt=""
+                      />
 
-                <a
-                  href="#"
-                  className="block mb-5 text-sm font-medium text-blue-600 hover:underline dark:text-blue-500"
-                >
-                  Read more
-                </a>
-              </article>
-            ))}
-          </div>
+                      <div className="space-y-1 font-medium">
+                        <p>
+                          {item.firstname}
+                          <div className="flex">
+                            {item.review_ratings === 1 ? (
+                              <div>
+                                <i className="fa-solid fa-star text-yellow-500"></i>
+                                <i className="fa-solid fa-star text-gray-300"></i>
+                                <i className="fa-solid fa-star text-gray-300"></i>
+                                <i className="fa-solid fa-star text-gray-300"></i>
+                                <i className="fa-solid fa-star text-gray-300"></i>
+                              </div>
+                            ) : item.review_ratings === 2 ? (
+                              <div>
+                                <i className="fa-solid fa-star text-yellow-500"></i>
+                                <i className="fa-solid fa-star text-yellow-500"></i>
+                                <i className="fa-solid fa-star text-gray-300"></i>
+                                <i className="fa-solid fa-star text-gray-300"></i>
+                                <i className="fa-solid fa-star text-gray-300"></i>
+                              </div>
+                            ) : item.review_ratings === 3 ? (
+                              <div>
+                                <i className="fa-solid fa-star text-yellow-500"></i>
+                                <i className="fa-solid fa-star text-yellow-500"></i>
+                                <i className="fa-solid fa-star text-yellow-500"></i>
+                                <i className="fa-solid fa-star text-gray-300"></i>
+                                <i className="fa-solid fa-star text-gray-300"></i>
+                              </div>
+                            ) : item.review_ratings === 4 ? (
+                              <div>
+                                <i className="fa-solid fa-star text-yellow-500"></i>
+                                <i className="fa-solid fa-star text-yellow-500"></i>
+                                <i className="fa-solid fa-star text-yellow-500"></i>
+                                <i className="fa-solid fa-star text-yellow-300"></i>
+                                <i className="fa-solid fa-star text-gray-300"></i>
+                              </div>
+                            ) : item.review_ratings === 5 ? (
+                              <div>
+                                <i className="fa-solid fa-star text-yellow-500"></i>
+                                <i className="fa-solid fa-star text-yellow-500"></i>
+                                <i className="fa-solid fa-star text-yellow-500"></i>
+                                <i className="fa-solid fa-star text-yellow-300"></i>
+                                <i className="fa-solid fa-star text-yellow-300"></i>
+                              </div>
+                            ) : (
+                              ""
+                            )}
+                          </div>
+                        </p>
+                      </div>
+                    </div>
+
+                    <footer className="text-sm text-gray-500 dark:text-gray-400">
+                      <p>Verified Parent</p>
+                    </footer>
+                    <p className="font-light text-gray-500 dark:text-gray-400">
+                      {item.review_details}.
+                    </p>
+
+                    <a
+                      href="#"
+                      className="block mb-5 text-sm font-medium text-blue-600 hover:underline dark:text-blue-500"
+                    >
+                      Read more
+                    </a>
+                  </article>
+                ))}
+              </div>{" "}
+            </div>
+          ) : (
+            <Resume id={userid} />
+          )}
         </div>
       </div>
       <div

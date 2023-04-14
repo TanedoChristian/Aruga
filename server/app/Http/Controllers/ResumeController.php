@@ -13,6 +13,10 @@ class ResumeController extends Controller
         return ResumeModel::all();
     }
 
+    public function getById(Request $request){
+        return ResumeModel::where('babysitter_id', $request->route('id'))->get();
+    }
+
     public function insert(Request $request) {
 
         $resume = new ResumeModel();

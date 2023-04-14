@@ -19,6 +19,27 @@ const SideNav = (props) => {
 
       <ul className="flex flex-col justify-between h-[90%] p-1 mt-5">
         <div>
+          {sessionStorage.getItem("type") === "babysitter" ? (
+            <li className=" p-3 text-slate-700   px-5 items-center border-t border-gray-200">
+              <a
+                href={`/user-details?userid=${sessionStorage.getItem(
+                  "userid"
+                )}`}
+                className="flex justify-between"
+              >
+                <p
+                  className="text-xl text-slate-700 tracking-wide"
+                  style={{ fontFamily: "Poppins", fontWeight: 400 }}
+                >
+                  My Profile
+                </p>
+                <i className="fa-solid fa-angle-right text-3xl"></i>
+              </a>
+            </li>
+          ) : (
+            ""
+          )}
+
           <li className=" p-3 text-slate-700   px-5 items-center border-b border-gray-300">
             <a href="/edit-profile" className="flex justify-between">
               <p
@@ -68,7 +89,7 @@ const SideNav = (props) => {
             </li>
           ) : (
             <li className=" p-3 text-slate-700   px-5 items-center border-t border-gray-200">
-              <a href="/user-jobs" className="flex justify-between">
+              <a href="/resume/builder" className="flex justify-between">
                 <p
                   className="text-xl text-slate-700 tracking-wide"
                   style={{ fontFamily: "Poppins", fontWeight: 400 }}

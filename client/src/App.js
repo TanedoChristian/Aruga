@@ -22,6 +22,7 @@ import JobDetails from "./components/JobDetails";
 import Subscription from "./components/Subscription";
 import UserBlog from "./components/UserBlog";
 import UserJobs from "./components/UserJobs";
+import ResumeBuilder from "./components/ResumeBuilder";
 
 const App = () => {
   return (
@@ -89,6 +90,7 @@ const App = () => {
           <Route path="/frontpage" element={<Frontpage />}></Route>
           <Route path="/register" element={<Register />}></Route>
           <Route path="/user-jobs" element={<UserJobs />}></Route>
+          <Route path="/resume/builder" element={<ResumeBuilder />}></Route>
         </Routes>
       </BrowserRouter>
     </div>
