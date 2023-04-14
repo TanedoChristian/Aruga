@@ -4,6 +4,7 @@ use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\HireController;
 use App\Http\Controllers\JobsController;
+use App\Http\Controllers\ResumeController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\UserController;
 use App\Models\ArugaUser;
@@ -50,5 +51,10 @@ Route::put('/blog', [BlogController::class, 'update']);
 Route::get('/review', [ReviewController::class, 'get']);
 Route::get('/review/{id}', [ReviewController::class, 'getById']);
 Route::post('/review', [ReviewController::class, 'insert']);
+
+Route::get('/resume',[ResumeController::class, 'get']);
+Route::post('/resume', [ResumeController::class, 'insert']);
+Route::delete('/resume/{id}', [ResumeController::class, 'delete']);
+Route::put('/resume/{id}', [ResumeController::class, 'update']);
 ?>
 

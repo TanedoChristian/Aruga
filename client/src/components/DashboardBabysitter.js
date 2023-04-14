@@ -9,7 +9,6 @@ import Header from "./Header";
 import Banner from "../img/banner.png";
 import Modal from "./Modal";
 import moment from "moment";
-import Popup from "react-popup";
 
 const DashboardBabysitter = (props) => {
   const [jobs, setJobs] = useState([]);
