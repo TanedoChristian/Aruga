@@ -328,12 +328,12 @@ const DashboardBabysitter = (props) => {
                 </div>
                 <div className="px-4 py-2 text-xs text-gray-700  flex flex-col gap-1 justify-center ">
                   <div className="flex items-center">
-                    <i className="far fa-address-card fa-fw text-gray-900 mr-2"></i>
+                    <i className="far fa-address-card fa-fw  mr-2 text-rose-500"></i>
                     <p className="text-xs">20,000 a month</p>
                   </div>
                   <span className="flex items-center justify-between">
                     <div className="flex items-center">
-                      <i className="far fa-address-card fa-fw text-gray-900 mr-2"></i>
+                      <i className="far fa-address-card fa-fw text-rose-500 mr-2"></i>
                       <p>{job.jobpost_address}</p>
                     </div>
                     <button
@@ -385,12 +385,12 @@ const DashboardBabysitter = (props) => {
               </div>
               <div className="px-4 py-2 text-xs text-gray-700  flex flex-col gap-1 justify-center ">
                 <div className="flex items-center">
-                  <i className="far fa-address-card fa-fw text-gray-900 mr-2"></i>
+                  <i className="far fa-address-card fa-fw text-rose-500 mr-2"></i>
                   <p className="text-xs">20,000 a month</p>
                 </div>
                 <span className="flex items-center justify-between">
                   <div className="flex items-center">
-                    <i className="far fa-address-card fa-fw text-gray-900 mr-2"></i>
+                    <i className="far fa-address-card fa-fw text-rose-500 mr-2"></i>
                     <p>{job.jobpost_address}</p>
                   </div>
                   <button

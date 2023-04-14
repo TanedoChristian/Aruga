@@ -1,23 +1,19 @@
 import React from "react";
+import Modal from "./Modal";
 
 const BioInfo = (props) => {
   return (
     <div className="">
       <div>
-        <div className="mt-10 text-center pb-8">
-          <p className="font-light text-gray-600 mt-3">Bucharest, Romania</p>
+        <div className="mt-10 text-center pb-5">
+          <div className="flex  gap-2 w-full justify-center items-center">
+            <i className="fa-solid fa-location text-md"></i>
+            <p className="font-light text-gray-600 text-md ">{props.address}</p>
+          </div>
           <p className="mt-8 text-gray-500">
             Solution Manager - Creative Tim Officer
           </p>
           <p className="mt-2 text-gray-500">University of Computer Science</p>
-        </div>
-        <div className="flex flex-col justify-center  bg-white">
-          <p className="text-gray-600 text-center font-light lg:px-16 p-3 mb-5">
-            An artist of considerable range, Ryan — the name taken by
-            Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and
-            records all of his own music, giving it a warm, intimate feel with a
-            solid groove structure. An artist of considerable range.
-          </p>
         </div>
       </div>
     </div>

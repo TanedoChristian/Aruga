@@ -17,31 +17,28 @@ const Header = (props) => {
   };
 
   return (
-    <div className="flex flex-col gap-2  p-3">
-      <nav className="w-full  justify-center flex  bg-gradient-to-br from-rose-300 via-rose-400 to-rose-500 rounded-2xl shadow-md">
+    <div className="flex justify-center gap-2  relative  h-[8vh] bg-white items-center">
+      <nav className="w-full   flex  fixed bg-white  shadow-sm">
         <SideNav isShow={showNav} setShowNav={setShowNav} />
         <div className="flex justify-between items-center  w-[98%] p-2  gap-3">
           <div className="flex items-center gap-2 ">
             <div className="w-full">
-              <img
-                src={`${SetUp.SERVER_URL()}/${sessionStorage.getItem(
-                  "userimg"
-                )}`}
-                className="h-11 w-12 rounded-full object-cover shadow-sm"
-              />
+              <a
+                href="/dashboard"
+                className="text-3xl font-bold  uppercase ml-2  w-full text-center text-rose-500"
+              >
+                Aruga
+              </a>
             </div>
           </div>
 
           <div className="flex items-center gap-5 w-full justify-end">
-            <a
-              href="/dashboard"
-              className="self-center text-2xl font-semibold whitespace-nowrap text-white tracking-wider ml-2 w-full text-center"
-              style={{ fontFamily: "Poppins" }}
-            >
-              Aruga
-            </a>
+            <img
+              src={`${SetUp.SERVER_URL()}/${sessionStorage.getItem("userimg")}`}
+              className="h-10 w-10 rounded-full object-cover shadow-sm"
+            />
             <i
-              className="fa-solid fa-bars-staggered text-xl font-bold text-white"
+              className="fa-solid fa-bars-staggered text-2xl font-bold text-rose-500"
               onClick={handleShow}
             ></i>
           </div>

@@ -21,6 +21,7 @@ import BlogDetails from "./components/BlogDetails";
 import JobDetails from "./components/JobDetails";
 import Subscription from "./components/Subscription";
 import UserBlog from "./components/UserBlog";
+import UserJobs from "./components/UserJobs";
 
 const App = () => {
   return (
@@ -87,6 +88,7 @@ const App = () => {
           <Route path="/login-otp" element={<LoginOtp />}></Route>
           <Route path="/frontpage" element={<Frontpage />}></Route>
           <Route path="/register" element={<Register />}></Route>
+          <Route path="/user-jobs" element={<UserJobs />}></Route>
         </Routes>
       </BrowserRouter>
     </div>

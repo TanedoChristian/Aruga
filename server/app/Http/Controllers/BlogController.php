@@ -6,6 +6,7 @@ use App\Models\BlogModel;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BlogController extends Controller
 {
@@ -32,8 +33,33 @@ class BlogController extends Controller
         return BlogModel::all();
     }
 
+
+    public function showAllData() {
+        $result = DB::select('SELECT blog.* , users.img, users.firstname, users.lastname from blog inner join users on users.user_id = blog.user_id');
+        return $result;
+
+    }
+
     public function showById(Request $request) {
-        return BlogModel::where('user_id', $request->route('id'))->get();
+        $result = DB::select('SELECT blog.* , users.img, users.firstname, users.lastname from blog inner join users on users.user_id = blog.user_id where blog.user_id = ? ', [$request->route("id")]);
+        return $result;
+    }
+
+    public function delete(Request $request) {
+        return BlogModel::where('blog_id', $request->route('id'))->delete();
+    }
+
+    public function update(Request $request) {
+
+            $blogid = $request->blog_id;
+            $details= $request->blog_details;
+            $title = $request->blog_title;
+
+
+
+            return BlogModel::where('blog_id', $blogid)->update(['blog_title' => $title, 'blog_details' => $details]);
+
+
     }
 }
 

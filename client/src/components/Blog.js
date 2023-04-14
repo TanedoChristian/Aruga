@@ -85,50 +85,76 @@ const Blog = () => {
 
   return (
     <div>
-      <div className=" flex flex-col gap-2 bg-white overflow-x-hidden">
+      <div className=" flex flex-col gap-2 bg-white overflow-x-hidden ">
         <Header />
-
-        <Footer>
-          <ul className="flex w-full justify-around footer border-t border-gray-200 fixed bottom-0 ">
-            <a href={`/dashboard`}>
-              <li className="">
-                <div className="flex flex-col justify-center items-center">
-                  <i className={`fa-solid fa-house text-slate-600`}></i>
-                </div>
-              </li>
-            </a>
-            <a href={`/blog`}>
-              <li className="">
-                <div
-                  className="flex flex-col justify-center items-center gap-1"
-                  style={{ borderBottom: "3px solid #ec878f" }}
-                >
-                  <i
-                    className={`fa-solid fa-pen-to-square text-slate-600`}
-                    style={{ color: "#ec878f" }}
-                  ></i>
-                </div>
-              </li>
-            </a>
-            <a href={`/offer`}>
-              <li className="">
-                <div className="flex flex-col justify-center items-center gap-1">
-                  <i className="fa-regular fa-heart text-slate-700"></i>
-                </div>
-              </li>
-            </a>
-            <a href={`/notification`}>
-              <li className="">
-                <div className="inline-flex relative w-fit">
-                  <div className="absolute inline-block top-2 right-1 bottom-auto left-auto translate-x-2/4 -translate-y-1/2 rotate-0 skew-x-0 skew-y-0 scale-x-100 scale-y-100 p-0.5 px-1.5 text-xs leading-none text-center whitespace-nowrap align-baseline font-bold bg-indigo-700 text-white rounded-full z-10">
-                    8
+        {sessionStorage.getItem("type") === "parent" ? (
+          <Footer>
+            <ul className="flex w-full justify-around footer border-t border-gray-200 fixed bottom-0 ">
+              <a href={`/dashboard`}>
+                <li className="">
+                  <div className="flex flex-col justify-center items-center">
+                    <i className={`fa-solid fa-house text-slate-600`}></i>
                   </div>
-                  <i className="fa-regular fa-bell text-slate-700"></i>
-                </div>
-              </li>
-            </a>
-          </ul>
-        </Footer>
+                </li>
+              </a>
+              <a href={`/blog`}>
+                <li className="">
+                  <div
+                    className="flex flex-col justify-center items-center gap-1"
+                    style={{ borderBottom: "3px solid #ec878f" }}
+                  >
+                    <i
+                      className={`fa-solid fa-pen-to-square text-rose-500`}
+                    ></i>
+                  </div>
+                </li>
+              </a>
+              <a href={`/offer`}>
+                <li className="">
+                  <div className="flex flex-col justify-center items-center gap-1">
+                    <i className="fa-regular fa-heart text-slate-700"></i>
+                  </div>
+                </li>
+              </a>
+              <a href={`/notification`}>
+                <li className="">
+                  <div className="inline-flex relative w-fit">
+                    <i className="fa-regular fa-bell text-slate-700"></i>
+                  </div>
+                </li>
+              </a>
+            </ul>
+          </Footer>
+        ) : (
+          <div className=" fixed bottom-5 w-[90%] left-5">
+            <Footer>
+              <ul className="flex w-full justify-around footer border-b border-gray-200 rounded-full bg-gray-50 shadow-md py-4">
+                <a href={`/dashboard-babysitter`}>
+                  <li className="">
+                    <div className="flex flex-col justify-center items-center rounded-full ">
+                      <i className={`fa-solid fa-house text-gray-700`}></i>
+                    </div>
+                  </li>
+                </a>
+                <a href={`/blog`}>
+                  <li className="">
+                    <div className="flex flex-col justify-center items-center  rounded-full gap-1 bg-rose-400">
+                      <i className={`fa-solid fa-pen-to-square text-white`}></i>
+                    </div>
+                  </li>
+                </a>
+
+                <a href={`/notification`}>
+                  <li className="">
+                    <div className="flex flex-col justify-center items-center  rounded-full gap-1 ">
+                      <i className="fa-regular fa-bell text-slate-700"></i>
+                    </div>
+                  </li>
+                </a>
+              </ul>
+            </Footer>
+          </div>
+        )}
       </div>
 
       <div className="w-full  flex justify-center">
@@ -145,7 +171,7 @@ const Blog = () => {
       <div
         id="defaultModal"
         aria-hidden="true"
-        className="fixed fade-in-1 top-0 animation-fade w-[100%] bg-white  w3-animate-top "
+        className="fixed fade-in-1 top-0 animation-fade w-[100%] bg-white  w3-animate-top  "
         style={{ display: isShowModal ? "block" : "none" }}
       >
         <div className="relative w-full h-full max-w-2xl md:h-auto">
@@ -251,9 +277,9 @@ const Blog = () => {
                 </div>
               </div>
 
-              <div className="flex  gap-1 absolute bottom-2  w-[90%] overflow-x-hidden">
+              <div className="flex   gap-1  bottom-2  w-[90%] overflow-x-hidden">
                 <button
-                  className="p-4 bg-rose-400 text-white text-md rounded-lg w-full"
+                  className="p-4 bg-rose-400 text-white text-md rounded-lg w-full absolute"
                   onClick={handleSubmit}
                 >
                   Post Now
@@ -263,7 +289,10 @@ const Blog = () => {
           </div>
         </div>
       </div>
-      <BlogCard datas={datas} />
+      <BlogCard
+        datas={datas}
+        icon={<i className="fa-regular fa-heart text-slate-700"></i>}
+      />
     </div>
   );
 };

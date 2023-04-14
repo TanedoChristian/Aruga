@@ -1,8 +1,13 @@
 import React from "react";
-
+import Modal from "./Modal";
 const Comment = () => {
   return (
-    <article className="px-5 rounded-lg border-slate-400 mt-2">
+    <article className="px-5 rounded-lg border-slate-400 mt-2 h-full">
+      <div className="flex justify-end p-2">
+        <button className="p-2 bg-rose-400 text-white text-xs rounded-md">
+          Add Reviews
+        </button>
+      </div>
       <div className="flex items-center mb-4 space-x-4">
         <img
           className="w-10 h-10 rounded-full"

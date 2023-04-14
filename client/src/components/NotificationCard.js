@@ -35,28 +35,29 @@ const NotificationCard = (props) => {
                 handleNotification(data.babysitter_id, data.apply_id)
               }
             >
-              <div className="flex items-center p-4 bg-white shadow-xl relative border border-gray-200 w-[95%] rounded-xl ">
-                <span className="text-xs font-semibold uppercase m-1 py-1 mr-3 text-gray-500 absolute bottom-0 right-0">
+              <div className="flex items-center p-4 bg-white shadow-xl flex-col border border-gray-200 w-[95%] rounded-xl ">
+                <div className="flex">
+                  <img
+                    className="h-12 w-12 rounded-full"
+                    alt="John Doe's avatar"
+                    src={`${SetUp.SERVER_URL()}/${data.img}`}
+                  />
+
+                  <div className="ml-5 mt-1">
+                    <p className="text-sm text-gray-600">
+                      <span className="text-md font-semibold leading-tight text-gray-900">
+                        {`${data.firstname} ${data.lastname}`}
+                      </span>
+                      <span className="text-ellipsis">
+                        {" "}
+                        submitted an application in your job post
+                      </span>
+                    </p>
+                  </div>
+                </div>
+                <span className="flex text-xs font-semibold uppercase  mr-3 text-gray-500 w-full justify-end">
                   {new Date(data.apply_date).toLocaleTimeString()}
                 </span>
-
-                <img
-                  className="h-12 w-12 rounded-full"
-                  alt="John Doe's avatar"
-                  src={`${SetUp.SERVER_URL()}/${data.img}`}
-                />
-
-                <div className="ml-5 mt-1">
-                  <p className="text-sm text-gray-600">
-                    <span className="text-md font-semibold leading-tight text-gray-900">
-                      {`${data.firstname} ${data.lastname}`}
-                    </span>
-                    <span className="text-ellipsis">
-                      {" "}
-                      submitted an application in your job post
-                    </span>
-                  </p>
-                </div>
               </div>
             </div>
           ))
@@ -69,6 +70,10 @@ const NotificationCard = (props) => {
                       You are hired by {data.parent_id}
                     </span>
                   </p>
+                </div>
+                <div className="w-full flex justify-end px-5 gap-2">
+                  <button>Accept</button>
+                  <button>Decline</button>
                 </div>
               </div>
             </div>

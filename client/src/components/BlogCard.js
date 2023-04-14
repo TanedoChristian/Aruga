@@ -1,13 +1,24 @@
 import React, { useEffect, useState } from "react";
 import useFetchApi from "../hooks/useFetchApi";
 import SetUp from "../Setup";
+import axios from "axios";
 
-const BlogCard = ({ datas }) => {
+const BlogCard = (props) => {
+  const handleFunction = (id) => {
+    if (props.iconFunction == "delete") {
+      axios({
+        method: "DELETE",
+        url: SetUp.SERVER_URL() + `/blog/${id}`,
+      }).then(({ data }) => {
+        alert("Successfully Deleted");
+      });
+    }
+  };
   return (
-    <section className="bg-gray-50 mt-1">
+    <section className="bg-gray-50 mt-1 pb-8">
       <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">
         <div className="grid gap-4 lg:grid-cols-2">
-          {datas
+          {props.datas
             .slice(0)
             .reverse()
             .map((data) => (
@@ -15,8 +26,11 @@ const BlogCard = ({ datas }) => {
                 <div className="flex justify-between items-center mb-2 text-gray-500">
                   <span className="text-xs p-1">{data.blog_postdate}</span>
 
-                  <div className="flex flex-col justify-center items-center gap-1">
-                    <i className="fa-regular fa-heart text-slate-700"></i>
+                  <div
+                    className="flex flex-col justify-center items-center gap-1"
+                    onClick={() => handleFunction(data.blog_id)}
+                  >
+                    {props.icon}
                   </div>
                 </div>
                 <h2 className="mb-2 text-lg font-bold tracking-tight text-rose-400">
@@ -28,12 +42,11 @@ const BlogCard = ({ datas }) => {
                 <div className="flex justify-between items-center">
                   <div className="flex items-center space-x-4">
                     <img
-                      className="w-7 h-7 rounded-full"
-                      src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/jese-leos.png"
-                      alt="Jese Leos avatar"
+                      className="w-7 h-7 rounded-full object-cover"
+                      src={`${SetUp.SERVER_URL()}/${data.blog_img}`}
                     />
                     <span className="font-medium text-slate-600 text-sm">
-                      Jese Leos
+                      {`${data.firstname} ${data.lastname}`}
                     </span>
                   </div>
                   <a

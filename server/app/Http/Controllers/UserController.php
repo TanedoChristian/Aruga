@@ -8,6 +8,10 @@ use Twilio\Rest\Client;
 
 class UserController extends Controller
 {
+
+
+    static $id;
+
     public function show(){
         return ArugaUser::where('type', 'babysitter')->get();
     }
@@ -37,20 +41,38 @@ class UserController extends Controller
     }
 
 
-    public function sendMessage() {
-        $sid = "AC8239eb606e924309de484fd150b2f5f8";
-        $token = "d120e80b7ec08a100c1493b6adca9250";
-        $twilio = new Client($sid, $token);
+    public function sendMessage(Request $request) {
 
-        $message = $twilio->messages
-                        ->create("+639608997323", // to
-                                [
-                                    "body" => "Your Aruga verification code is 4578",
-                                    "from" => "+12765985201"
-                                ]
-                        );
 
-        return $message->sid;
+        self::$id = substr(uniqid('', true), -3);
+
+        if(!ArugaUser::where('mobileno', $request->mobileno)->exists()){
+            return response()->json(['error' => 'Resource not found'], 404);
+        } else {
+            $sid = "AC8239eb606e924309de484fd150b2f5f8";
+            $token = "40a577ab3c671341bce3ce3699513f91";
+            $twilio = new Client($sid, $token);
+            $message = $twilio->messages
+                            ->create("+639608997323", // to
+                                    [
+                                        "body" => "Your Aruga verification code is 4578",
+                                        "from" => "+12765985201"
+                                    ]
+                            );
+
+            return response()->json(['message' => 'success'], 200);
+        }
+    }
+
+    public function verifyNumber(Request $request) {
+        if($request->otp == "4578"){
+            return ArugaUser::where('mobileno', $request->mobileno)->get();
+        } else {
+            return response()->json(['error' => 'Not found'], 404);
+        }
+
+
+
     }
 
     public function edit(Request $request) {
@@ -61,8 +83,15 @@ class UserController extends Controller
         $email = $request->email;
         $firstname = $request->firstname;
         $lastname = $request->lastname;
-        $filename = $request->file->store('public');
-        $storeFile = str_replace("public", "storage", $filename);
+
+        if($request->file == null || $request->file == "") {
+            $storeFile = ArugaUser::where('user_id', $request->userid)->value('img');
+        } else {
+            $filename = $request->file->store('public');
+            $storeFile = str_replace("public", "storage", $filename);
+        }
+
+
         return ArugaUser::where('user_id', $userid)->update(['img' => $storeFile, 'address' => $address, 'mobileno' => $mobileno, 'email' => $email, 'firstname' => $firstname, 'lastname' => $lastname]);
 
 

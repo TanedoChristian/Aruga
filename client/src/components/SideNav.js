@@ -9,7 +9,7 @@ const SideNav = (props) => {
   return (
     <nav
       id=""
-      className="fixed  top-0 z-10 h-screen animation-fade w-[100%] bg-white  w3-animate-right test "
+      className="fixed  top-0 z-50 h-screen animation-fade w-[100%] bg-white  w3-animate-right"
       style={{ display: props.isShow ? "block" : "none" }}
     >
       <i
@@ -54,25 +54,39 @@ const SideNav = (props) => {
               <i className="fa-solid fa-angle-right text-3xl"></i>
             </a>
           </li>
+          {sessionStorage.getItem("type") === "parent" ? (
+            <li className=" p-3 text-slate-700   px-5 items-center border-t border-gray-200">
+              <a href="/user-jobs" className="flex justify-between">
+                <p
+                  className="text-xl text-slate-700 tracking-wide"
+                  style={{ fontFamily: "Poppins", fontWeight: 400 }}
+                >
+                  Job Posted
+                </p>
+                <i className="fa-solid fa-angle-right text-3xl"></i>
+              </a>
+            </li>
+          ) : (
+            <li className=" p-3 text-slate-700   px-5 items-center border-t border-gray-200">
+              <a href="/user-jobs" className="flex justify-between">
+                <p
+                  className="text-xl text-slate-700 tracking-wide"
+                  style={{ fontFamily: "Poppins", fontWeight: 400 }}
+                >
+                  Create Resume
+                </p>
+                <i className="fa-solid fa-angle-right text-3xl"></i>
+              </a>
+            </li>
+          )}
 
-          <li className=" p-3 text-slate-700   px-5 items-center border-t border-gray-200">
-            <a href="/edit-profile" className="flex justify-between">
-              <p
-                className="text-xl text-slate-700 tracking-wide"
-                style={{ fontFamily: "Poppins", fontWeight: 400 }}
-              >
-                Job Posted
-              </p>
-              <i className="fa-solid fa-angle-right text-3xl"></i>
-            </a>
+          <li className=" p-3 text-slate-700   px-5 items-center border-t border-gray-200 mt-20">
+            <button className="text-2xl" onClick={handleLogout}>
+              Logout
+              <i className="ml-2 fa-solid fa-arrow-right-from-bracket"></i>
+            </button>
           </li>
         </div>
-        <button
-          className="p-4 fixed  bottom-2 w-full bg-rose-500 text-white text-xl font-medium test"
-          onClick={handleLogout}
-        >
-          Logout <i className="ml-2 fa-solid fa-arrow-right-from-bracket"></i>
-        </button>
       </ul>
     </nav>
   );

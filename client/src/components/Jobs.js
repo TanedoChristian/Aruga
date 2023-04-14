@@ -10,8 +10,8 @@ const Jobs = () => {
   const { datas } = useFetchApi(`${SetUp.SERVER_URL()}/users`);
 
   return (
-    <div className="w-full overflow-auto flex justify-center mt-2">
-      <div className="flex flex-col-reverse w-[95%] gap-5 ">
+    <div className="w-full overflow-scroll flex justify-center   rounded-t-2xl   pb-20">
+      <div className="flex flex-col-reverse w-full gap-3">
         {datas.map((user) => (
           <JobsCard
             img={`${SetUp.SERVER_URL()}/${user.img}`}

@@ -15,6 +15,28 @@ class JobsController extends Controller
         return JobsModel::all();
 
     }
+
+    public function getStatus(Request $request){
+        return JobsModel::where(
+            'parent_id', $request->route('id')
+        )->get();
+    }
+
+
+    public function update(Request $request) {
+        $jobid = $request->jobpost_id;
+        $address= $request->jobpost_address;
+        $salary = $request->salary;
+        $desc = $request->jobpost_desc;
+        $title = $request->jobpost_title;
+
+
+        return JobsModel::where('jobpost_id', $jobid)->update(['jobpost_title' => $title, 'jobpost_address' => $address, 'salary' => $salary, 'jobpost_desc' => $desc]);
+
+    }
+
+
+
     public function insert(Request $request){
         $job = new JobsModel();
 
@@ -30,8 +52,10 @@ class JobsController extends Controller
         $job->save();
 
         return 'Success';
+    }
 
-
+    public function delete(Request $request) {
+        return JobsModel::where('jobpost_id', $request->route('id'))->delete();
     }
 }
 

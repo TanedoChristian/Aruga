@@ -8,6 +8,8 @@ class ArugaUser extends Model
 {
     public $timestamps = false;
     protected $table = 'users';
+
+
 }
 
 ?>
