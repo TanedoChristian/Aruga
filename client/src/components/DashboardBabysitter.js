@@ -69,7 +69,7 @@ const DashboardBabysitter = (props) => {
     });
   }, []);
 
-  const handleApply = (id, parent_id) => {
+  const handleApply = (id, parent_id, subscription_id) => {
     setAlert(!isShowAlert);
     axios({
       method: "post",
@@ -80,7 +80,7 @@ const DashboardBabysitter = (props) => {
         parent_id: parent_id,
         apply_status: "pending",
         apply_deleted: "0",
-        subid: sessionStorage.getItem("subscription_id"),
+        subid: subscription_id
       },
     }).then((data) => {
       console.log(data);
@@ -404,7 +404,7 @@ const DashboardBabysitter = (props) => {
                   <button
                     className="text-xs text-indigo-700 font-medium"
                     onClick={() => {
-                      handleApply(job.jobpost_id, job.parent_id);
+                      handleApply(job.jobpost_id, job.parent_id, job.subscription_id);
                     }}
                   >
                     Apply Now
