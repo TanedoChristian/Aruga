@@ -15,12 +15,9 @@ class BlogController extends Controller
         $blog = new BlogModel();
         $blog->blog_id = uniqid('blog');
         $blog->user_id = $request->user_id;
-
         $filename = $request->file->store('public');
         $storeFile = str_replace("public", "storage", $filename);
         $blog->blog_img = $storeFile;
-
-
         $blog->blog_deleted = 0;
         $blog->blog_details = $request->details;
         $blog->blog_title = $request->title;

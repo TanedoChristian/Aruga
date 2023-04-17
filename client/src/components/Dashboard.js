@@ -23,6 +23,14 @@ const Dashboard = (props) => {
 
   useEffect(() => {
     axios
+      .get(
+        `${SetUp.SERVER_URL()}/subscribe/${sessionStorage.getItem("userid")}`
+      )
+      .then(({ data }) => {
+        sessionStorage.setItem("subscription_id", data[0].subscription_id);
+      });
+
+    axios
       .get(`${SetUp.SERVER_URL()}/users/${sessionStorage.getItem("userid")}`)
       .then(({ data }) => {
         setUser(data[0]);

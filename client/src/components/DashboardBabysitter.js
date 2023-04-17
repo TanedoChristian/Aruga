@@ -56,6 +56,14 @@ const DashboardBabysitter = (props) => {
   }, []);
 
   useEffect(() => {
+    axios
+      .get(
+        `${SetUp.SERVER_URL()}/subscribe/${sessionStorage.getItem("userid")}`
+      )
+      .then(({ data }) => {
+        sessionStorage.setItem("subscription_id", data[0].subscription_id);
+      });
+
     axios.get(`${SetUp.SERVER_URL()}/jobs`).then(({ data }) => {
       setJobs(data);
     });
@@ -70,8 +78,9 @@ const DashboardBabysitter = (props) => {
         babysitter_id: sessionStorage.getItem("userid"),
         jobpost_id: id,
         parent_id: parent_id,
-        apply_status: "active",
+        apply_status: "pending",
         apply_deleted: "0",
+        subid: sessionStorage.getItem("subscription_id"),
       },
     }).then((data) => {
       console.log(data);

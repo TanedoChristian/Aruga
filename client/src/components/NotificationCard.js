@@ -6,6 +6,7 @@ import JobsCard from "./JobsCard";
 const NotificationCard = (props) => {
   const [notification, setNotification] = useState([]);
   const [hire, setHire] = useState([]);
+
   useEffect(() => {
     axios
       .get(
@@ -15,9 +16,11 @@ const NotificationCard = (props) => {
         setNotification(data);
       });
 
-    axios.get(`${SetUp.SERVER_URL()}/hire`).then(({ data }) => {
-      setHire(data);
-    });
+    axios
+      .get(`${SetUp.SERVER_URL()}/hire/${sessionStorage.getItem("userid")}`)
+      .then(({ data }) => {
+        setHire(data);
+      });
   }, []);
 
   const handleNotification = (id, app_id) => {
@@ -63,18 +66,17 @@ const NotificationCard = (props) => {
           ))
         : hire.map((data) => (
             <div className="jobs-container flex justify-center w-full  ">
-              <div className="flex items-center p-4 bg-white shadow-xl relative border border-gray-200 w-[95%] rounded-xl ">
-                <div className="ml-5 mt-1">
-                  <p className="text-sm text-gray-600">
-                    <span className="text-md font-semibold leading-tight text-gray-900">
-                      You are hired by {data.parent_id}
-                    </span>
-                  </p>
-                </div>
-                <div className="w-full flex justify-end px-5 gap-2">
-                  <button>Accept</button>
-                  <button>Decline</button>
-                </div>
+              <div className="flex items-center p-4 gap-5 bg-white shadow-xl relative border border-gray-200 w-[95%] rounded-xl ">
+                <img
+                  src={`${SetUp.SERVER_URL()}/${data.img}`}
+                  className="w-11 h-11 rounded-full"
+                />
+
+                <p className="text-sm text-gray-600">
+                  <span className="text-md font-semibold leading-tight text-gray-900">
+                    You are hired by {data.firstname} {data.lastname}
+                  </span>
+                </p>
               </div>
             </div>
           ))}

@@ -101,14 +101,7 @@ const Resume = (props) => {
               >
                 Application Summary
               </label>
-              {/* <input
-              type="text"
-              name="email"
-              onChange={handleEmail}
-              className="border border-gray-300 text-gray-900 sm:text-sm rounded-lg   outline-0 shadow-md w-full p-2.5"
-              placeholder={user.email}
-              required=""
-            /> */}
+
               <textarea
                 name="application_letter"
                 onChange={onChangeHandler}
@@ -143,23 +136,27 @@ const Resume = (props) => {
           <p className="text-lg">{resume?.application_letter}</p>
         </div>
       </div>
-      <div className="flex w-full justify-center gap-3">
-        <button
-          className="px-5 py-2 rounded-full bg-rose-400 text-white shadow-xl"
-          onClick={() => {
-            setShowModal(true);
-            props.set;
-          }}
-        >
-          <i className="fa-solid fa-pen"></i>
-        </button>
-        <button
-          className="px-5 py-2 rounded-full bg-rose-400 text-white shadow-xl"
-          onClick={deleteResume}
-        >
-          <i className="fa-solid fa-trash"></i>
-        </button>
-      </div>
+      {sessionStorage.getItem("userid") == resume?.babysitter_id ? (
+        <div className="flex w-full justify-center gap-3">
+          <button
+            className="px-5 py-2 rounded-full bg-rose-400 text-white shadow-xl"
+            onClick={() => {
+              setShowModal(true);
+              props.set;
+            }}
+          >
+            <i className="fa-solid fa-pen"></i>
+          </button>
+          <button
+            className="px-5 py-2 rounded-full bg-rose-400 text-white shadow-xl"
+            onClick={deleteResume}
+          >
+            <i className="fa-solid fa-trash"></i>
+          </button>
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 };

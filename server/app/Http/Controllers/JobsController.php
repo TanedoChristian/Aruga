@@ -48,6 +48,8 @@ class JobsController extends Controller
         $job->salary = $request->salary;
         $job->jobpost_address = $request->address;
         $job->jobpost_title = $request->title;
+        $job->subscription_id = $request->subid;
+        $job->deleted = 0;
 
         $job->save();
 

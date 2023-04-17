@@ -1,6 +1,22 @@
+import axios from "axios";
 import React from "react";
+import SetUp from "../Setup";
 
 const Subscription = () => {
+  const handleSubscribe = () => {
+    axios({
+      method: "POST",
+      url: SetUp.SERVER_URL() + "/subscribe",
+      data: {
+        user_id: sessionStorage.getItem("userid"),
+        amount: 200,
+      },
+    }).then((data) => {
+      console.log(data);
+      window.location.href = "/dashboard";
+    });
+  };
+
   return (
     <div>
       <section class="py-10 bg-gray-50 sm:py-16 lg:py-24">
@@ -71,8 +87,7 @@ const Subscription = () => {
                       />
                     </svg>
                     <span class="text-base font-medium text-gray-900">
-                      {" "}
-                      Full Celebration Library{" "}
+                      Full Celebration Library
                     </span>
                   </li>
 
@@ -90,21 +105,19 @@ const Subscription = () => {
                       />
                     </svg>
                     <span class="text-base font-medium text-gray-900">
-                      {" "}
-                      120+ Coded Blocks{" "}
+                      120+ Coded Blocks
                     </span>
                   </li>
                 </ul>
 
-                <a
-                  href="#"
+                <button
                   title=""
                   class="inline-flex items-center justify-center w-full px-4 py-4 mt-8 font-semibold text-white transition-all duration-200 bg-gray-800 rounded-md hover:bg-gray-600 focus:bg-gray-600"
                   role="button"
+                  onClick={handleSubscribe}
                 >
-                  {" "}
-                  Subscribe Now{" "}
-                </a>
+                  Subscribe Now
+                </button>
 
                 <p class="mt-5 text-sm text-gray-500">
                   No Credit Card Required

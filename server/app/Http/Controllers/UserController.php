@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\ArugaUser;
+use App\Models\BabysitterModel;
+use App\Models\ParentModel;
 use Illuminate\Http\Request;
 use Twilio\Rest\Client;
 
@@ -27,12 +29,33 @@ class UserController extends Controller
     $filename = $request->file->store('public');
     $storeFile = str_replace("public", "storage", $filename);
     $user->img = $storeFile;
-    $user->user_id = uniqid('user');
+    $id = uniqid('user');
+    $user->user_id = $id;
+    $user->telno = $request->telno;
+    $user->deleted = $request->deleted;
     $user->mobileno = $request->mobileno;
     $user->password = password_hash($request->password, PASSWORD_DEFAULT);
     $user->type = $request->type;
     $user->status = $request->status;
+
+
+
+
     $user->save();
+
+
+    if($request->type == "parent") {
+        $parent = new ParentModel();
+        $parent->parent_id = uniqid('parent');
+        $parent->user_id = $id;
+        $parent->save();
+    } else {
+        $babysitter = new BabysitterModel();
+        $babysitter->babysitter_id= uniqid('babysitter');
+        $babysitter->user_id = $id;
+        $babysitter->save();
+    }
+
     return 'Success';
     }
 

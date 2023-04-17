@@ -5,12 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class JobsModel extends Model
+class ParentModel extends Model
 {
     use HasFactory;
-    protected $table = "post";
+    protected $table = "parent_account";
     public $timestamps = false;
-
 }
-
-?>

@@ -41,6 +41,14 @@ const OfferJobs = () => {
     axios.get(`${SetUp.SERVER_URL()}/jobs`).then(({ data }) => {
       setJobs(data);
     });
+
+    axios
+      .get(
+        `${SetUp.SERVER_URL()}/subscribe/${sessionStorage.getItem("userid")}`
+      )
+      .then(({ data }) => {
+        sessionStorage.setItem("subscription_id", data[0].subscription_id);
+      });
   }, [showModal, showFormModal, success]);
 
   const [updateJob, setUpdateJob] = useState({});
@@ -84,7 +92,7 @@ const OfferJobs = () => {
       data: updateJob,
     }).then((data) => {
       setSuccess(!success);
-    });   
+    });
     setShowFormModal(false);
   };
 
@@ -134,10 +142,9 @@ const OfferJobs = () => {
       parent_id: sessionStorage.getItem("userid"),
       status: "ongoing",
     };
-
     sessionStorage.setItem("job_status", JSON.stringify(isActive));
+    console.log(sessionStorage.getItem("userid"));
     setActiveJob(true);
-
     axios({
       method: "post",
       url: SetUp.SERVER_URL() + "/postjob",
@@ -150,11 +157,12 @@ const OfferJobs = () => {
         salary: postJob.salary,
         address: postJob.address,
         experience: selectValue,
+        subid: sessionStorage.getItem("subscription_id"),
       },
     }).then(({ data }) => {
       setSuccess(true);
+      setShowModal(false);
     });
-    setShowModal(false);
   };
 
   const handleDelete = (id) => {

@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class HireModel extends Model
 {
     use HasFactory;
-    protected $table = "direct_hire";
+    protected $table = "hire";
     public $timestamps = false;
 }

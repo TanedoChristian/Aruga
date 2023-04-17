@@ -33,6 +33,12 @@ const Register = () => {
     });
   };
 
+  const handleTelNo = (e) => {
+    setUser((prev) => {
+      return { ...prev, telno: e.target.value };
+    });
+  };
+
   const handleEmail = (e) => {
     setUser((prev) => {
       return { ...prev, email: e.target.value };
@@ -84,12 +90,12 @@ const Register = () => {
         axios({
           method: "POST",
           url: SetUp.SERVER_URL() + "/users",
-          data: { ...user, file: result, status: "active" },
+          data: { ...user, file: result, status: "active", deleted: 0 },
           headers: { "Content-Type": "multipart/form-data" },
         })
           .then((data) => {
             console.log(data);
-            window.location.href = "/login";
+            window.location.href = "/subscription";
           })
           .catch((err) => {
             console.log(user);
@@ -106,7 +112,12 @@ const Register = () => {
     <section className="">
       <div className="flex flex-col items-center   lg:py-0 ">
         <div className="p-6 z-1 rounded-header overflow-hidden bg-rose-400">
-          <div className=" h-[5rem] flex  items-center">
+          <div
+            className=" h-[5rem] flex  items-center"
+            onClick={() => {
+              window.location.href = "/login";
+            }}
+          >
             <i className="fa-solid fa-arrow-left  text-3xl"></i>
           </div>
           <h1 className="text-4xl font-bold md:text-2xl tracking-wide">
@@ -171,6 +182,23 @@ const Register = () => {
                   name="address"
                   className="border border-gray-300 text-gray-900 sm:text-sm rounded-lg  outline-0 shadow-md w-full p-2.5"
                   placeholder="Address"
+                  required=""
+                />
+              </div>
+
+              <div>
+                <label
+                  for="email"
+                  className="block mb-2 text-sm font-medium text-gray-900 "
+                >
+                  Telephone Number
+                </label>
+                <input
+                  type="number"
+                  onChange={handleTelNo}
+                  name="telno"
+                  className="border border-gray-300 text-gray-900 sm:text-sm rounded-lg otuline-0 shadow-md w-full p-2.5  "
+                  placeholder="+639XXXXXX"
                   required=""
                 />
               </div>

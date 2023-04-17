@@ -242,93 +242,100 @@ const UserDetails = () => {
                   display: showModal ? "none" : "flex",
                 }}
               >
-                <div className="flex justify-end p-2 ">
-                  <button
-                    className="p-2 bg-rose-400 text-white text-xs rounded-md fixed"
-                    onClick={() => {
-                      setShowModal(true);
-                    }}
-                  >
-                    Add Reviews
-                  </button>
-                </div>
-
-                {reviewsData.map((item) => (
-                  <article className="px-5 rounded-lg border-slate-400 mt-2 h-full">
-                    <div className="flex items-center mb-4 space-x-4">
-                      <img
-                        className="w-10 h-10 rounded-full"
-                        src={`${SetUp.SERVER_URL()}/${item.img}`}
-                        alt=""
-                      />
-
-                      <div className="space-y-1 font-medium">
-                        <p>
-                          {item.firstname}
-                          <div className="flex">
-                            {item.review_ratings === 1 ? (
-                              <div>
-                                <i className="fa-solid fa-star text-yellow-500"></i>
-                                <i className="fa-solid fa-star text-gray-300"></i>
-                                <i className="fa-solid fa-star text-gray-300"></i>
-                                <i className="fa-solid fa-star text-gray-300"></i>
-                                <i className="fa-solid fa-star text-gray-300"></i>
-                              </div>
-                            ) : item.review_ratings === 2 ? (
-                              <div>
-                                <i className="fa-solid fa-star text-yellow-500"></i>
-                                <i className="fa-solid fa-star text-yellow-500"></i>
-                                <i className="fa-solid fa-star text-gray-300"></i>
-                                <i className="fa-solid fa-star text-gray-300"></i>
-                                <i className="fa-solid fa-star text-gray-300"></i>
-                              </div>
-                            ) : item.review_ratings === 3 ? (
-                              <div>
-                                <i className="fa-solid fa-star text-yellow-500"></i>
-                                <i className="fa-solid fa-star text-yellow-500"></i>
-                                <i className="fa-solid fa-star text-yellow-500"></i>
-                                <i className="fa-solid fa-star text-gray-300"></i>
-                                <i className="fa-solid fa-star text-gray-300"></i>
-                              </div>
-                            ) : item.review_ratings === 4 ? (
-                              <div>
-                                <i className="fa-solid fa-star text-yellow-500"></i>
-                                <i className="fa-solid fa-star text-yellow-500"></i>
-                                <i className="fa-solid fa-star text-yellow-500"></i>
-                                <i className="fa-solid fa-star text-yellow-300"></i>
-                                <i className="fa-solid fa-star text-gray-300"></i>
-                              </div>
-                            ) : item.review_ratings === 5 ? (
-                              <div>
-                                <i className="fa-solid fa-star text-yellow-500"></i>
-                                <i className="fa-solid fa-star text-yellow-500"></i>
-                                <i className="fa-solid fa-star text-yellow-500"></i>
-                                <i className="fa-solid fa-star text-yellow-300"></i>
-                                <i className="fa-solid fa-star text-yellow-300"></i>
-                              </div>
-                            ) : (
-                              ""
-                            )}
-                          </div>
-                        </p>
-                      </div>
-                    </div>
-
-                    <footer className="text-sm text-gray-500 dark:text-gray-400">
-                      <p>Verified Parent</p>
-                    </footer>
-                    <p className="font-light text-gray-500 dark:text-gray-400">
-                      {item.review_details}.
-                    </p>
-
-                    <a
-                      href="#"
-                      className="block mb-5 text-sm font-medium text-blue-600 hover:underline dark:text-blue-500"
+                {sessionStorage.getItem("userid") != userid ? (
+                  <div className="flex justify-end p-2 ">
+                    <button
+                      className="p-2 bg-rose-400 text-white text-xs rounded-md fixed"
+                      onClick={() => {
+                        setShowModal(true);
+                      }}
                     >
-                      Read more
-                    </a>
-                  </article>
-                ))}
+                      Add Reviews
+                    </button>
+                  </div>
+                ) : (
+                  ""
+                )}
+
+                {reviewsData
+                  .slice(0)
+                  .reverse()
+                  .map((item) => (
+                    <article className="px-5 rounded-lg border-slate-400 mt-2 h-full">
+                      <div className="flex items-center mb-4 space-x-4">
+                        <img
+                          className="w-10 h-10 rounded-full"
+                          src={`${SetUp.SERVER_URL()}/${item.img}`}
+                          alt=""
+                        />
+
+                        <div className="space-y-1 font-medium">
+                          <p>
+                            {item.firstname}
+                            <div className="flex">
+                              {item.review_ratings === 1 ? (
+                                <div>
+                                  <i className="fa-solid fa-star text-yellow-500"></i>
+                                  <i className="fa-solid fa-star text-gray-300"></i>
+                                  <i className="fa-solid fa-star text-gray-300"></i>
+                                  <i className="fa-solid fa-star text-gray-300"></i>
+                                  <i className="fa-solid fa-star text-gray-300"></i>
+                                </div>
+                              ) : item.review_ratings === 2 ? (
+                                <div>
+                                  <i className="fa-solid fa-star text-yellow-500"></i>
+                                  <i className="fa-solid fa-star text-yellow-500"></i>
+                                  <i className="fa-solid fa-star text-gray-300"></i>
+                                  <i className="fa-solid fa-star text-gray-300"></i>
+                                  <i className="fa-solid fa-star text-gray-300"></i>
+                                </div>
+                              ) : item.review_ratings === 3 ? (
+                                <div>
+                                  <i className="fa-solid fa-star text-yellow-500"></i>
+                                  <i className="fa-solid fa-star text-yellow-500"></i>
+                                  <i className="fa-solid fa-star text-yellow-500"></i>
+                                  <i className="fa-solid fa-star text-gray-300"></i>
+                                  <i className="fa-solid fa-star text-gray-300"></i>
+                                </div>
+                              ) : item.review_ratings === 4 ? (
+                                <div>
+                                  <i className="fa-solid fa-star text-yellow-500"></i>
+                                  <i className="fa-solid fa-star text-yellow-500"></i>
+                                  <i className="fa-solid fa-star text-yellow-500"></i>
+                                  <i className="fa-solid fa-star text-yellow-300"></i>
+                                  <i className="fa-solid fa-star text-gray-300"></i>
+                                </div>
+                              ) : item.review_ratings === 5 ? (
+                                <div>
+                                  <i className="fa-solid fa-star text-yellow-500"></i>
+                                  <i className="fa-solid fa-star text-yellow-500"></i>
+                                  <i className="fa-solid fa-star text-yellow-500"></i>
+                                  <i className="fa-solid fa-star text-yellow-300"></i>
+                                  <i className="fa-solid fa-star text-yellow-300"></i>
+                                </div>
+                              ) : (
+                                ""
+                              )}
+                            </div>
+                          </p>
+                        </div>
+                      </div>
+
+                      <footer className="text-sm text-gray-500 dark:text-gray-400">
+                        <p>Verified Parent</p>
+                      </footer>
+                      <p className="font-light text-gray-500 dark:text-gray-400">
+                        {item.review_details}.
+                      </p>
+
+                      <a
+                        href="#"
+                        className="block mb-5 text-sm font-medium text-blue-600 hover:underline dark:text-blue-500"
+                      >
+                        Read more
+                      </a>
+                    </article>
+                  ))}
               </div>{" "}
             </div>
           ) : (
@@ -336,6 +343,21 @@ const UserDetails = () => {
           )}
         </div>
       </div>
+
+      {sessionStorage.getItem("userid") != userid ? (
+        <div className="flex justify-end p-2 ">
+          <button
+            className="p-2 bg-rose-400 text-white text-xs rounded-md fixed"
+            onClick={() => {
+              setShowModal(true);
+            }}
+          >
+            Add Reviews
+          </button>
+        </div>
+      ) : (
+        ""
+      )}
       <div
         className="flex  w-full justify-center fixed bottom-2"
         style={{ display: showModal ? "none" : "flex" }}
@@ -343,16 +365,41 @@ const UserDetails = () => {
         <button
           className="py-3 px-4  font-medium  w-[70%] bg-indigo-500 text-white rounded-lg"
           onClick={() => {
-            axios({
-              method: "POST",
-              url: `${SetUp.SERVER_URL()}/hire`,
-              data: {
-                parent_id: sessionStorage.getItem("userid"),
-                babysitter_id: userid,
-              },
-            }).then((data) => {
-              console.log(data);
-            });
+            {
+              sessionStorage.getItem("application_id")
+                ? axios({
+                    method: "put",
+                    url: `${SetUp.SERVER_URL()}/application/${sessionStorage.getItem(
+                      "application_id"
+                    )}`,
+                    data: {
+                      parent_id: sessionStorage.getItem("userid"),
+                      babysitter_id: userid,
+                      status: "Done",
+                    },
+                  }).then((data) => {
+                    axios({
+                      method: "post",
+                      url: `${SetUp.SERVER_URL()}/hire`,
+                      data: {
+                        parent_id: sessionStorage.getItem("userid"),
+                        babysitter_id: userid,
+                      },
+                    }).then((data) => {
+                      console.log(data);
+                    });
+                  })
+                : axios({
+                    method: "post",
+                    url: `${SetUp.SERVER_URL()}/hire`,
+                    data: {
+                      parent_id: sessionStorage.getItem("userid"),
+                      babysitter_id: userid,
+                    },
+                  }).then((data) => {
+                    console.log(data);
+                  });
+            }
           }}
         >
           Hire Now

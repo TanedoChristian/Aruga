@@ -5,12 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class JobsModel extends Model
+class SubscriptionModel extends Model
 {
     use HasFactory;
-    protected $table = "post";
+
+    protected $table = "subscription";
     public $timestamps = false;
-
 }
-
-?>

@@ -9,7 +9,7 @@ const SideNav = (props) => {
   return (
     <nav
       id=""
-      className="fixed  top-0 z-50 h-screen animation-fade w-[100%] bg-white  w3-animate-right"
+      className="fixed  top-0 z-50 h-screen animation-fade w-[100%] bg-rose-400 text-white  w3-animate-right"
       style={{ display: props.isShow ? "block" : "none" }}
     >
       <i
@@ -20,7 +20,7 @@ const SideNav = (props) => {
       <ul className="flex flex-col justify-between h-[90%] p-1 mt-5">
         <div>
           {sessionStorage.getItem("type") === "babysitter" ? (
-            <li className=" p-3 text-slate-700   px-5 items-center border-t border-gray-200">
+            <li className=" p-3 text-white   px-5 items-center ">
               <a
                 href={`/user-details?userid=${sessionStorage.getItem(
                   "userid"
@@ -28,7 +28,7 @@ const SideNav = (props) => {
                 className="flex justify-between"
               >
                 <p
-                  className="text-xl text-slate-700 tracking-wide"
+                  className="text-xl text-white tracking-wide"
                   style={{ fontFamily: "Poppins", fontWeight: 400 }}
                 >
                   My Profile
@@ -40,10 +40,10 @@ const SideNav = (props) => {
             ""
           )}
 
-          <li className=" p-3 text-slate-700   px-5 items-center border-b border-gray-300">
+          <li className=" p-3 text-white   px-5 items-center ">
             <a href="/edit-profile" className="flex justify-between">
               <p
-                className="text-xl text-slate-700 tracking-wide"
+                className="text-xl text-white tracking-wide"
                 style={{ fontFamily: "Poppins", fontWeight: 400 }}
               >
                 Edit Profile
@@ -52,7 +52,7 @@ const SideNav = (props) => {
             </a>
           </li>
 
-          <li className=" p-3 text-slate-700   px-5 items-center">
+          <li className=" p-3 text-white   px-5 items-center">
             <a href="/edit-profile" className="flex justify-between">
               <p
                 className="text-xl  tracking-wide"
@@ -64,10 +64,25 @@ const SideNav = (props) => {
             </a>
           </li>
 
-          <li className=" p-3 text-slate-700   px-5 items-center border-t border-gray-300">
+          <li className=" p-3 text-white   px-5 items-center">
+            <a
+              href={`/subscription?userid=${sessionStorage.getItem("userid")}`}
+              className="flex justify-between"
+            >
+              <p
+                className="text-xl  tracking-wide"
+                style={{ fontFamily: "Poppins", fontWeight: 400 }}
+              >
+                Subscription
+              </p>
+              <i className="fa-solid fa-angle-right text-3xl"></i>
+            </a>
+          </li>
+
+          <li className=" p-3 text-white   px-5 items-center ">
             <a href={`user-blog`} className="flex justify-between">
               <p
-                className="text-xl text-slate-700 tracking-wide"
+                className="text-xl text-white tracking-wide"
                 style={{ fontFamily: "Poppins", fontWeight: 400 }}
               >
                 My Blog
@@ -76,10 +91,10 @@ const SideNav = (props) => {
             </a>
           </li>
           {sessionStorage.getItem("type") === "parent" ? (
-            <li className=" p-3 text-slate-700   px-5 items-center border-t border-gray-200">
+            <li className=" p-3 text-white   px-5 items-center ">
               <a href="/user-jobs" className="flex justify-between">
                 <p
-                  className="text-xl text-slate-700 tracking-wide"
+                  className="text-xl text-white tracking-wide"
                   style={{ fontFamily: "Poppins", fontWeight: 400 }}
                 >
                   Job Posted
@@ -88,10 +103,10 @@ const SideNav = (props) => {
               </a>
             </li>
           ) : (
-            <li className=" p-3 text-slate-700   px-5 items-center border-t border-gray-200">
+            <li className=" p-3 text-white   px-5 items-center ">
               <a href="/resume/builder" className="flex justify-between">
                 <p
-                  className="text-xl text-slate-700 tracking-wide"
+                  className="text-xl text-white tracking-wide"
                   style={{ fontFamily: "Poppins", fontWeight: 400 }}
                 >
                   Create Resume
@@ -101,10 +116,10 @@ const SideNav = (props) => {
             </li>
           )}
 
-          <li className=" p-3 text-slate-700   px-5 items-center border-t border-gray-200 mt-20">
-            <button className="text-2xl" onClick={handleLogout}>
+          <li className=" p-3 text-white   px-5  border-t border-gray-200 mt-20 flex items-center">
+            <button className="text-xl" onClick={handleLogout}>
               Logout
-              <i className="ml-2 fa-solid fa-arrow-right-from-bracket"></i>
+              <i className="ml-2 text-normal fa-solid fa-arrow-right-from-bracket"></i>
             </button>
           </li>
         </div>

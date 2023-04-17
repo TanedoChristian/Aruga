@@ -17,15 +17,15 @@ const Header = (props) => {
   };
 
   return (
-    <div className="flex justify-center gap-2  relative  h-[8vh] bg-white items-center">
-      <nav className="w-full   flex  fixed bg-white  shadow-sm">
+    <div className="flex justify-center gap-2  relative  h-[8vh] bg-rose-400  items-center">
+      <nav className="w-full   flex  fixed bg-rose-400  shadow-sm">
         <SideNav isShow={showNav} setShowNav={setShowNav} />
         <div className="flex justify-between items-center  w-[98%] p-2  gap-3">
           <div className="flex items-center gap-2 ">
             <div className="w-full">
               <a
                 href="/dashboard"
-                className="text-3xl font-bold  uppercase ml-2  w-full text-center text-rose-500"
+                className="text-3xl font-bold  uppercase ml-2  w-full text-center text-white"
               >
                 Aruga
               </a>
@@ -38,7 +38,7 @@ const Header = (props) => {
               className="h-10 w-10 rounded-full object-cover shadow-sm"
             />
             <i
-              className="fa-solid fa-bars-staggered text-2xl font-bold text-rose-500"
+              className="fa-solid fa-bars-staggered text-2xl font-bold text-white"
               onClick={handleShow}
             ></i>
           </div>
