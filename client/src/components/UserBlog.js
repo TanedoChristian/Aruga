@@ -140,7 +140,10 @@ const UserBlog = () => {
 
       <div className="w-[90%] flex-col ">
         <Header />
-        <h1 className="text-center text-xl p-5">My Blog</h1>
+        <div className="flex flex-col p-5">
+          <h1 className="font-bold text-xl poppins"> My Blog </h1>
+          <div className="w-[50%] bg-rose-300 p-1"></div>
+        </div>
 
         <section className="bg-gray-50 mt-1 pb-8">
           <div className="py-8 px-4 mx-auto max-w-screen-xl lg:py-16 lg:px-6">

@@ -90,12 +90,12 @@ const Register = () => {
         axios({
           method: "POST",
           url: SetUp.SERVER_URL() + "/users",
-          data: { ...user, file: result, status: "active", deleted: 0 },
+          data: { ...user, file: result, status: "pending", deleted: 0 },
           headers: { "Content-Type": "multipart/form-data" },
         })
           .then((data) => {
             console.log(data);
-            window.location.href = "/subscription";
+            window.location.href = "/login";
           })
           .catch((err) => {
             console.log(user);

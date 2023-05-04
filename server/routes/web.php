@@ -25,16 +25,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/verify-otp', [UserController::class, 'verifyNumber']);
 Route::post('/users', [UserController::class, 'insert']);
 Route::get('/users', [UserController::class, 'show']);
 Route::post('/edit-user', [UserController::class, 'edit']);
 Route::get('/users/{id}', [UserController::class, 'showID']);
+Route::post('/verify-otp', [UserController::class, 'verifyNumber']);
 Route::post('/login', [UserController::class, 'login']);
+Route::post('/otp', [UserController::class, 'sendMessage']);
+
+
 Route::post('/postjob', [JobsController::class, 'insert']);
 Route::get('/jobs', [JobsController::class, 'show']);
 Route::delete('/jobs/{id}', [JobsController::class, 'delete']);
-Route::post('/otp', [UserController::class, 'sendMessage']);
+
 
 Route::post('/hire', [HireController::class, 'insert']);
 Route::get('/hire/{id}', [HireController::class, 'show']);
@@ -64,6 +67,8 @@ Route::put('/resume/{id}', [ResumeController::class, 'update']);
 
 Route::post('/application', [ApplicationController::class, 'insert']);
 Route::get('/application/{id}', [ApplicationController::class, 'show']);
+Route::get('/application/babysitter/{id}', [ApplicationController::class, 'showBabysitter']);
+Route::put('/application/delete/{id}', [ApplicationController::class, 'updateDelete']);
 Route::put('/application/{id}', [ApplicationController::class, 'updateStatus']);
 
 

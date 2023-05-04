@@ -13,7 +13,17 @@ import moment from "moment";
 const DashboardBabysitter = (props) => {
   const [jobs, setJobs] = useState([]);
 
-  const [applicant, setApplicant] = useState({});
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+    axios({
+      method: "GET",
+      url: `${SetUp.SERVER_URL()}/users/${sessionStorage.getItem("userid")}`,
+    }).then(({ data }) => {
+      setUser(data[0]);
+    });
+  });
+
   const [isShowModal, setShowModal] = useState(false);
   const [showNav, setShowNav] = useState(false);
   const [isShowSort, setShowSort] = useState(false);
@@ -50,23 +60,13 @@ const DashboardBabysitter = (props) => {
   };
 
   useEffect(() => {
-    axios
-      .get(`${SetUp.SERVER_URL()}/users/${sessionStorage.getItem("userid")}`)
-      .then(({ data }) => {});
-  }, []);
-
-  useEffect(() => {
-    axios
-      .get(
-        `${SetUp.SERVER_URL()}/subscribe/${sessionStorage.getItem("userid")}`
-      )
-      .then(({ data }) => {
-        sessionStorage.setItem("subscription_id", data[0].subscription_id);
+    if (sessionStorage.getItem("status").toString().toLowerCase() != "active") {
+      window.location.href = "/pending";
+    } else {
+      axios.get(`${SetUp.SERVER_URL()}/jobs`).then(({ data }) => {
+        setJobs(data);
       });
-
-    axios.get(`${SetUp.SERVER_URL()}/jobs`).then(({ data }) => {
-      setJobs(data);
-    });
+    }
   }, []);
 
   const handleApply = (id, parent_id, subscription_id) => {
@@ -80,7 +80,7 @@ const DashboardBabysitter = (props) => {
         parent_id: parent_id,
         apply_status: "pending",
         apply_deleted: "0",
-        subid: subscription_id
+        subid: subscription_id,
       },
     }).then((data) => {
       console.log(data);
@@ -208,8 +208,10 @@ const DashboardBabysitter = (props) => {
               className=" font-bold text-2xl tracking-wide"
               style={{ fontFamily: "Poppins", fontWeight: 600 }}
             >
-              <span className="text-sm font-medium">Welcome, </span> <br />{" "}
-              Cherrie Pearl
+              <span className="text-sm font-medium">
+                Welcome, {user.firstname ? user.firstname : ""}{" "}
+              </span>{" "}
+              <br />{" "}
             </h1>
           </div>
           <div className="flex gap-3 items-center">
@@ -404,7 +406,11 @@ const DashboardBabysitter = (props) => {
                   <button
                     className="text-xs text-indigo-700 font-medium"
                     onClick={() => {
-                      handleApply(job.jobpost_id, job.parent_id, job.subscription_id);
+                      handleApply(
+                        job.jobpost_id,
+                        job.parent_id,
+                        job.subscription_id
+                      );
                     }}
                   >
                     Apply Now
@@ -431,12 +437,13 @@ const DashboardBabysitter = (props) => {
                 </div>
               </li>
             </a>
-
-            <li className="">
-              <div className="inline-flex relative w-fit">
-                <i className="fa-regular fa-bell text-slate-700"></i>
-              </div>
-            </li>
+            <a href={`/notification`}>
+              <li className="">
+                <div className="inline-flex relative w-fit">
+                  <i className="fa-regular fa-bell text-slate-700"></i>
+                </div>
+              </li>
+            </a>
           </ul>
         </Footer>
       </div>

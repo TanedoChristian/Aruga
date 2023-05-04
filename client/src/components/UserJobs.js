@@ -4,9 +4,13 @@ import Header from "./Header";
 import axios from "axios";
 import moment from "moment";
 import Modal from "./Modal";
+import ConfirmModal from "./ConfirmModal";
 const UserJobs = () => {
   const [jobs, setJobs] = useState([]);
   const [success, setSuccess] = useState(false);
+  const [isOpen, setModalOpen] = useState(false);
+
+  const [jobDetails, setJobDetails] = useState({});
 
   useEffect(() => {
     axios
@@ -17,16 +21,51 @@ const UserJobs = () => {
   }, [success]);
 
   const handleDelete = (id) => {
-    axios.delete(`${SetUp.SERVER_URL()}/jobs/${id}`).then(({ data }) => {
-      alert("Successfully Deleted");
-      setSuccess(!success);
-    });
+    setJobDetails(id);
+    setModalOpen(true);
   };
 
   return (
     <div>
+      <ConfirmModal
+        isOpen={isOpen}
+        title="Delete Post"
+        width="w-[90%]"
+        height="h-[20vh]"
+        handleClose={() => setModalOpen(false)}
+      >
+        <div className="flex justify-center gap-5 items-center h-screen">
+          <button
+            className="p-3 px-5 bg-rose-400 text-white rounded-md shadow-md"
+            onClick={() => {
+              axios
+                .delete(`${SetUp.SERVER_URL()}/jobs/${jobDetails.jobpost_id}`)
+                .then(({ data }) => {
+                  alert("Successfully Deleted");
+
+                  setSuccess(!success);
+                  setModalOpen(false);
+                });
+            }}
+          >
+            Delete
+          </button>
+          <button
+            className="p-3 px-5 bg-rose-400 text-white rounded-md shadow-md"
+            onClick={() => {
+              setModalOpen(false);
+            }}
+          >
+            Cancel
+          </button>
+        </div>
+      </ConfirmModal>
+
       <Header />
-      <h1 className="w-full text-center">My jobs</h1>
+      <div className="flex flex-col p-5">
+        <h1 className="font-bold text-md poppins"> Posted Jobs </h1>
+        <div className="w-[50%] bg-rose-300 p-1"></div>
+      </div>
 
       <div className="mt-5 flex  flex-col gap-5  h-full    bg-white">
         {jobs
@@ -41,8 +80,8 @@ const UserJobs = () => {
                       {job.jobpost_title}
                     </h2>
                     <i
-                      class="fa-regular fa-circle-xmark text-[20px]"
-                      onClick={() => handleDelete(job.jobpost_id)}
+                      class="fa-regular fa-trash-can text-[20px]"
+                      onClick={() => handleDelete(job)}
                     ></i>
                   </div>
                   <p className="text-sm">{job.jobpost_desc}</p>

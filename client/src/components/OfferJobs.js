@@ -28,16 +28,6 @@ const OfferJobs = () => {
   const [showFormModal, setShowFormModal] = useState(false);
 
   useEffect(() => {
-    axios
-      .get(`${SetUp.SERVER_URL()}/jobs/${sessionStorage.getItem("userid")}`)
-      .then(({ data }) => {
-        data.map((item) => {
-          if (item.jobpost_status == "active") {
-            setShowInput(false);
-          }
-        });
-      });
-
     axios.get(`${SetUp.SERVER_URL()}/jobs`).then(({ data }) => {
       setJobs(data);
     });
@@ -174,11 +164,11 @@ const OfferJobs = () => {
 
   return (
     <div className="bg-white">
-      <div className=" flex flex-col gap-2 bg-white">
+      <div className=" flex flex-col gap-2 $ bg-white">
         <Header />
 
         <Footer>
-          <ul className="flex w-full justify-around footer border-b border-gray-200 fixed bottom-0">
+          <ul className="flex w-full justify-around footer  border-b border-gray-200 fixed bottom-0">
             <a href="/dashboard">
               <li className="">
                 <div className="flex flex-col justify-center items-center">

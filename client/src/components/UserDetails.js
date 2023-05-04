@@ -8,6 +8,7 @@ import SetUp from "../Setup";
 import BioInfo from "./BioInfo";
 import Modal from "./Modal";
 import Resume from "./Resume";
+import ConfirmModal from "./ConfirmModal";
 const UserDetails = () => {
   const params = new URLSearchParams(window.location.search);
   const userid = params.get("userid");
@@ -34,6 +35,9 @@ const UserDetails = () => {
   const [isResume, setResume] = useState(false);
   const [descriptionBg, setDescriptionBg] = useState("red");
   const [newReview, setNewReview] = useState({});
+
+  const [isOpen, setModalOpen] = useState(false);
+
   const handleBack = () => {
     window.location.href = `/dashboard?userid=${userid}`;
   };
@@ -50,6 +54,7 @@ const UserDetails = () => {
     }).then((data) => {
       console.log(data);
       setSuccess(!success);
+      setNewReview({});
     });
     setShowModal(false);
   };
@@ -58,7 +63,7 @@ const UserDetails = () => {
     <div className="flex flex-wrap items-center justify-center">
       <div className="container bg-white rounded  shadow-lg transform duration-200 easy-in-out w-full  h-screen ">
         <Modal isShowModal={showModal}>
-          <div
+          <form
             id="defaultModal"
             aria-hidden="true"
             className=" fade-in-1 animation-fade w-[100%] bg-white  w3-animate-top z-40 h-[100vh] flex items-center overflow-hidden h-screen top-0 "
@@ -172,7 +177,7 @@ const UserDetails = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </form>
         </Modal>
 
         <div className="absolute top-3 left-3 z-10" onClick={handleBack}>
@@ -336,7 +341,7 @@ const UserDetails = () => {
                       </a>
                     </article>
                   ))}
-              </div>{" "}
+              </div>
             </div>
           ) : (
             <Resume id={userid} />
@@ -344,41 +349,42 @@ const UserDetails = () => {
         </div>
       </div>
 
-      {sessionStorage.getItem("userid") != userid ? (
-        <div className="flex justify-end p-2 ">
-          <button
-            className="p-2 bg-rose-400 text-white text-xs rounded-md fixed"
-            onClick={() => {
-              setShowModal(true);
-            }}
-          >
-            Add Reviews
-          </button>
-        </div>
-      ) : (
-        ""
-      )}
-      <div
-        className="flex  w-full justify-center fixed bottom-2"
-        style={{ display: showModal ? "none" : "flex" }}
+      <ConfirmModal
+        isOpen={isOpen}
+        title="Confirm Application"
+        width="w-[90%]"
+        height="h-[20vh]"
+        handleClose={() => setModalOpen(false)}
       >
-        <button
-          className="py-3 px-4  font-medium  w-[70%] bg-indigo-500 text-white rounded-lg"
-          onClick={() => {
-            {
-              sessionStorage.getItem("application_id")
-                ? axios({
-                    method: "put",
-                    url: `${SetUp.SERVER_URL()}/application/${sessionStorage.getItem(
-                      "application_id"
-                    )}`,
-                    data: {
-                      parent_id: sessionStorage.getItem("userid"),
-                      babysitter_id: userid,
-                      status: "Done",
-                    },
-                  }).then((data) => {
-                    axios({
+        <div className="flex justify-center gap-5 items-center h-screen">
+          <button
+            className="p-3 px-5 bg-rose-400 text-white rounded-md shadow-md"
+            onClick={() => {
+              {
+                sessionStorage.getItem("application_id")
+                  ? axios({
+                      method: "put",
+                      url: `${SetUp.SERVER_URL()}/application/${sessionStorage.getItem(
+                        "application_id"
+                      )}`,
+                      data: {
+                        parent_id: sessionStorage.getItem("userid"),
+                        babysitter_id: userid,
+                        status: "done",
+                      },
+                    }).then((data) => {
+                      axios({
+                        method: "post",
+                        url: `${SetUp.SERVER_URL()}/hire`,
+                        data: {
+                          parent_id: sessionStorage.getItem("userid"),
+                          babysitter_id: userid,
+                        },
+                      }).then((data) => {
+                        setModalOpen(false);
+                      });
+                    })
+                  : axios({
                       method: "post",
                       url: `${SetUp.SERVER_URL()}/hire`,
                       data: {
@@ -388,18 +394,27 @@ const UserDetails = () => {
                     }).then((data) => {
                       console.log(data);
                     });
-                  })
-                : axios({
-                    method: "post",
-                    url: `${SetUp.SERVER_URL()}/hire`,
-                    data: {
-                      parent_id: sessionStorage.getItem("userid"),
-                      babysitter_id: userid,
-                    },
-                  }).then((data) => {
-                    console.log(data);
-                  });
-            }
+              }
+            }}
+          >
+            Confirm
+          </button>
+          <button
+            className="p-3 px-5 bg-rose-400 text-white rounded-md shadow-md"
+            onClick={() => {
+              setModalOpen(false);
+            }}
+          >
+            Cancel
+          </button>
+        </div>
+      </ConfirmModal>
+
+      <div className="fixed bottom-2  flex w-[90%] justify-center">
+        <button
+          className="py-3 px-4  font-medium  w-[70%] bg-rose-500 text-white rounded-lg"
+          onClick={() => {
+            setModalOpen(true);
           }}
         >
           Hire Now

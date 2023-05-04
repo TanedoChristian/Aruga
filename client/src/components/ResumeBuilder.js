@@ -20,6 +20,9 @@ const ResumeBuilder = () => {
       data: { ...resumeData, babysitter_id: sessionStorage.getItem("userid") },
     }).then(({ data }) => {
       console.log(data);
+      window.location.href =
+        "http://192.168.1.9:3000/user-details?userid=" +
+        sessionStorage.getItem("userid");
     });
   };
 

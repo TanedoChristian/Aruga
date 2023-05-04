@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import SetUp from "../Setup";
 import axios from "axios";
 import Modal from "./Modal";
+import Header from "./Header";
 
 const Resume = (props) => {
   const [showModal, setShowModal] = useState(false);
@@ -48,12 +49,15 @@ const Resume = (props) => {
 
   return (
     <div className="w-full flex p-6 flex-col gap-5">
+     
       <div
         className="fixed top-0 left-0 w-[100%]  h-screen py-20 z-100 bg-white"
         style={{ display: showModal ? "block" : "none" }}
       >
+        
         <div className="p-5">
-          <h1 className="p-5 text-xl font-bold tracking-wide">Build Resume</h1>
+        
+          <h1 className="p-5 text-xl font-bold tracking-wide">Update Resume</h1>
           <form
             className="space-y-4 md:space-y-6 w-full"
             //   method="post"
@@ -118,22 +122,29 @@ const Resume = (props) => {
             >
               Submit
             </button>
+            <button
+              // onClick={handleSubmission}
+              type="submit"
+              className="w-full  text-rose-400  bg-gray-300 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+            >
+              Cancel
+            </button>
           </form>
         </div>
       </div>
 
       <div className="w-full flex flex-col gap-3 p-5 items-center border border-gray-300 rounded-xl shadow-xl">
-        <div className="flex gap-5 items-center  justify-between w-[80%]">
-          <label className="text-xl  justify-between">Category:</label>
-          <p className="text-lg">{resume?.category}</p>
+        <div className="flex flex-col gap-5 items-center  justify-between w-[80%]">
+          <label className="text-lg  justify-between text-rose-500">Category:</label>
+          <p className="text-sm">{resume?.category}</p>
         </div>
-        <div className="flex gap-5 items-center justify-between w-[80%]">
-          <label className="text-xl ">Work Experience: </label>
-          <p className="text-lg">{resume?.work_experience}</p>
+        <div className="flex flex-col gap-5 items-center justify-between w-[80%]">
+          <label className="text-lg  text-rose-500 ">Work Experience: </label>
+          <p className="text-sm">{resume?.work_experience}</p>
         </div>
-        <div className="flex gap-5 items-center justify-between  w-[80%]">
-          <label className="text-xl">Application Letter</label>
-          <p className="text-lg">{resume?.application_letter}</p>
+        <div className="flex flex-col gap-5 items-center justify-between  w-[80%]">
+          <label className="text-lg text-rose-500">Application Letter:</label>
+          <p className="text-sm">{resume?.application_letter}</p>
         </div>
       </div>
       {sessionStorage.getItem("userid") == resume?.babysitter_id ? (

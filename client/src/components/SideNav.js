@@ -116,6 +116,22 @@ const SideNav = (props) => {
             </li>
           )}
 
+          {sessionStorage.getItem("type") != "parent" ? (
+            <li className=" p-3 text-white   px-5 items-center ">
+              <a href="/job-details" className="flex justify-between">
+                <p
+                  className="text-xl text-white tracking-wide"
+                  style={{ fontFamily: "Poppins", fontWeight: 400 }}
+                >
+                  Job Applied
+                </p>
+                <i className="fa-solid fa-angle-right text-3xl"></i>
+              </a>
+            </li>
+          ) : (
+            ""
+          )}
+
           <li className=" p-3 text-white   px-5  border-t border-gray-200 mt-20 flex items-center">
             <button className="text-xl" onClick={handleLogout}>
               Logout

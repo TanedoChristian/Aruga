@@ -13,7 +13,7 @@ const NotificationCard = (props) => {
         `${SetUp.SERVER_URL()}/application/${sessionStorage.getItem("userid")}}`
       )
       .then(({ data }) => {
-        setNotification(data);
+        setNotification(data.filter((item) => item.apply_deleted != 1));
       });
 
     axios
@@ -32,12 +32,7 @@ const NotificationCard = (props) => {
     <div className="flex flex-col mt-2 items-center gap-1">
       {sessionStorage.getItem("type") === "parent"
         ? notification.map((data) => (
-            <div
-              className="jobs-container flex justify-center w-full  "
-              onClick={() =>
-                handleNotification(data.babysitter_id, data.apply_id)
-              }
-            >
+            <div className="jobs-container flex justify-center w-full  ">
               <div className="flex items-center p-4 bg-white shadow-xl flex-col border border-gray-200 w-[95%] rounded-xl ">
                 <div className="flex">
                   <img
@@ -61,6 +56,24 @@ const NotificationCard = (props) => {
                 <span className="flex text-xs font-semibold uppercase  mr-3 text-gray-500 w-full justify-end">
                   {new Date(data.apply_date).toLocaleTimeString()}
                 </span>
+                <div className="w-full flex gap-2">
+                  <button
+                    className="py-1 px-5 bg-rose-400 text-white rounded-md shadow-md"
+                    onClick={() =>
+                      handleNotification(data.babysitter_id, data.apply_id)
+                    }
+                  >
+                    View
+                  </button>
+                  <button
+                    className="py-1 px-5 bg-rose-400 text-white rounded-md shadow-md"
+                    onClick={() => {
+                      alert(5);
+                    }}
+                  >
+                    Reject
+                  </button>
+                </div>
               </div>
             </div>
           ))

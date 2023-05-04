@@ -125,12 +125,14 @@ class UserController extends Controller
         $userid = ArugaUser::where('email', $request->email)->value('user_id');
         $userimg = ArugaUser::where('email', $request->email)->value('img');
         $usertype = ArugaUser::where('email', $request->email)->value('type');
+        $status = ArugaUser::where('email', $request->email)->value('status');
         if(password_verify($request->password, $data)){
             return array(
                 'message' => 'Success',
                 'userid'=> $userid,
                 'userimg' => $userimg,
-                'type' => $usertype
+                'type' => $usertype,
+                'status' => $status
             );
         } else {
             return array(

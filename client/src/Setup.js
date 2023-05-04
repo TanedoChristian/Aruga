@@ -1,6 +1,6 @@
 const SetUp = {
   SERVER_URL: function () {
-    return "http://192.168.1.23:8000";
+    return "http://192.168.1.7:8000";
   },
 };
 

@@ -27,7 +27,14 @@ const Dashboard = (props) => {
         `${SetUp.SERVER_URL()}/subscribe/${sessionStorage.getItem("userid")}`
       )
       .then(({ data }) => {
-        sessionStorage.setItem("subscription_id", data[0].subscription_id);
+        console.log(data);
+        if (data.length == 0) {
+          window.location.href = `/subscription?userid=${sessionStorage.getItem(
+            "userid"
+          )}`;
+        } else {
+          sessionStorage.setItem("subscription_id", data[0].subscription_id);
+        }
       });
 
     axios

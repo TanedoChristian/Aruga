@@ -39,7 +39,9 @@ const Login = () => {
         sessionStorage.setItem("userid", data.userid);
         sessionStorage.setItem("userimg", `${data.userimg}`);
         sessionStorage.setItem("type", data.type.toString().toLowerCase());
-        if (data.type.toString().toLowerCase() === "parent") {
+        sessionStorage.setItem("status", data.status.toString().toLowerCase());
+
+        if (data.type.toString().toLowerCase() == "parent") {
           window.location.href = "/dashboard";
         } else {
           window.location.href = "/dashboard-babysitter";

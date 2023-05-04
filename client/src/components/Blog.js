@@ -178,7 +178,7 @@ const Blog = () => {
           <div className="relative bg-white rounded-lg  h-screen shadow-xl">
             <div className="flex items-center justify-between p-3  w-[100%] border-t border-gray-200 gap-2">
               <h3 className="text-2xl font-semibold text-gray-900 ">
-                Create a Blog
+                Submit Credentials
               </h3>
               <button
                 type="button"
@@ -230,7 +230,8 @@ const Blog = () => {
                   for="email"
                   className="block mb-2 text-sm font-medium text-gray-900 "
                 >
-                  Upload Valid ID
+
+                  Upload Documents
                 </label>
                 <div className="flex items-center justify-center w-full border">
                   <label
@@ -282,7 +283,7 @@ const Blog = () => {
                   className="p-4 bg-rose-400 text-white text-md rounded-lg w-full absolute"
                   onClick={handleSubmit}
                 >
-                  Post Now
+                 Submit
                 </button>
               </div>
             </div>

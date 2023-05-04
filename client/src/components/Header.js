@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import SideNav from "./SideNav";
 import SetUp from "../Setup";
+import axios from "axios";
 
 const Header = (props) => {
   const [showNav, setShowNav] = useState(false);
@@ -10,6 +11,12 @@ const Header = (props) => {
 
   useEffect(() => {
     setUser(data);
+
+    axios
+      .get(`${SetUp.SERVER_URL()}/users/${sessionStorage.getItem("userid")}`)
+      .then(({ data }) => {
+        setUser(data[0]);
+      });
   }, []);
 
   const handleShow = () => {
@@ -17,10 +24,10 @@ const Header = (props) => {
   };
 
   return (
-    <div className="flex justify-center gap-2  relative  h-[8vh] bg-rose-400  items-center">
-      <nav className="w-full   flex  fixed bg-rose-400  shadow-sm">
+    <div className="flex justify-center relative h-[8vh]">
+      <nav className="w-full   flex fixed bg-rose-400  shadow-md">
         <SideNav isShow={showNav} setShowNav={setShowNav} />
-        <div className="flex justify-between items-center  w-[98%] p-2  gap-3">
+        <div className="flex justify-between items-center  w-[98%] p-3 h-full gap-3">
           <div className="flex items-center gap-2 ">
             <div className="w-full">
               <a

@@ -27,6 +27,10 @@ class SubscriptionController extends Controller
         $subscription->date_ended = $newDateTime;
         $subscription->status = 'Active';
 
+        $filename = $request->file->store('public');
+        $storeFile = str_replace("public", "storage", $filename);
+        $subscription->subscription_payment = $storeFile;
+
 
         $subscription->save();
     }

@@ -23,6 +23,8 @@ import Subscription from "./components/Subscription";
 import UserBlog from "./components/UserBlog";
 import UserJobs from "./components/UserJobs";
 import ResumeBuilder from "./components/ResumeBuilder";
+import ViewSubscription from "./components/ViewSubscription";
+import PendingPage from "./components/PendingPage";
 
 const App = () => {
   return (
@@ -30,6 +32,11 @@ const App = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/subscription" element={<Subscription />}></Route>
+          <Route path="/pending" element={<PendingPage />}></Route>
+          <Route
+            path="/viewsubscription"
+            element={<ViewSubscription />}
+          ></Route>
           <Route path="/edit-profile" element={<EditProfile />}></Route>
 
           <Route
