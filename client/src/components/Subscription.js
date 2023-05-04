@@ -51,7 +51,7 @@ const Subscription = () => {
         class="py-10 bg-gray-50 sm:py-16 lg:py-24"
         style={{ display: !isOpen ? "block" : "none" }}
       >
-        <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+        <div class="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8 ">
           <div class="max-w-2xl mx-auto text-center">
             <h2 class="text-3xl font-bold leading-tight text-black sm:text-4xl lg:text-5xl">
               Aruga Subscription
@@ -125,15 +125,12 @@ const Subscription = () => {
       </section>
 
       <div
-        className="flex flex-col gap-2"
+        className="flex   h-[92vh] mt-10 p-5"
         style={{ display: isOpen ? "block" : "none" }}
       >
-        <label
-          for="email"
-          className=" text-base leading-relaxed text-gray-600 p-5 text-xl font-bold"
-        >
+        <div className="text-xl font-bold poppins w-full p-3">
           Upload Payment Receipt
-        </label>
+        </div>
         <div className="flex items-center justify-center w-full border">
           <label
             for="dropzone-file"
@@ -159,8 +156,8 @@ const Subscription = () => {
                 <span className="font-semibold">Click to upload</span> or drag
                 and drop
               </p>
-              <p className="text-xs text-gray-500 dark:text-gray-400">
-                PDF, PNG, JPG
+              <p className="text-xs text-center text-blue-500">
+                {file.name ? file.name : " PDF, PNG, JPG"}
               </p>
               <p className=" text-blue-500 font-medium"></p>
             </div>
@@ -172,12 +169,14 @@ const Subscription = () => {
             />
           </label>
         </div>
-        <button
-          className="p-4 bg-rose-400 text-white text-md rounded-lg w-full absolute"
-          onClick={submitSubscription}
-        >
-          Submit Payment
-        </button>
+        <div className="w-full flex justify-center">
+          <button
+            className="p-4 bg-rose-400 text-white text-md rounded-lg mt-10 w-[70%]"
+            onClick={submitSubscription}
+          >
+            Submit Payment
+          </button>
+        </div>
       </div>
     </div>
   );
