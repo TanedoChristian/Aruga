@@ -25,6 +25,8 @@ import UserJobs from "./components/UserJobs";
 import ResumeBuilder from "./components/ResumeBuilder";
 import ViewSubscription from "./components/ViewSubscription";
 import PendingPage from "./components/PendingPage";
+import Message from "./components/Message";
+import Inbox from "./components/Inbox";
 
 const App = () => {
   return (
@@ -81,6 +83,7 @@ const App = () => {
             }
           ></Route>
           <Route path="/notification" element={<Notification />}></Route>
+          <Route path="/inbox" element={<Inbox />}></Route>
           <Route
             path="/notification-detail"
             element={
@@ -92,6 +95,7 @@ const App = () => {
           ></Route>
 
           <Route path="/job-details" element={<JobDetails />}></Route>
+          <Route path="/message" element={<Message />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/login-otp" element={<LoginOtp />}></Route>
           <Route path="/frontpage" element={<Frontpage />}></Route>

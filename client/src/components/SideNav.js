@@ -52,6 +52,18 @@ const SideNav = (props) => {
             </a>
           </li>
 
+          <li className=" p-3 text-white   px-5 items-center ">
+            <a href="/inbox" className="flex justify-between">
+              <p
+                className="text-xl text-white tracking-wide"
+                style={{ fontFamily: "Poppins", fontWeight: 400 }}
+              >
+                Inbox
+              </p>
+              <i className="fa-solid fa-angle-right text-3xl"></i>
+            </a>
+          </li>
+
           <li className=" p-3 text-white   px-5 items-center">
             <a href="/edit-profile" className="flex justify-between">
               <p

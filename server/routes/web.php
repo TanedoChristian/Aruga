@@ -4,6 +4,7 @@ use App\Http\Controllers\ApplicationController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\HireController;
 use App\Http\Controllers\JobsController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ResumeController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SubscriptionController;
@@ -74,6 +75,10 @@ Route::put('/application/{id}', [ApplicationController::class, 'updateStatus']);
 
 Route::post('/subscribe', [SubscriptionController::class, 'insert']);
 Route::get('/subscribe/{id}', [SubscriptionController::class, 'show']);
+
+Route::post('/message', [MessageController::class, 'show']);
+Route::get('/message/inbox/{id}', [MessageController::class, 'getInbox']);
+Route::get('/messages/{id1}/{id2}', [MessageController::class, 'get']);
 
 
 ?>

@@ -8,12 +8,10 @@ import ConfirmModal from "./ConfirmModal";
 
 const JobDetails = () => {
   const [user, setUser] = useState([]);
-
   const [jobDetails, setJobDetails] = useState({});
-
   const [isOpen, setModalOpen] = useState(false);
-
   const [isSuccess, setSuccess] = useState(false);
+
   useEffect(() => {
     axios({
       method: "GET",

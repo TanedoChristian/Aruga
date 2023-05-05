@@ -78,7 +78,13 @@ const NotificationCard = (props) => {
             </div>
           ))
         : hire.map((data) => (
-            <div className="jobs-container flex justify-center w-full  ">
+            <div
+              className="jobs-container flex justify-center w-full  "
+              onClick={() => {
+                sessionStorage.setItem("chatpid", data.parent_id);
+                window.location.href = "/message";
+              }}
+            >
               <div className="flex items-center p-4 gap-5 bg-white shadow-xl relative border border-gray-200 w-[95%] rounded-xl ">
                 <img
                   src={`${SetUp.SERVER_URL()}/${data.img}`}
