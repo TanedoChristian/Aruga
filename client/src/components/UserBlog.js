@@ -3,13 +3,16 @@ import SetUp from "../Setup";
 import axios from "axios";
 import BlogCard from "./BlogCard";
 import Header from "./Header";
+import ConfirmModal from "./ConfirmModal";
 const UserBlog = () => {
   const [blog, setBlog] = useState([]);
+  const [blogDelete, setBlogDelete] = useState("");
   const [success, setSuccess] = useState(false);
   const [showOptions, setShowOptions] = useState(false);
   const [updateBlog, setUpdateBlog] = useState({});
   const [isShowModal, setShowModal] = useState(false);
   const [errorFile, setErrorFile] = useState();
+  const [isOpenModal, setOpenModal] = useState(false);
 
   useEffect(() => {
     axios
@@ -20,13 +23,8 @@ const UserBlog = () => {
   }, [success]);
 
   const handleFunction = (id) => {
-    axios({
-      method: "DELETE",
-      url: SetUp.SERVER_URL() + `/blog/${id}`,
-    }).then(({ data }) => {
-      alert("Successfully Deleted");
-      setSuccess(!success);
-    });
+    setBlogDelete(id);
+    setOpenModal(true);
   };
 
   const handleUpdateBlog = (data) => {
@@ -66,10 +64,41 @@ const UserBlog = () => {
 
   return (
     <div className="w-full flex justify-center h-screen">
+      <ConfirmModal
+        isOpen={isOpenModal}
+        width="w-[60%]"
+        height="h-[20vh]"
+        title="Delete Blog"
+      >
+        <div className="flex justify-center gap-5 items-center h-screen">
+          <button
+            className="p-3 px-5 bg-rose-400 text-white rounded-md shadow-md"
+            onClick={() => {
+              axios({
+                method: "DELETE",
+                url: SetUp.SERVER_URL() + `/blog/${blogDelete}`,
+              }).then(({ data }) => {
+                setSuccess(!success);
+                setOpenModal(false);
+              });
+            }}
+          >
+            Confirm
+          </button>
+          <button
+            className="p-3 px-5 bg-rose-400 text-white rounded-md shadow-md"
+            onClick={() => {
+              setOpenModal(false);
+            }}
+          >
+            Cancel
+          </button>
+        </div>
+      </ConfirmModal>
       <div
         id="defaultModal"
         aria-hidden="true"
-        className="fixed fade-in-1 top-0 animation-fade w-[100%] bg-white  w3-animate-top  "
+        className="absolute h-full fade-in-1 top-0  animation-fade w-[100%] bg-white z-[50]  "
         style={{ display: isShowModal ? "block" : "none" }}
       >
         <div className="relative w-full h-full max-w-2xl md:h-auto">
@@ -125,9 +154,9 @@ const UserBlog = () => {
                 />
               </div>
 
-              <div className="flex   gap-1  bottom-2  w-[90%] overflow-x-hidden">
+              <div className="flex   gap-1  bottom-2   justify-center w-full">
                 <button
-                  className="p-4 bg-rose-400 text-white text-md rounded-lg w-full absolute"
+                  className="p-4 bg-rose-400 text-white text-md rounded-lg w-full "
                   onClick={submitUpdateBlog}
                 >
                   Update Blog

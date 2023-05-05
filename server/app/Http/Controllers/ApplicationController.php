@@ -36,7 +36,7 @@ class ApplicationController extends Controller
     }
 
     public function updateDelete(Request $request) {
-        return ApplicationModel::where('apply_id', $request->route('id'))->update(['apply_deleted' => '1']);
+        return ApplicationModel::where('apply_id', $request->route('id'))->update(['apply_deleted' => '0']);
     }
 
     public function show(Request $request){

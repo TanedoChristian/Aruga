@@ -5,6 +5,10 @@ import axios from "axios";
 
 const Inbox = () => {
   const [inbox, setInbox] = useState([]);
+
+  const [messageFrom, setMessageFrom] = useState([]);
+  const [messageTo, setMessageTo] = useState([]);
+
   useEffect(() => {
     axios
       .get(
@@ -14,6 +18,21 @@ const Inbox = () => {
       )
       .then(({ data }) => {
         console.log(data);
+        data.map((item) => {
+          if (item.from_id == sessionStorage.getItem("userid")) {
+            let data = [];
+            data.push(item);
+            setMessageFrom(data);
+          } else {
+            let data1 = [];
+            data1.push(item);
+            setMessageTo(data1);
+          }
+        });
+
+        console.log(`Message From: ${messageFrom}`);
+        console.log(`Message To: ${messageTo}`);
+
         setInbox(data);
       });
   }, []);
@@ -30,7 +49,7 @@ const Inbox = () => {
         <div class="flex items-center justify-between mb-4 mt-10"></div>
         <div class="flow-root">
           <ul role="list" class="divide-y divide-gray-200 ">
-            {inbox.map((item) =>
+            {messageFrom.map((item) =>
               item.from_id != sessionStorage.getItem("userid") ? (
                 <li
                   class="pt-3 pb-0 sm:pt-4"

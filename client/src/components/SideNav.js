@@ -25,15 +25,15 @@ const SideNav = (props) => {
                 href={`/user-details?userid=${sessionStorage.getItem(
                   "userid"
                 )}`}
-                className="flex justify-between"
+                className="flex gap-2 items-center"
               >
+                <i class="fa-solid fa-user"></i>
                 <p
-                  className="text-xl text-white tracking-wide"
+                  className="text-lg text-white tracking-wide"
                   style={{ fontFamily: "Poppins", fontWeight: 400 }}
                 >
                   My Profile
                 </p>
-                <i className="fa-solid fa-angle-right text-3xl"></i>
               </a>
             </li>
           ) : (
@@ -41,115 +41,128 @@ const SideNav = (props) => {
           )}
 
           <li className=" p-3 text-white   px-5 items-center ">
-            <a href="/edit-profile" className="flex justify-between">
+            <a href="/edit-profile" className="flex gap-2 items-center">
+              <i class="fa-solid fa-pencil"></i>
               <p
-                className="text-xl text-white tracking-wide"
+                className="text-lg text-white tracking-wide"
                 style={{ fontFamily: "Poppins", fontWeight: 400 }}
               >
                 Edit Profile
               </p>
-              <i className="fa-solid fa-angle-right text-3xl"></i>
             </a>
           </li>
 
           <li className=" p-3 text-white   px-5 items-center ">
-            <a href="/inbox" className="flex justify-between">
+            <a href="/inbox" className="flex gap-2 items-center">
+              <i class="fa-regular fa-envelope"></i>
               <p
-                className="text-xl text-white tracking-wide"
+                className="text-lg text-white tracking-wide"
                 style={{ fontFamily: "Poppins", fontWeight: 400 }}
               >
                 Inbox
               </p>
-              <i className="fa-solid fa-angle-right text-3xl"></i>
             </a>
           </li>
 
           <li className=" p-3 text-white   px-5 items-center">
-            <a href="/edit-profile" className="flex justify-between">
+            <a href="/edit-profile" className="flex gap-2 items-center">
+              <i class="fa-solid fa-lock"></i>
               <p
-                className="text-xl  tracking-wide"
+                className="text-lg  tracking-wide"
                 style={{ fontFamily: "Poppins", fontWeight: 400 }}
               >
                 Change Password
               </p>
-              <i className="fa-solid fa-angle-right text-3xl"></i>
             </a>
           </li>
 
           <li className=" p-3 text-white   px-5 items-center">
             <a
               href={`/subscription?userid=${sessionStorage.getItem("userid")}`}
-              className="flex justify-between"
+              className="flex gap-2 items-center"
             >
+              <i class="fa-solid fa-star"></i>
               <p
-                className="text-xl  tracking-wide"
+                className="text-lg  tracking-wide"
                 style={{ fontFamily: "Poppins", fontWeight: 400 }}
               >
                 Subscription
               </p>
-              <i className="fa-solid fa-angle-right text-3xl"></i>
             </a>
           </li>
 
           <li className=" p-3 text-white   px-5 items-center ">
-            <a href={`user-blog`} className="flex justify-between">
+            <a href={`user-blog`} className="flex gap-2 items-center">
+              <i class="fa-solid fa-blog"></i>
               <p
-                className="text-xl text-white tracking-wide"
+                className="text-lg text-white tracking-wide"
                 style={{ fontFamily: "Poppins", fontWeight: 400 }}
               >
                 My Blog
               </p>
-              <i className="fa-solid fa-angle-right text-3xl"></i>
             </a>
           </li>
           {sessionStorage.getItem("type") === "parent" ? (
             <li className=" p-3 text-white   px-5 items-center ">
-              <a href="/user-jobs" className="flex justify-between">
+              <a href="/user-jobs" className="flex gap-2 items-center">
+                <i class="fa-solid fa-scroll"></i>
                 <p
-                  className="text-xl text-white tracking-wide"
+                  className="text-lg text-white tracking-wide"
                   style={{ fontFamily: "Poppins", fontWeight: 400 }}
                 >
                   Job Posted
                 </p>
-                <i className="fa-solid fa-angle-right text-3xl"></i>
               </a>
             </li>
           ) : (
             <li className=" p-3 text-white   px-5 items-center ">
-              <a href="/resume/builder" className="flex justify-between">
+              <a href="/resume/builder" className="flex gap-2 items-center">
+                <i class="fa-solid fa-file"></i>
                 <p
-                  className="text-xl text-white tracking-wide"
+                  className="text-lg text-white tracking-wide"
                   style={{ fontFamily: "Poppins", fontWeight: 400 }}
                 >
                   Create Resume
                 </p>
-                <i className="fa-solid fa-angle-right text-3xl"></i>
               </a>
             </li>
           )}
 
           {sessionStorage.getItem("type") != "parent" ? (
             <li className=" p-3 text-white   px-5 items-center ">
-              <a href="/job-details" className="flex justify-between">
+              <a href="/job-details" className="flex gap-2 items-center">
+                <i class="fa-solid fa-blender-phone"></i>
+
                 <p
-                  className="text-xl text-white tracking-wide"
+                  className="text-lg text-white tracking-wide"
                   style={{ fontFamily: "Poppins", fontWeight: 400 }}
                 >
                   Job Applied
                 </p>
-                <i className="fa-solid fa-angle-right text-3xl"></i>
               </a>
             </li>
           ) : (
             ""
           )}
 
-          <li className=" p-3 text-white   px-5  border-t border-gray-200 mt-20 flex items-center">
-            <button className="text-xl" onClick={handleLogout}>
+          <li
+            className=" p-3 text-white   px-5 items-center flex items-center gap-2 "
+            onClick={handleLogout}
+          >
+            <i className=" text-normal fa-solid fa-arrow-right-from-bracket"></i>
+            <p
+              className="text-lg text-white tracking-wide"
+              style={{ fontFamily: "Poppins", fontWeight: 400 }}
+            >
               Logout
-              <i className="ml-2 text-normal fa-solid fa-arrow-right-from-bracket"></i>
-            </button>
+            </p>
           </li>
+
+          {/* <li className=" p-3 text-white   px-5  border-t border-gray-200  flex items-center bg-white justify-center">
+            <button className="text-xl text-rose-400" onClick={handleLogout}>
+              Logout
+            </button>
+          </li> */}
         </div>
       </ul>
     </nav>

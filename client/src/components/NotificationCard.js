@@ -14,6 +14,7 @@ const NotificationCard = (props) => {
       )
       .then(({ data }) => {
         setNotification(data.filter((item) => item.apply_deleted != 1));
+        console.log(data);
       });
 
     axios
@@ -30,7 +31,7 @@ const NotificationCard = (props) => {
 
   return (
     <div className="flex flex-col mt-2 items-center gap-1">
-      {sessionStorage.getItem("type") === "parent"
+      {sessionStorage.getItem("type") == "parent"
         ? notification.map((data) => (
             <div className="jobs-container flex justify-center w-full  ">
               <div className="flex items-center p-4 bg-white shadow-xl flex-col border border-gray-200 w-[95%] rounded-xl ">
@@ -47,7 +48,6 @@ const NotificationCard = (props) => {
                         {`${data.firstname} ${data.lastname}`}
                       </span>
                       <span className="text-ellipsis">
-                        {" "}
                         submitted an application in your job post
                       </span>
                     </p>

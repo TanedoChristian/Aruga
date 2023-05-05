@@ -162,7 +162,7 @@ const Blog = () => {
           <input
             type="text"
             className="p-3 w-full rounded-xl outline-none focus:border-blue-500  border border-gray-200 shadow-sm"
-            placeholder="Create a post"
+            placeholder="Create Blog"
             onClick={handleModal}
           />
         </form>
@@ -176,28 +176,16 @@ const Blog = () => {
       >
         <div className="relative w-full h-full max-w-2xl md:h-auto">
           <div className="relative bg-white rounded-lg  h-screen shadow-xl">
-            <div className="flex items-center justify-between p-3  w-[100%] border-t border-gray-200 gap-2">
-              <h3 className="text-2xl font-semibold text-gray-900 ">
-                Submit Credentials
+            <div className="flex items-center justify-between p-3 bg-rose-400   w-[100%] border-t border-gray-200 gap-2">
+              <h3 className="text-2xl font-semibold text-white poppins w-full ">
+                Create Blog
               </h3>
               <button
                 type="button"
                 className="text-gray-600 bg-transparent  hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white"
                 onClick={handleModal}
               >
-                <svg
-                  aria-hidden="true"
-                  className="w-5 h-5"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-                    clip-rule="evenodd"
-                  ></path>
-                </svg>
+                <i class="fa-solid fa-xmark text-white font-bold text-xl"></i>
                 <span className="sr-only">Close modal</span>
               </button>
             </div>
@@ -230,7 +218,6 @@ const Blog = () => {
                   for="email"
                   className="block mb-2 text-sm font-medium text-gray-900 "
                 >
-
                   Upload Documents
                 </label>
                 <div className="flex items-center justify-center w-full border">
@@ -283,7 +270,7 @@ const Blog = () => {
                   className="p-4 bg-rose-400 text-white text-md rounded-lg w-full absolute"
                   onClick={handleSubmit}
                 >
-                 Submit
+                  Submit
                 </button>
               </div>
             </div>

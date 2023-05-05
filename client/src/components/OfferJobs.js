@@ -8,6 +8,7 @@ import SetUp from "../Setup";
 import moment from "moment";
 import Header from "./Header";
 import Modal from "./Modal";
+import ConfirmModal from "./ConfirmModal";
 const OfferJobs = () => {
   const [jobs, setJobs] = useState([]);
 
@@ -24,7 +25,7 @@ const OfferJobs = () => {
   const [success, setSuccess] = useState(false);
   const [showUpdateModal, setShowUpdateModal] = useState(false);
   const [showOptions, setShowOptions] = useState(false);
-
+  const [isOpenModal, setOpenModal] = useState(false);
   const [showFormModal, setShowFormModal] = useState(false);
 
   useEffect(() => {
@@ -151,6 +152,7 @@ const OfferJobs = () => {
       },
     }).then(({ data }) => {
       setSuccess(true);
+      setOpenModal(true);
       setShowModal(false);
     });
   };
@@ -164,6 +166,24 @@ const OfferJobs = () => {
 
   return (
     <div className="bg-white">
+      <ConfirmModal
+        isOpen={isOpenModal}
+        width="w-[80%]"
+        height="h-[20vh]"
+        title="Job Submitted"
+      >
+        <div className="flex w-full items-center justify-center h-screen">
+          <button
+            className="p-3 px-10 rounded-md bg-rose-400 text-white"
+            onClick={() => {
+              setOpenModal(false);
+            }}
+          >
+            Confirm
+          </button>
+        </div>
+      </ConfirmModal>
+
       <div className=" flex flex-col gap-2 $ bg-white">
         <Header />
 

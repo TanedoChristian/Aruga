@@ -23,7 +23,7 @@ class MessageController extends Controller
     }
 
     public function get(Request $request) {
-        return DB::select('SELECT * FROM MESSAGE WHERE (MESSAGE_FROM =? AND MESSAGE_TO =?) OR ( MESSAGE_FROM =? AND MESSAGE_TO =?) ', [$request->route('id1'), $request->route('id2'),  $request->route('id2'), $request->route('id1')]);
+        return DB::select('SELECT users.img, message.* FROM MESSAGE inner join users on users.user_id = message.message_from WHERE (MESSAGE_FROM =? AND MESSAGE_TO =?) OR ( MESSAGE_FROM =? AND MESSAGE_TO =?) ', [$request->route('id1'), $request->route('id2'),  $request->route('id2'), $request->route('id1')]);
     }
 
 

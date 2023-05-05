@@ -54,7 +54,6 @@ const UserDetails = () => {
     }).then((data) => {
       console.log(data);
       setSuccess(!success);
-      setNewReview({});
     });
     setShowModal(false);
   };
@@ -63,7 +62,7 @@ const UserDetails = () => {
     <div className="flex flex-wrap items-center justify-center">
       <div className="container bg-white rounded  shadow-lg transform duration-200 easy-in-out w-full  h-screen ">
         <Modal isShowModal={showModal}>
-          <form
+          <div
             id="defaultModal"
             aria-hidden="true"
             className=" fade-in-1 animation-fade w-[100%] bg-white  w3-animate-top z-40 h-[100vh] flex items-center overflow-hidden h-screen top-0 "
@@ -177,7 +176,7 @@ const UserDetails = () => {
                 </div>
               </div>
             </div>
-          </form>
+          </div>
         </Modal>
 
         <div className="absolute top-3 left-3 z-10" onClick={handleBack}>

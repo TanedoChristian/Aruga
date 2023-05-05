@@ -77,9 +77,7 @@ const PostJobs = () => {
 
   const handleSubmission = (e) => {
     const fd = new FormData();
-
     fd.append("img", user.file);
-
     axios({
       method: "POST",
       url: SetUp.SERVER_URL() + "/users",
