@@ -8,15 +8,20 @@ const Message = () => {
   const [user, setUser] = useState({});
 
   useEffect(() => {
-    axios({
-      method: "GET",
-      url: `${SetUp.SERVER_URL()}/messages/${sessionStorage.getItem(
-        "userid"
-      )}/${sessionStorage.getItem("chatpid")}`,
-    }).then(({ data }) => {
-      setMessages(data);
-    });
-  });
+    const intervalId = setInterval(() => {
+      axios({
+        method: "GET",
+        url: `${SetUp.SERVER_URL()}/messages/${sessionStorage.getItem(
+          "userid"
+        )}/${sessionStorage.getItem("chatpid")}`,
+      }).then(({ data }) => {
+        setMessages(data);
+      });
+    }, 2000); // execute every 2 seconds
+
+    // Return a cleanup function to cancel the interval when the component unmounts
+    return () => clearInterval(intervalId);
+  }, []); // The empty dependency array ensures the effect only runs once on mount
 
   useEffect(() => {
     axios
@@ -37,6 +42,7 @@ const Message = () => {
       },
     }).then((data) => {
       console.log(data[0]);
+      document.getElementById("messageBox").value = "";
     });
   };
 
@@ -99,6 +105,7 @@ const Message = () => {
                 <div class=" w-full">
                   <input
                     type="text"
+                    id="messageBox"
                     class="flex w-full border rounded-xl focus:outline-none focus:border-indigo-300 pl-4 h-10"
                     onChange={(e) => {
                       setMessage((prev) => {

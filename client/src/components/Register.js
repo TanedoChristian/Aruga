@@ -2,65 +2,99 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import SetUp from "../Setup";
 import Compressor from "compressorjs";
+import useValidate from "../hooks/useValidate";
+
+const nameValidate = (data) => /^[a-zA-Z]+(?:\s*[a-zA-Z]+)*$/.test(data);
+const mobileValidation = (validationData) => /^09\d{9}$/.test(validationData);
+const emailValidation = (validationData) =>
+  /^[\w.-]+@([\w-]+\.)+[\w-]{2,4}$/.test(validationData);
+const usernameValidation = (validationData) =>
+  /^[a-zA-Z0-9_]{4,16}$/.test(validationData);
+const passwordValidation = (validationData) =>
+  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*]).{8,20}$/.test(
+    validationData
+  );
+const spaceValidation = (validationData) => /\S/.test(validationData);
 
 const Register = () => {
   const [user, setUser] = useState({});
-
   const [file, setFile] = useState({});
   const [errorFile, setErrorFile] = useState(false);
 
-  const handleFirstname = (e) => {
-    setUser((prev) => {
-      return { ...prev, firstname: e.target.value };
-    });
-  };
+  const {
+    value: firstNameValue,
+    isTouched: isTouchedFirstName,
+    onChangeHandler: handleFirstname,
+    onBlurHandler: blurFirstname,
+    hasError: errorFirstname,
+  } = useValidate(nameValidate);
 
-  const handleLastname = (e) => {
-    setUser((prev) => {
-      return { ...prev, lastname: e.target.value };
-    });
-  };
+  const {
+    value: lastNameValue,
+    isTouched: isTouchedLastName,
+    onChangeHandler: handleLastname,
+    onBlurHandler: blurLastname,
+    hasError: errorLastname,
+  } = useValidate(nameValidate);
 
-  const handleAddress = (e) => {
-    setUser((prev) => {
-      return { ...prev, address: e.target.value };
-    });
-  };
+  const {
+    value: addressValue,
+    isTouched: isTouchedAddress,
+    onChangeHandler: handleAddress,
+    onBlurHandler: blurAddress,
+    hasError: errorAddress,
+  } = useValidate(spaceValidation);
 
-  const handleMobile = (e) => {
-    setUser((prev) => {
-      return { ...prev, mobileno: e.target.value };
-    });
-  };
+  const {
+    value: telNoValue,
+    isTouched: isTouchedTelNo,
+    onChangeHandler: handleTelNo,
+    onBlurHandler: blurTelNo,
+    hasError: errorTelNo,
+  } = useValidate(spaceValidation);
 
-  const handleTelNo = (e) => {
-    setUser((prev) => {
-      return { ...prev, telno: e.target.value };
-    });
-  };
+  const {
+    value: mobileValue,
+    isTouched: isTouchedMobile,
+    onChangeHandler: handleMobile,
+    onBlurHandler: blurMobile,
+    hasError: errorMobile,
+  } = useValidate(mobileValidation);
 
-  const handleEmail = (e) => {
-    setUser((prev) => {
-      return { ...prev, email: e.target.value };
-    });
-  };
+  const {
+    value: emailValue,
+    isTouched: isTouchedEmail,
+    onChangeHandler: handleEmail,
+    onBlurHandler: blurEmail,
+    hasError: errorEmail,
+  } = useValidate(emailValidation);
 
-  const handleUsername = (e) => {
-    setUser((prev) => {
-      return { ...prev, username: e.target.value };
-    });
-  };
+  const {
+    value: usernameValue,
+    isTouched: isTouchedUsername,
+    onChangeHandler: handleUsername,
+    onBlurHandler: blurUsername,
+    hasError: errorUsername,
+  } = useValidate(usernameValidation);
 
-  const handlePassword = (e) => {
-    setUser((prev) => {
-      return { ...prev, password: e.target.value };
-    });
-  };
+  const {
+    value: passwordValue,
+    isTouched: isTouchedPassword,
+    onChangeHandler: handlePassword,
+    onBlurHandler: blurPassword,
+    hasError: errorPassword,
+  } = useValidate(passwordValidation);
 
-  const handleConfirm = (e) => {
-    setUser((prev) => {
-      return { ...prev, confirmpass: e.target.value };
-    });
+  const {
+    value: confirmValue,
+    isTouched: isTouchedConfirm,
+    onChangeHandler: handleConfirm,
+    onBlurHandler: blurConfirm,
+    // hasError: errorConfirm,
+  } = useValidate(passwordValidation);
+
+  const matchPassword = () => {
+    return passwordValue === confirmValue ? true : false;
   };
 
   const changeHandlerFile = (e) => {
@@ -84,13 +118,30 @@ const Register = () => {
   };
 
   const handleSubmission = (e) => {
+    let details = {
+      firstname: firstNameValue,
+      lastname: lastNameValue,
+      address: addressValue,
+      mobileno: mobileValue,
+      telno: telNoValue,
+      email: emailValue,
+      username: usernameValue,
+      password: passwordValue,
+    };
+
     new Compressor(user?.file, {
       quality: 0.6,
       success(result) {
         axios({
           method: "POST",
           url: SetUp.SERVER_URL() + "/users",
-          data: { ...user, file: result, status: "pending", deleted: 0 },
+          data: {
+            ...user,
+            ...details,
+            file: result,
+            status: "pending",
+            deleted: 0,
+          },
           headers: { "Content-Type": "multipart/form-data" },
         })
           .then((data) => {
@@ -106,6 +157,10 @@ const Register = () => {
         console.log(err.message);
       },
     });
+  };
+
+  const showError = (message) => {
+    return <p className="text-sm text-red-600">Invalid {message}</p>;
   };
 
   return (
@@ -147,8 +202,12 @@ const Register = () => {
                     name="firstname"
                     className="border border-gray-300 text-gray-900 sm:text-sm rounded-lg  w-full p-2.5 shadow-md bg-white outline-0"
                     placeholder="First Name"
+                    onBlur={blurFirstname}
                     required=""
                   />
+                  {errorFirstname &&
+                    isTouchedFirstName &&
+                    showError("first name")}
                 </div>
 
                 <div>
@@ -164,8 +223,10 @@ const Register = () => {
                     onChange={handleLastname}
                     className="border border-gray-300 text-gray-900 sm:text-sm rounded-lg  shadow-md  otuline-0 w-full p-2.5"
                     placeholder="Last Name"
+                    onBlur={blurLastname}
                     required=""
                   />
+                  {errorLastname && isTouchedLastName && showError("last name")}
                 </div>
               </div>
 
@@ -182,8 +243,10 @@ const Register = () => {
                   name="address"
                   className="border border-gray-300 text-gray-900 sm:text-sm rounded-lg  outline-0 shadow-md w-full p-2.5"
                   placeholder="Address"
+                  onBlur={blurAddress}
                   required=""
                 />
+                {errorAddress && isTouchedAddress && showError("address")}
               </div>
 
               <div>
@@ -199,8 +262,10 @@ const Register = () => {
                   name="telno"
                   className="border border-gray-300 text-gray-900 sm:text-sm rounded-lg otuline-0 shadow-md w-full p-2.5  "
                   placeholder="+639XXXXXX"
+                  onBlur={blurTelNo}
                   required=""
                 />
+                {errorTelNo && isTouchedTelNo && showError("telephone number")}
               </div>
 
               <div>
@@ -213,11 +278,13 @@ const Register = () => {
                 <input
                   type="number"
                   onChange={handleMobile}
-                  name="mobilenumber"
+                  name="mobileno"
                   className="border border-gray-300 text-gray-900 sm:text-sm rounded-lg otuline-0 shadow-md w-full p-2.5  "
                   placeholder="+639XXXXXX"
+                  onBlur={blurMobile}
                   required=""
                 />
+                {errorMobile && isTouchedMobile && showError("mobile number")}
               </div>
 
               <div>
@@ -233,8 +300,10 @@ const Register = () => {
                   onChange={handleEmail}
                   className="border border-gray-300 text-gray-900 sm:text-sm rounded-lg   outline-0 shadow-md w-full p-2.5"
                   placeholder="your@email.com"
+                  onBlur={blurEmail}
                   required=""
                 />
+                {errorEmail && isTouchedEmail && showError("email")}
               </div>
 
               <div>
@@ -250,8 +319,10 @@ const Register = () => {
                   onChange={handleUsername}
                   className="border border-gray-300 text-gray-900 sm:text-sm rounded-lg outline-0 shadow-md w-full p-2.5"
                   placeholder="your@email.com"
+                  onBlur={blurUsername}
                   required=""
                 />
+                {errorUsername && isTouchedUsername && showError("username")}
               </div>
 
               <div>
@@ -267,8 +338,14 @@ const Register = () => {
                   name="password"
                   placeholder="••••••••"
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm  outline-0 shadow-md rounded-lg w-full p-2.5"
+                  onBlur={blurPassword}
                   required=""
                 />
+                {errorPassword &&
+                  isTouchedPassword &&
+                  showError(
+                    "password (Atleast 8 characters and contain an Uppercase letter, Lowercase letter , numbers and one special character )"
+                  )}
               </div>
               <div>
                 <label
@@ -280,12 +357,16 @@ const Register = () => {
                 <input
                   type="password"
                   onChange={handleConfirm}
-                  name="confirm-password"
+                  name="confirmpass"
                   id="password"
                   placeholder="••••••••"
                   className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm outline-0 rounded-lg  shadow-md  w-full p-2.5"
+                  onBlur={blurConfirm}
                   required=""
                 />
+                {isTouchedConfirm &&
+                  !matchPassword() &&
+                  showError("password (Password did not match)")}
               </div>
 
               <div>
@@ -340,7 +421,10 @@ const Register = () => {
                 </div>
               </div>
 
-              <p className="font-md">Type</p>
+              <div className="flex">
+                <p className="font-md mr-3">Type</p>
+                {!user.type && <p className="text-md text-red-600"> Please choose user type</p>}
+              </div>
 
               <main className="flex w-full items-center justify-center">
                 <div
@@ -381,6 +465,7 @@ const Register = () => {
                   </div>
                 </div>
               </main>
+
               <div className="flex items-start">
                 <div className="flex items-center h-5">
                   <input
@@ -388,7 +473,8 @@ const Register = () => {
                     aria-describedby="terms"
                     type="checkbox"
                     className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
-                    required=""
+                    
+                    required
                   />
                 </div>
                 <div className="ml-3 text-sm">
