@@ -381,6 +381,7 @@ const UserDetails = () => {
                         },
                       }).then((data) => {
                         setModalOpen(false);
+                        window.location.href = "/inbox";
                       });
                     })
                   : axios({
@@ -414,7 +415,7 @@ const UserDetails = () => {
           className="py-3 px-4  font-medium  w-[70%] bg-rose-500 text-white rounded-lg"
           onClick={() => {
             setModalOpen(true);
-            window.location.href = "/inbox";
+            
           }}
         >
           Hire Now
