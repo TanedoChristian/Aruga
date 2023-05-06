@@ -3,9 +3,13 @@ import Footer from "./Footer";
 import SetUp from "../Setup";
 import axios from "axios";
 import JobsCard from "./JobsCard";
+import ConfirmModal from "./ConfirmModal";
 const NotificationCard = (props) => {
   const [notification, setNotification] = useState([]);
   const [hire, setHire] = useState([]);
+  const [success, setSuccess] = useState(false);
+  const [deleteId, setDeleteId] = useState();
+  const [isOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
     axios
@@ -22,7 +26,22 @@ const NotificationCard = (props) => {
       .then(({ data }) => {
         setHire(data);
       });
-  }, []);
+  }, [success]);
+
+  const handleDelete = (id) => {
+    setDeleteId(id);
+    setModalOpen(true);
+  };
+
+  const confirmDelete = () => {
+    axios({
+      method: "PUT",
+      url: `${SetUp.SERVER_URL()}/application/delete/${deleteId}`,
+    }).then(({ data }) => {
+      setSuccess(!success);
+      setModalOpen(false);
+    });
+  };
 
   const handleNotification = (id, app_id) => {
     window.location.href = "/user-details?userid=" + id;
@@ -31,6 +50,31 @@ const NotificationCard = (props) => {
 
   return (
     <div className="flex flex-col mt-2 items-center gap-1">
+      <ConfirmModal
+        isOpen={isOpen}
+        title="Reject Application"
+        width="w-[90%]"
+        height="h-[20vh]"
+        handleClose={() => setModalOpen(false)}
+      >
+        <div className="flex justify-center gap-5 items-center h-screen">
+          <button
+            className="p-3 px-5 bg-rose-400 text-white rounded-md shadow-md"
+            onClick={confirmDelete}
+          >
+            Reject
+          </button>
+          <button
+            className="p-3 px-5 bg-rose-400 text-white rounded-md shadow-md"
+            onClick={() => {
+              setModalOpen(false);
+            }}
+          >
+            Cancel
+          </button>
+        </div>
+      </ConfirmModal>
+
       {sessionStorage.getItem("type") == "parent"
         ? notification.map((data) => (
             <div className="jobs-container flex justify-center w-full  ">
@@ -56,46 +100,60 @@ const NotificationCard = (props) => {
                 <span className="flex text-xs font-semibold uppercase  mr-3 text-gray-500 w-full justify-end">
                   {new Date(data.apply_date).toLocaleTimeString()}
                 </span>
-                <div className="w-full flex gap-2">
-                  <button
-                    className="py-1 px-5 bg-rose-400 text-white rounded-md shadow-md"
-                    onClick={() =>
-                      handleNotification(data.babysitter_id, data.apply_id)
-                    }
-                  >
-                    View
-                  </button>
-                  <button
-                    className="py-1 px-5 bg-rose-400 text-white rounded-md shadow-md"
-                    onClick={() => {
-                      alert(5);
-                    }}
-                  >
-                    Reject
-                  </button>
-                </div>
+                {data.apply_status != "done" ? (
+                  <div className="w-full flex gap-2">
+                    <button
+                      className="py-1 px-5 bg-rose-400 text-white rounded-md shadow-md"
+                      onClick={() =>
+                        handleNotification(data.babysitter_id, data.apply_id)
+                      }
+                    >
+                      View
+                    </button>
+                    <button
+                      className="py-1 px-5 bg-rose-400 text-white rounded-md shadow-md"
+                      onClick={() => {
+                        handleDelete(data.apply_id);
+                      }}
+                    >
+                      Reject
+                    </button>
+                  </div>
+                ) : (
+                  ""
+                )}
               </div>
             </div>
           ))
         : hire.map((data) => (
             <div
-              className="jobs-container flex justify-center w-full  "
+              className="jobs-container flex justify-center w-full flex-col bg-white p-2  "
               onClick={() => {
                 sessionStorage.setItem("chatpid", data.parent_id);
                 window.location.href = "/message";
               }}
             >
-              <div className="flex items-center p-4 gap-5 bg-white shadow-xl relative border border-gray-200 w-[95%] rounded-xl ">
+              <div className="flex items-center    w-[95%]  ">
                 <img
                   src={`${SetUp.SERVER_URL()}/${data.img}`}
                   className="w-11 h-11 rounded-full"
                 />
 
                 <p className="text-sm text-gray-600">
-                  <span className="text-md font-semibold leading-tight text-gray-900">
+                  <span className="text-sm  font-semibold leading-tight text-gray-900">
                     You are hired by {data.firstname} {data.lastname}
                   </span>
                 </p>
+              </div>
+              <div className="w-full flex gap-2 justify-end">
+                <button
+                  className="p-1 bg-rose-400 text-white text-sm rounded-md shadow-md"
+                  onClick={() =>
+                    handleNotification(data.babysitter_id, data.apply_id)
+                  }
+                >
+                  Message Now
+                </button>
               </div>
             </div>
           ))}

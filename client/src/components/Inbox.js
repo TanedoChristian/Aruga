@@ -2,39 +2,51 @@ import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import SetUp from "../Setup";
 import axios from "axios";
-
+import messageIcon from "../img/no-spam.png";
 const Inbox = () => {
   const [inbox, setInbox] = useState([]);
 
   const [messageFrom, setMessageFrom] = useState([]);
   const [messageTo, setMessageTo] = useState([]);
 
+  const [parents, setParents] = useState([]);
+  const [babysitters, setBabysitters] = useState([]);
+
   useEffect(() => {
     axios
       .get(
-        `${SetUp.SERVER_URL()}/message/inbox/${sessionStorage.getItem(
+        `${SetUp.SERVER_URL()}/application/done/${sessionStorage.getItem(
           "userid"
         )}`
       )
       .then(({ data }) => {
         console.log(data);
-        data.map((item) => {
-          if (item.from_id == sessionStorage.getItem("userid")) {
-            let data = [];
-            data.push(item);
-            setMessageFrom(data);
-          } else {
-            let data1 = [];
-            data1.push(item);
-            setMessageTo(data1);
-          }
-        });
-
-        console.log(`Message From: ${messageFrom}`);
-        console.log(`Message To: ${messageTo}`);
-
         setInbox(data);
       });
+
+    // axios
+    //   .get(
+    //     `${SetUp.SERVER_URL()}/message/inbox/${sessionStorage.getItem(
+    //       "userid"
+    //     )}`
+    //   )
+    //   .then(({ data }) => {
+    //     console.log(data);
+    // data.map((item) => {
+    //   if (item.from_id == sessionStorage.getItem("userid")) {
+    //     let data = [];
+    //     data.push(item);
+    //     setMessageFrom(data);
+    //   } else {
+    //     let data1 = [];
+    //     data1.push(item);
+    //     setMessageTo(data1);
+    //   }
+    // });
+    //     console.log(`Message From: ${messageFrom}`);
+    //     console.log(`Message To: ${messageTo}`);
+    //     setInbox(data);
+    //   });
   }, []);
 
   const handleClick = (item) => {
@@ -45,26 +57,35 @@ const Inbox = () => {
   return (
     <div>
       <Header />
+
       <div class="w-full max-w-md p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8">
+        {inbox.length == 0 ? (
+          <div className="w-full flex justify-center h-screen items-center">
+            <h1 className="text-xl text-slate-500 font-bold">No Messages</h1>
+          </div>
+        ) : (
+          ""
+        )}
+
         <div class="flex items-center justify-between mb-4 mt-10"></div>
         <div class="flow-root">
           <ul role="list" class="divide-y divide-gray-200 ">
-            {messageFrom.map((item) =>
-              item.from_id != sessionStorage.getItem("userid") ? (
+            {inbox.map((item) =>
+              sessionStorage.getItem("type") == "parent" ? (
                 <li
                   class="pt-3 pb-0 sm:pt-4"
-                  onClick={() => handleClick(item.from_id)}
+                  onClick={() => handleClick(item.babysitter_id)}
                 >
                   <div class="flex items-center space-x-4">
                     <div class="flex-shrink-0">
                       <img
                         class="w-8 h-8 rounded-full"
-                        src={`${SetUp.SERVER_URL()}/${item.from_img}`}
+                        src={`${SetUp.SERVER_URL()}/${item.babysitter_img}`}
                       />
                     </div>
                     <div class="flex-1 min-w-0">
                       <p class="text-sm font-medium text-gray-900 truncate">
-                        {item.message_to}
+                        {item.babysitter}
                       </p>
                     </div>
                   </div>
@@ -72,18 +93,18 @@ const Inbox = () => {
               ) : (
                 <li
                   class="pt-3 pb-0 sm:pt-4"
-                  onClick={() => handleClick(item.to_id)}
+                  onClick={() => handleClick(item.parent_id)}
                 >
                   <div class="flex items-center space-x-4">
                     <div class="flex-shrink-0">
                       <img
                         class="w-8 h-8 rounded-full"
-                        src={`${SetUp.SERVER_URL()}/${item.to_img}`}
+                        src={`${SetUp.SERVER_URL()}/${item.parent_img}`}
                       />
                     </div>
                     <div class="flex-1 min-w-0">
                       <p class="text-sm font-medium text-gray-900 truncate">
-                        {item.message_from}
+                        {item.parent}
                       </p>
                     </div>
                   </div>

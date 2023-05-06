@@ -85,76 +85,74 @@ const Blog = () => {
 
   return (
     <div>
-      <div className=" flex flex-col gap-2 bg-white overflow-x-hidden ">
-        <Header />
-        {sessionStorage.getItem("type") === "parent" ? (
+      {sessionStorage.getItem("type") === "parent" ? (
+        <Footer>
+          <ul className="flex w-full justify-around footer border-t border-gray-200 fixed bottom-0 ">
+            <a href={`/dashboard`}>
+              <li className="">
+                <div className="flex flex-col justify-center items-center">
+                  <i className={`fa-solid fa-house text-slate-600`}></i>
+                </div>
+              </li>
+            </a>
+            <a href={`/blog`}>
+              <li className="">
+                <div
+                  className="flex flex-col justify-center items-center gap-1"
+                  style={{ borderBottom: "3px solid #ec878f" }}
+                >
+                  <i className={`fa-solid fa-pen-to-square text-rose-500`}></i>
+                </div>
+              </li>
+            </a>
+            <a href={`/offer`}>
+              <li className="">
+                <div className="flex flex-col justify-center items-center gap-1">
+                  <i className="fa-regular fa-heart text-slate-700"></i>
+                </div>
+              </li>
+            </a>
+            <a href={`/notification`}>
+              <li className="">
+                <div className="inline-flex relative w-fit">
+                  <i className="fa-regular fa-bell text-slate-700"></i>
+                </div>
+              </li>
+            </a>
+          </ul>
+        </Footer>
+      ) : (
+        <div className=" fixed bottom-5 w-[90%] left-5">
           <Footer>
-            <ul className="flex w-full justify-around footer border-t border-gray-200 fixed bottom-0 ">
-              <a href={`/dashboard`}>
+            <ul className="flex w-full justify-around footer border-b border-gray-200 rounded-full bg-gray-50 shadow-md py-4">
+              <a href={`/dashboard-babysitter`}>
                 <li className="">
-                  <div className="flex flex-col justify-center items-center">
-                    <i className={`fa-solid fa-house text-slate-600`}></i>
+                  <div className="flex flex-col justify-center items-center rounded-full ">
+                    <i className={`fa-solid fa-house text-gray-700`}></i>
                   </div>
                 </li>
               </a>
               <a href={`/blog`}>
                 <li className="">
-                  <div
-                    className="flex flex-col justify-center items-center gap-1"
-                    style={{ borderBottom: "3px solid #ec878f" }}
-                  >
-                    <i
-                      className={`fa-solid fa-pen-to-square text-rose-500`}
-                    ></i>
+                  <div className="flex flex-col justify-center items-center  rounded-full gap-1 bg-rose-400">
+                    <i className={`fa-solid fa-pen-to-square text-white`}></i>
                   </div>
                 </li>
               </a>
-              <a href={`/offer`}>
-                <li className="">
-                  <div className="flex flex-col justify-center items-center gap-1">
-                    <i className="fa-regular fa-heart text-slate-700"></i>
-                  </div>
-                </li>
-              </a>
+
               <a href={`/notification`}>
                 <li className="">
-                  <div className="inline-flex relative w-fit">
+                  <div className="flex flex-col justify-center items-center  rounded-full gap-1 ">
                     <i className="fa-regular fa-bell text-slate-700"></i>
                   </div>
                 </li>
               </a>
             </ul>
           </Footer>
-        ) : (
-          <div className=" fixed bottom-5 w-[90%] left-5">
-            <Footer>
-              <ul className="flex w-full justify-around footer border-b border-gray-200 rounded-full bg-gray-50 shadow-md py-4">
-                <a href={`/dashboard-babysitter`}>
-                  <li className="">
-                    <div className="flex flex-col justify-center items-center rounded-full ">
-                      <i className={`fa-solid fa-house text-gray-700`}></i>
-                    </div>
-                  </li>
-                </a>
-                <a href={`/blog`}>
-                  <li className="">
-                    <div className="flex flex-col justify-center items-center  rounded-full gap-1 bg-rose-400">
-                      <i className={`fa-solid fa-pen-to-square text-white`}></i>
-                    </div>
-                  </li>
-                </a>
-
-                <a href={`/notification`}>
-                  <li className="">
-                    <div className="flex flex-col justify-center items-center  rounded-full gap-1 ">
-                      <i className="fa-regular fa-bell text-slate-700"></i>
-                    </div>
-                  </li>
-                </a>
-              </ul>
-            </Footer>
-          </div>
-        )}
+        </div>
+      )}
+      <div className=" flex flex-col gap-2 bg-white overflow-x-hidden ">
+        <Header />
       </div>
 
       <div className="w-full  flex justify-center">

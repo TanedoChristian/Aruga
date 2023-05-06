@@ -68,6 +68,7 @@ Route::put('/resume/{id}', [ResumeController::class, 'update']);
 
 Route::post('/application', [ApplicationController::class, 'insert']);
 Route::get('/application/{id}', [ApplicationController::class, 'show']);
+Route::get('/application/done/{id}', [ApplicationController::class, 'showAllDone']);
 Route::get('/application/babysitter/{id}', [ApplicationController::class, 'showBabysitter']);
 Route::put('/application/delete/{id}', [ApplicationController::class, 'updateDelete']);
 Route::put('/application/{id}', [ApplicationController::class, 'updateStatus']);
