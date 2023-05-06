@@ -25,7 +25,7 @@ class SubscriptionController extends Controller
         $currentDateTime->add(new DateInterval('P1M'));
         $newDateTime = $currentDateTime->format('Y-m-d H:i:s');
         $subscription->date_ended = $newDateTime;
-        $subscription->status = 'Active';
+        $subscription->status = 'pending';
 
         $filename = $request->file->store('public');
         $storeFile = str_replace("public", "storage", $filename);
@@ -36,6 +36,6 @@ class SubscriptionController extends Controller
     }
 
     public function show(Request $request){
-        return SubscriptionModel::where([['user_id', $request->route('id')], ['status', 'Active']])->get();
+        return SubscriptionModel::where([['user_id', $request->route('id')]])->get();
     }
 }

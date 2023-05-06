@@ -27,6 +27,7 @@ import ViewSubscription from "./components/ViewSubscription";
 import PendingPage from "./components/PendingPage";
 import Message from "./components/Message";
 import Inbox from "./components/Inbox";
+import SubscriptionPending from "./components/SubscriptionPending";
 
 const App = () => {
   return (
@@ -56,6 +57,10 @@ const App = () => {
             }
           ></Route>
           <Route path="/offer" element={<OfferJobs />}></Route>
+          <Route
+            path="/subscription/pending"
+            element={<SubscriptionPending />}
+          ></Route>
           <Route
             path="/dashboard"
             element={

@@ -39,7 +39,7 @@ const Subscription = () => {
       headers: { "Content-Type": '"multipart/form-data' },
     }).then((data) => {
       console.log(data);
-      window.location.href = "/dashboard";
+      window.location.href = "/subscription/Pending";
     });
   };
 
