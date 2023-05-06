@@ -5,7 +5,7 @@ import Header from "./Header";
 const Message = () => {
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState({});
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState({}); 
 
   useEffect(() => {
     const intervalId = setInterval(() => {

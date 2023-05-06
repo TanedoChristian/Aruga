@@ -25,7 +25,7 @@ class SubscriptionController extends Controller
         $currentDateTime->add(new DateInterval('P1M'));
         $newDateTime = $currentDateTime->format('Y-m-d H:i:s');
         $subscription->date_ended = $newDateTime;
-        $subscription->status = 'Active';
+        $subscription->status = 'pending';
 
         $filename = $request->file->store('public');
         $storeFile = str_replace("public", "storage", $filename);
