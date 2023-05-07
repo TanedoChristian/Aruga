@@ -36,6 +36,6 @@ class SubscriptionController extends Controller
     }
 
     public function show(Request $request){
-        return SubscriptionModel::where([['user_id', $request->route('id')], ['status', 'Active']])->get();
+        return SubscriptionModel::where([['user_id', $request->route('id')]])->get();
     }
 }

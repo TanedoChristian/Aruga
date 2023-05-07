@@ -27,11 +27,12 @@ const Dashboard = (props) => {
         `${SetUp.SERVER_URL()}/subscribe/${sessionStorage.getItem("userid")}`
       )
       .then(({ data }) => {
-        console.log(data);
         if (data.length == 0) {
           window.location.href = `/subscription?userid=${sessionStorage.getItem(
             "userid"
           )}`;
+        } else if (data[0].status.toString().toLowerCase() != "active") {
+          window.location.href = "/subscription/pending";
         } else {
           sessionStorage.setItem("subscription_id", data[0].subscription_id);
         }

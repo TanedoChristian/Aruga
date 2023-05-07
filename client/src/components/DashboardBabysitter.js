@@ -60,7 +60,7 @@ const DashboardBabysitter = (props) => {
   };
 
   useEffect(() => {
-    if (sessionStorage.getItem("status").toString().toLowerCase() != "active") {
+    if (sessionStorage.getItem("status") != "active") {
       window.location.href = "/pending";
     } else {
       axios.get(`${SetUp.SERVER_URL()}/jobs`).then(({ data }) => {
