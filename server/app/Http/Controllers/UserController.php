@@ -66,25 +66,37 @@ class UserController extends Controller
 
     public function sendMessage(Request $request) {
 
-
-        self::$id = substr(uniqid('', true), -3);
-
-        if(!ArugaUser::where('mobileno', $request->mobileno)->exists()){
-            return response()->json(['error' => 'Resource not found'], 404);
-        } else {
-            $sid = "AC8239eb606e924309de484fd150b2f5f8";
-            $token = "40a577ab3c671341bce3ce3699513f91";
+            $sid = "AC6018226350d73337c22eabde08211c5a";
+            $token = "2c752306c019cf9adbac35d6cf7561c1";
             $twilio = new Client($sid, $token);
             $message = $twilio->messages
-                            ->create("+639608997323", // to
+                            ->create("+639608997323",
                                     [
                                         "body" => "Your Aruga verification code is 4578",
-                                        "from" => "+12765985201"
+                                        "from" => "+13203780490"
                                     ]
                             );
 
-            return response()->json(['message' => 'success'], 200);
-        }
+
+        // self::$id = substr(uniqid('', true), -3);
+
+        // if(!ArugaUser::where('mobileno', $request->mobileno)->exists()){
+        //     return response()->json(['error' => 'Resource not found'], 404);
+
+        // } else {
+        //     $sid = "AC6018226350d73337c22eabde08211c5a";
+        //     $token = "2c752306c019cf9adbac35d6cf7561c1";
+        //     $twilio = new Client($sid, $token);
+        //     $message = $twilio->messages
+        //                     ->create("+639608997323",
+        //                             [
+        //                                 "body" => "Your Aruga verification code is 4578",
+        //                                 "from" => "+13203780490"
+        //                             ]
+        //                     );
+
+        //     return response()->json(['message' => 'success'], 200);
+        // }
     }
 
     public function verifyNumber(Request $request) {
@@ -93,9 +105,6 @@ class UserController extends Controller
         } else {
             return response()->json(['error' => 'Not found'], 404);
         }
-
-
-
     }
 
     public function edit(Request $request) {
