@@ -22,7 +22,7 @@ const DashboardBabysitter = (props) => {
     }).then(({ data }) => {
       setUser(data[0]);
     });
-  });
+  }, []);
 
   const [isShowModal, setShowModal] = useState(false);
   const [showNav, setShowNav] = useState(false);
@@ -30,6 +30,7 @@ const DashboardBabysitter = (props) => {
   const [salary, setSalary] = useState({ min: 0.0, max: 0.0 });
   const [isSort, setSort] = useState(false);
   const [isShowAlert, setAlert] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   const handleShow = () => {
     setShowNav(!showNav);
@@ -67,7 +68,7 @@ const DashboardBabysitter = (props) => {
         setJobs(data);
       });
     }
-  }, []);
+  }, [success]);
 
   const handleApply = (id, parent_id, subscription_id) => {
     setAlert(!isShowAlert);
@@ -262,6 +263,12 @@ const DashboardBabysitter = (props) => {
             Recent Jobs
           </h1>
           <div className="flex items-center gap-6">
+            <i
+              class="fa fa-refresh"
+              onClick={() => {
+                setSuccess(!success);
+              }}
+            ></i>
             <div className="gap-2 flex items-center" onClick={handleShowSort}>
               <p className="text-slate-600 text-sm">Sort By</p>
               <div
