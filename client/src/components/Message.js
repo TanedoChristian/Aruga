@@ -51,9 +51,11 @@ const Message = () => {
       <Header />
 
       <div className="w-full">
-        <h1 className="py-3 px-5 font-bold tracking-wide text-xl poppins">
-          {`${user?.firstname} ${user?.lastname}`}
-        </h1>
+        <div className="flex justify-between">
+          <h1 className="py-3 px-5 font-bold tracking-wide text-xl poppins">
+            {`${user?.firstname} ${user?.lastname}`}
+          </h1>
+        </div>
       </div>
       <div class="flex flex-row h-full w-full overflow-x-hidden">
         <div class="flex flex-col flex-auto h-full p-6">

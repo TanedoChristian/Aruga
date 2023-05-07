@@ -88,7 +88,7 @@ const DashboardBabysitter = (props) => {
   };
 
   return (
-    <div className="">
+    <div className="pb-20">
       <Modal isShowModal={isShowModal}></Modal>
 
       <div
@@ -339,7 +339,7 @@ const DashboardBabysitter = (props) => {
                 <div className="px-4 py-2 text-xs text-gray-700  flex flex-col gap-1 justify-center ">
                   <div className="flex items-center">
                     <i className="far fa-address-card fa-fw  mr-2 text-rose-500"></i>
-                    <p className="text-xs">20,000 a month</p>
+                    <p className="text-xs">{job.salary}</p>
                   </div>
                   <span className="flex items-center justify-between">
                     <div className="flex items-center">
@@ -396,7 +396,7 @@ const DashboardBabysitter = (props) => {
               <div className="px-4 py-2 text-xs text-gray-700  flex flex-col gap-1 justify-center ">
                 <div className="flex items-center">
                   <i className="far fa-address-card fa-fw text-rose-500 mr-2"></i>
-                  <p className="text-xs">20,000 a month</p>
+                  <p className="text-xs">{job.salary} per hour</p>
                 </div>
                 <span className="flex items-center justify-between">
                   <div className="flex items-center">

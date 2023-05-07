@@ -43,7 +43,7 @@ class JobsController extends Controller
         $job->jobpost_id = uniqid('jobpost');
         $job->parent_id = $request->parent_id;
         $job->jobpost_desc = $request->description;
-        $job->jobpost_type = $request->type;
+        $job->jobpost_type = $request->category;
         $job->jobpost_status = "active";
         $job->salary = $request->salary;
         $job->jobpost_address = $request->address;

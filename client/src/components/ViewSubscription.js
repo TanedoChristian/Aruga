@@ -29,7 +29,7 @@ const ViewSubscription = () => {
                 <div class="inline-block px-4 py-2 bg-gray-100 rounded-full">
                   <h3 class="text-sm font-semibold text-gray-900">Standard</h3>
                 </div>
-                <p class="mt-5 text-5xl font-bold text-black">Php. 100</p>
+                <p class="mt-5 text-5xl font-bold text-black">Php. 330</p>
                 <p class="mt-2 text-base text-gray-600">Per month</p>
 
                 <ul class="flex flex-col mt-8 space-y-4">

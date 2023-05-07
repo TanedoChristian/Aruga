@@ -20,7 +20,7 @@ const ResumeBuilder = () => {
       data: { ...resumeData, babysitter_id: sessionStorage.getItem("userid") },
     }).then(({ data }) => {
       console.log(data);
-      window.location.href = `${SetUp.SERVER_URL()}/user-details?userid=${sessionStorage.getItem(
+      window.location.href = `/user-details?userid=${sessionStorage.getItem(
         "userid"
       )}`;
     });

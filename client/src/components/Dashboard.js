@@ -93,7 +93,7 @@ const Dashboard = (props) => {
           <a href={`/offer`}>
             <li className="">
               <div className="flex flex-col justify-center items-center gap-1">
-                <i className="fa-regular fa-heart text-slate-700"></i>
+                <i class="fa-solid fa-note-sticky"></i>
               </div>
             </li>
           </a>

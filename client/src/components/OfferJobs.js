@@ -93,6 +93,12 @@ const OfferJobs = () => {
     });
   };
 
+  const handleCategory = (e) => {
+    setPostJob((prev) => {
+      return { ...postJob, category: e.target.value };
+    });
+  };
+
   const handleAddress = (e) => {
     setPostJob((prev) => {
       return { ...postJob, address: e.target.value };
@@ -144,7 +150,7 @@ const OfferJobs = () => {
         parent_id: sessionStorage.getItem("userid"),
         title: postJob.title,
         description: postJob.description,
-        type: "Full Time",
+        category: postJob.category,
         salary: postJob.salary,
         address: postJob.address,
         experience: selectValue,
@@ -209,7 +215,7 @@ const OfferJobs = () => {
                   className="flex flex-col justify-center items-center gap-1"
                   style={{ borderBottom: "3px solid #ec878f" }}
                 >
-                  <i className="fa-regular fa-heart text-rose-500"></i>
+                  <i class="fa-solid fa-note-sticky text-rose-500"></i>
                 </div>
               </li>
             </a>
@@ -284,6 +290,17 @@ const OfferJobs = () => {
                   onChange={handleTitle}
                 />
               </div>
+
+              <label className="text-lg font-medium">Category</label>
+              <select
+                class="flex flex-col gap-2 p-2 rounded-md bg-white"
+                onChange={handleCategory}
+              >
+                <option selected>Choose a Category</option>
+
+                <option value="Full Time">Full Time</option>
+                <option value="Part Time">Part Time</option>
+              </select>
 
               <div className="flex flex-col gap-1">
                 <label className="text-lg font-medium">Address</label>

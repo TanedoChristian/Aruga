@@ -87,7 +87,10 @@ const UserJobs = () => {
                   <p className="text-sm">{job.jobpost_desc}</p>
                   <div className="mt-3 flex items-center gap-2">
                     <span className="inline-block px-2 py-1.5 leading-none bg-rose-500 text-white rounded font-semibold  tracking-wide text-xs">
-                      {job.salary}.00 per month
+                      Php. {job.salary}{" "}
+                      {job.jobpost_type != "Full Time"
+                        ? "per hour"
+                        : "per month"}
                     </span>
                     <span className="inline-block px-2 py-1.5 leading-none  bg-rose-500 text-white rounded font-semibold  tracking-wide text-xs">
                       {job.jobpost_type}

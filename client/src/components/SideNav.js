@@ -93,7 +93,7 @@ const SideNav = (props) => {
 
           <li className=" p-3 text-white   px-5 items-center ">
             <a href={`user-blog`} className="flex gap-2 items-center">
-              <i class="fa-solid fa-blog"></i>
+              <i className={`fa-solid fa-pen-to-square`}></i>
               <p
                 className="text-lg text-white tracking-wide"
                 style={{ fontFamily: "Poppins", fontWeight: 400 }}
@@ -105,7 +105,7 @@ const SideNav = (props) => {
           {sessionStorage.getItem("type") === "parent" ? (
             <li className=" p-3 text-white   px-5 items-center ">
               <a href="/user-jobs" className="flex gap-2 items-center">
-                <i class="fa-solid fa-scroll"></i>
+                <i class="fa-solid fa-note-sticky"></i>
                 <p
                   className="text-lg text-white tracking-wide"
                   style={{ fontFamily: "Poppins", fontWeight: 400 }}
