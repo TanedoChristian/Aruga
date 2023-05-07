@@ -53,9 +53,7 @@ const Login = () => {
   };
 
   const handleClickPhone = () => {
-    axios.get(`${SetUp.SERVER_URL()}/otp`).then((data) => {
-      window.location.href = "/login-otp";
-    });
+    window.location.href = "/login-otp";
   };
 
   return (
