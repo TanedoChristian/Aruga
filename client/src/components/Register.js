@@ -19,6 +19,7 @@ const spaceValidation = (validationData) => /\S/.test(validationData);
 const Register = () => {
   const [user, setUser] = useState({});
   const [file, setFile] = useState({});
+  const [isChecked, setIsChecked] = useState(false);
   const [errorFile, setErrorFile] = useState(false);
 
   const {
@@ -105,8 +106,10 @@ const Register = () => {
     });
 
     if (e.target.files[0].size > 4 * 1024 * 1024) {
+      console.log("mb is more than 4");
       setErrorFile(true);
     } else {
+      console.log("mb is less than 4");
       setErrorFile(false);
     }
   };
@@ -116,6 +119,10 @@ const Register = () => {
       return { ...prev, type: e.target.value };
     });
   };
+
+  const handleCheckbox = (e) => {
+    setIsChecked(event.target.checked);
+  }
 
   const handleSubmission = (e) => {
     let details = {
@@ -162,6 +169,33 @@ const Register = () => {
   const showError = (message) => {
     return <p className="text-sm text-red-600">Invalid {message}</p>;
   };
+
+  let checkValid = true;
+  if (
+    !errorFirstname &&
+    !errorLastname &&
+    !errorAddress &&
+    !errorTelNo &&
+    !errorMobile &&
+    !errorEmail &&
+    !errorUsername &&
+    !errorPassword &&
+    matchPassword() &&
+    !errorFile &&
+    user.type &&
+    isChecked
+  ) {
+    checkValid = false;
+  }
+  // console.log(!errorFirstname)
+  // console.log(!errorLastname)
+  // console.log(!errorAddress)
+  // console.log(!errorTelNo)
+  // console.log(!errorMobile)
+  // console.log(!errorEmail)
+  // console.log(!errorUsername)
+  // console.log(!errorPassword)
+  // console.log(matchPassword())
 
   return (
     <section className="">
@@ -423,7 +457,12 @@ const Register = () => {
 
               <div className="flex">
                 <p className="font-md mr-3">Type</p>
-                {!user.type && <p className="text-md text-red-600"> Please choose user type</p>}
+                {!user.type && (
+                  <p className="text-md text-red-600">
+                    {" "}
+                    Please choose user type
+                  </p>
+                )}
               </div>
 
               <main className="flex w-full items-center justify-center">
@@ -473,8 +512,9 @@ const Register = () => {
                     aria-describedby="terms"
                     type="checkbox"
                     className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800"
-                    
-                    required
+                    checked={isChecked}
+                    onChange={handleCheckbox}
+                    required=""
                   />
                 </div>
                 <div className="ml-3 text-sm">
@@ -492,7 +532,10 @@ const Register = () => {
               <button
                 onClick={handleSubmission}
                 type="submit"
-                className="w-full  text-white  bg-rose-400 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                className={`w-full text-white ${
+                  checkValid ? `bg-gray-500` : `bg-rose-400`
+                } focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center`}
+                disabled={checkValid}
               >
                 Create an account
               </button>
