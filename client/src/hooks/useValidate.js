@@ -1,7 +1,7 @@
-import { useReducer } from "react";
+import { useReducer, useState } from "react";
 
 const initialState = {
-    value: '',
+    value: undefined,
     isTouched: false
 }
 
@@ -18,6 +18,7 @@ const reducer = (inputState, action) => {
 const useValidate = (validation) => {
     const [inputState, dispatch] = useReducer(reducer, initialState)
     const hasError = !validation(inputState.value)
+    console.log(hasError)
 
     const onChangeHandler = (e) => {
         dispatch({type: 'ENTER', payload: {value: e.target.value}})

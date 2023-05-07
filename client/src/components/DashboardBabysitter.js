@@ -12,7 +12,6 @@ import moment from "moment";
 
 const DashboardBabysitter = (props) => {
   const [jobs, setJobs] = useState([]);
-
   const [user, setUser] = useState({});
 
   useEffect(() => {
@@ -27,7 +26,7 @@ const DashboardBabysitter = (props) => {
   const [isShowModal, setShowModal] = useState(false);
   const [showNav, setShowNav] = useState(false);
   const [isShowSort, setShowSort] = useState(false);
-  const [salary, setSalary] = useState({ min: 0.0, max: 0.0 });
+  const [salary, setSalary] = useState({ min: 0.0, max: 20000.0 });
   const [isSort, setSort] = useState(false);
   const [isShowAlert, setAlert] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -48,12 +47,14 @@ const DashboardBabysitter = (props) => {
     setSalary((prev) => {
       return { ...prev, min: e.target.value };
     });
+    setSort(false)
   };
 
   const handleMaxSlider = (e) => {
     setSalary((prev) => {
       return { ...prev, max: e.target.value };
     });
+    setSort(false)
   };
 
   const handleAlert = () => {
@@ -87,6 +88,19 @@ const DashboardBabysitter = (props) => {
       console.log(data);
     });
   };
+
+  // const handleApplyFilter = () => {
+  //   setSort(true)
+  // }
+
+  // console.log(typeof(jobs.salary))
+  // console.log(typeof(jobs[1].salary))
+  const filteredJob = jobs.filter(
+    (job) =>
+      parseFloat(job.salary) >= salary.min &&
+      parseFloat(job.salary) <= salary.max
+  );
+  //console.log(filteredJob)
 
   return (
     <div className="pb-20">
@@ -128,7 +142,7 @@ const DashboardBabysitter = (props) => {
             onClick={handleShowModal}
           ></i>
         </div>
-        <h1 className="text-xl font-medium p-3">Date</h1>
+        {/* <h1 className="text-xl font-medium p-3">Date</h1>
         <div className="flex gap-3 items-center  p-3 bg-gray-100 rounded-lg justify-around">
           <div className="flex items-center">
             <input
@@ -155,7 +169,7 @@ const DashboardBabysitter = (props) => {
               Old
             </label>
           </div>
-        </div>
+        </div> */}
 
         <div className="px-4 py-6 bg-gray-100">
           <h3 className="-mx-2 -my-3 flow-root">
@@ -197,7 +211,14 @@ const DashboardBabysitter = (props) => {
             </div>
           </h3>
         </div>
-        <button className="fixed bottom-5 p-3 bg-rose-400 text-white font-medium text-lg  right-5 w-[50%] rounded-md">
+
+        <button
+          className="fixed bottom-5 p-3 bg-rose-400 text-white font-medium text-lg  right-5 w-[50%] rounded-md"
+          onClick={() => {
+            setSort(true);
+            // setSort(false);
+          }}
+        >
           Apply
         </button>
       </div>
@@ -308,7 +329,7 @@ const DashboardBabysitter = (props) => {
       </div>
       {isSort ? (
         <div className="flex  flex-col items-center gap-4 h-full border mt-5  rounded-t-3xl bg-white ">
-          {jobs
+          {filteredJob
             .slice(0)
             .reverse()
             .map((job) => (
