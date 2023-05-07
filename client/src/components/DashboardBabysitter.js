@@ -40,7 +40,6 @@ const DashboardBabysitter = (props) => {
 
   const handleShowModal = () => {
     setShowModal(!isShowModal);
-    setSort(false)
   };
 
   const handleMinSlider = (e) => {
@@ -211,7 +210,7 @@ const DashboardBabysitter = (props) => {
             </div>
           </h3>
         </div>
-        
+
         <button
           className="fixed bottom-5 p-3 bg-rose-400 text-white font-medium text-lg  right-5 w-[50%] rounded-md"
           onClick={() => {
