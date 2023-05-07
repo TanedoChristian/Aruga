@@ -17,6 +17,22 @@ const UserDetails = () => {
   const [showModal, setShowModal] = useState(false);
   const [reviewsData, setReviewsData] = useState([]);
   const [success, setSuccess] = useState(false);
+  const [isSuccessHire, setSuccessHire] = useState(false)
+
+  const [hireDetails, setHireDetails] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(
+        `${SetUp.SERVER_URL()}/hire/${sessionStorage.getItem(
+          "userid"
+        )}/${userid}`
+      )
+      .then(({ data }) => {
+        console.log(data.length);
+        setHireDetails(data);
+      });
+  }, [isSuccessHire]);
 
   useEffect(() => {
     axios.get(`${SetUp.SERVER_URL()}/review/${userid}`).then(({ data }) => {
@@ -250,6 +266,9 @@ const UserDetails = () => {
                   <div className="flex justify-end p-2 ">
                     <button
                       className="p-2 bg-rose-400 text-white text-xs rounded-md fixed"
+                      style={{
+                        display: hireDetails.length != 0 ? "flex" : "none",
+                      }}
                       onClick={() => {
                         setShowModal(true);
                       }}
@@ -392,7 +411,8 @@ const UserDetails = () => {
                         babysitter_id: userid,
                       },
                     }).then((data) => {
-                      console.log(data);
+                      setModalOpen(false);
+                      setSuccessHire(!isSuccessHire)
                     });
               }
             }}
@@ -410,17 +430,25 @@ const UserDetails = () => {
         </div>
       </ConfirmModal>
 
-      <div className="fixed bottom-2  flex w-[90%] justify-center">
-        <button
-          className="py-3 px-4  font-medium  w-[70%] bg-rose-500 text-white rounded-lg"
-          onClick={() => {
-            setModalOpen(true);
-            
+      {sessionStorage.getItem("userid") == userid ? (
+        ""
+      ) : (
+        <div
+          className="fixed bottom-2  flex w-[90%] justify-center"
+          style={{
+            display: hireDetails.length == 0 ? "flex" : "none",
           }}
         >
-          Hire Now
-        </button>
-      </div>
+          <button
+            className="py-3 px-4  font-medium  w-[70%] bg-rose-500 text-white rounded-lg"
+            onClick={() => {
+              setModalOpen(true);
+            }}
+          >
+            Hire Now
+          </button>
+        </div>
+      )}
     </div>
   );
 };

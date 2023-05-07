@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import SetUp from "../Setup";
 import Header from "./Header";
+import QR from "../img/qr.png";
 
 const Subscription = () => {
   const [isOpen, setOpen] = useState(false);
@@ -128,8 +129,17 @@ const Subscription = () => {
         className="flex   h-[92vh] mt-10 p-5"
         style={{ display: isOpen ? "block" : "none" }}
       >
-        <div className="text-xl font-bold poppins w-full p-3">
-          Upload Payment Receipt
+        <div className="flex gap-2 items-center">
+          <h1 className="poppins text-lg">Step 1:</h1>
+          <h1 className="text-sm">Scan Gcash Qr Code</h1>
+        </div>
+
+        <div className="w-full flex w-50">
+          <img src={QR} className="object-fit" />
+        </div>
+        <div className="flex gap-2 items-center">
+          <h1 className="poppins text-lg">Step 2:</h1>
+          <h1 className="text-sm">Upload payment receipt.</h1>
         </div>
         <div className="flex items-center justify-center w-full border">
           <label

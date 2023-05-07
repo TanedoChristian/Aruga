@@ -42,6 +42,8 @@ Route::delete('/jobs/{id}', [JobsController::class, 'delete']);
 
 Route::post('/hire', [HireController::class, 'insert']);
 Route::get('/hire/{id}', [HireController::class, 'show']);
+Route::get('/hire/inbox/{id}', [HireController::class, 'showInbox']);
+Route::get('/hire/{id}/{id1}', [HireController::class, 'showUserDetails']);
 
 Route::get('/jobs/{id}', [JobsController::class, 'getStatus']);
 Route::put('/jobs',[JobsController::class, 'update']);
@@ -76,6 +78,7 @@ Route::put('/application/{id}', [ApplicationController::class, 'updateStatus']);
 
 Route::post('/subscribe', [SubscriptionController::class, 'insert']);
 Route::get('/subscribe/{id}', [SubscriptionController::class, 'show']);
+
 
 Route::post('/message', [MessageController::class, 'show']);
 Route::get('/message/inbox/{id}', [MessageController::class, 'getInbox']);

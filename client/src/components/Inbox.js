@@ -15,38 +15,12 @@ const Inbox = () => {
   useEffect(() => {
     axios
       .get(
-        `${SetUp.SERVER_URL()}/application/done/${sessionStorage.getItem(
-          "userid"
-        )}`
+        `${SetUp.SERVER_URL()}/hire/inbox/${sessionStorage.getItem("userid")}`
       )
       .then(({ data }) => {
         console.log(data);
         setInbox(data);
       });
-
-    // axios
-    //   .get(
-    //     `${SetUp.SERVER_URL()}/message/inbox/${sessionStorage.getItem(
-    //       "userid"
-    //     )}`
-    //   )
-    //   .then(({ data }) => {
-    //     console.log(data);
-    // data.map((item) => {
-    //   if (item.from_id == sessionStorage.getItem("userid")) {
-    //     let data = [];
-    //     data.push(item);
-    //     setMessageFrom(data);
-    //   } else {
-    //     let data1 = [];
-    //     data1.push(item);
-    //     setMessageTo(data1);
-    //   }
-    // });
-    //     console.log(`Message From: ${messageFrom}`);
-    //     console.log(`Message To: ${messageTo}`);
-    //     setInbox(data);
-    //   });
   }, []);
 
   const handleClick = (item) => {
