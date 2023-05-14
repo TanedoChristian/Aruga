@@ -38,6 +38,7 @@ const Jobs = () => {
             name={`${user.firstname} ${user.lastname}`}
             address={user.address}
             userid={user.user_id}
+            age={user.age}
           />
         ))}
       </div>
