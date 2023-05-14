@@ -108,7 +108,7 @@ const UserDetails = () => {
           <div
             id="defaultModal"
             aria-hidden="true"
-            className=" fade-in-1 animation-fade w-[100%] bg-white  w3-animate-top z-40 h-[100vh] flex items-center overflow-hidden h-screen top-0 "
+            className=" fade-in-1 animation-fade w-[100%] bg-white  w3-animate-top   flex items-center overflow-hidden h-screen"
           >
             <div className=" w-full h-[90%] max-w-2xl md:h-auto  overflow-hidden">
               <div className=" bg-white rounded-lg  h-screen shadow-xl">
@@ -294,7 +294,12 @@ const UserDetails = () => {
               >
                 Reviews
               </h1>
-              <div className="flex flex-col h-full bg-white mb-20 h-[screen] h-[250px] overflow-auto relative">
+              <div
+                className="flex flex-col h-full bg-white mb-20 h-[screen] h-[250px] overflow-auto relative"
+                style={{
+                  display: showModal ? "none" : "flex",
+                }}
+              >
                 {sessionStorage.getItem("userid") != userid ? (
                   <div className="flex justify-end p-2 ">
                     <button

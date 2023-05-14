@@ -15,7 +15,7 @@ const passwordValidation = (validationData) =>
     validationData
   );
 const spaceValidation = (validationData) => /\S/.test(validationData);
-const ageValidate = (age) => age >= 18 ? true : false;
+const ageValidate = (age) => (age >= 18 ? true : false);
 
 const Register = () => {
   const [user, setUser] = useState({});
@@ -44,8 +44,8 @@ const Register = () => {
     isTouched: isTouchedAge,
     onChangeHandler: handleAge,
     onBlurHandler: blurAge,
-    hasError: errorAge
-  } = useValidate(ageValidate)    
+    hasError: errorAge,
+  } = useValidate(ageValidate);
 
   const {
     value: addressValue,
@@ -138,6 +138,7 @@ const Register = () => {
       firstname: firstNameValue,
       lastname: lastNameValue,
       address: addressValue,
+      age: ageValue,
       mobileno: mobileValue,
       telno: telNoValue,
       email: emailValue,
@@ -197,7 +198,6 @@ const Register = () => {
   ) {
     checkValid = false;
   }
-
 
   return (
     <section className="">
@@ -282,7 +282,9 @@ const Register = () => {
                   onBlur={blurAge}
                   required=""
                 />
-                {errorAge && isTouchedAge && showError("age (Age must be 18 years old and above)")}
+                {errorAge &&
+                  isTouchedAge &&
+                  showError("age (Age must be 18 years old and above)")}
               </div>
 
               <div>

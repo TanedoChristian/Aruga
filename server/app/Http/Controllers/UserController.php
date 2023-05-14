@@ -31,6 +31,7 @@ class UserController extends Controller
     $user->img = $storeFile;
     $id = uniqid('user');
     $user->user_id = $id;
+    $user->age = $request->age;
     $user->telno = $request->telno;
     $user->deleted = $request->deleted;
     $user->mobileno = $request->mobileno;
