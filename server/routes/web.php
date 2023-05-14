@@ -58,6 +58,7 @@ Route::get('/blog/{id}', [BlogController::class, 'showById']);
 
 
 Route::get('/review', [ReviewController::class, 'get']);
+Route::get('/review/ratings', [ReviewController::class, 'getRatings']);
 Route::get('/review/{id}', [ReviewController::class, 'getById']);
 Route::post('/review', [ReviewController::class, 'insert']);
 

@@ -414,7 +414,7 @@ const OfferJobs = () => {
                 <input
                   type="number"
                   className="p-3 bg-gray-50 rounded-lg outline-none w-[40%] border border-slate-200"
-                  placeholder="Salary"
+                  placeholder="per hour"
                   onChange={handleSalary}
                 />
               </div>

@@ -122,7 +122,7 @@ const Register = () => {
 
   const handleCheckbox = (e) => {
     setIsChecked(event.target.checked);
-  }
+  };
 
   const handleSubmission = (e) => {
     let details = {
@@ -408,7 +408,7 @@ const Register = () => {
                   for="email"
                   className="block mb-2 text-sm font-medium text-gray-900 "
                 >
-                  Upload Valid ID
+                  Upload Profile
                 </label>
                 <div className="flex items-center justify-center w-full border">
                   <label

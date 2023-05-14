@@ -30,6 +30,7 @@ const DashboardBabysitter = (props) => {
   const [isSort, setSort] = useState(false);
   const [isShowAlert, setAlert] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [search, setSearch] = useState();
 
   const handleShow = () => {
     setShowNav(!showNav);
@@ -47,14 +48,14 @@ const DashboardBabysitter = (props) => {
     setSalary((prev) => {
       return { ...prev, min: e.target.value };
     });
-    setSort(false)
+    setSort(false);
   };
 
   const handleMaxSlider = (e) => {
     setSalary((prev) => {
       return { ...prev, max: e.target.value };
     });
-    setSort(false)
+    setSort(false);
   };
 
   const handleAlert = () => {
@@ -89,18 +90,12 @@ const DashboardBabysitter = (props) => {
     });
   };
 
-  // const handleApplyFilter = () => {
-  //   setSort(true)
-  // }
-
-  // console.log(typeof(jobs.salary))
-  // console.log(typeof(jobs[1].salary))
-  const filteredJob = jobs.filter(
+  let filteredJob = jobs.filter(
     (job) =>
-      parseFloat(job.salary) >= salary.min &&
-      parseFloat(job.salary) <= salary.max
+      (parseFloat(job.salary) >= salary.min &&
+        parseFloat(job.salary) <= salary.max) ||
+      job.jobpost_type.toLowerCase() == search.toLowerCase()
   );
-  //console.log(filteredJob)
 
   return (
     <div className="pb-20">
@@ -257,11 +252,26 @@ const DashboardBabysitter = (props) => {
             type="text"
             className="px-5 py-3 w-[95%] rounded-2xl bg-white border border-gray-100 shadow-md outline-none hover:border-rose-500"
             placeholder="Search for jobs"
+            onChange={(e) => {
+              setSearch(e.target.value);
+            }}
           />
 
           <i
             className="fa-solid fa-search text-xl font-bold text-white absolute right-6  bg-rose-400 p-2 px-3 mt-1 text-center rounded-full"
-            onClick={handleShow}
+            onClick={() => {
+              console.log(search);
+
+              filteredJob.filter((item) => item.jobpost_type != search);
+              let result = jobs.filter(
+                (item) =>
+                  item.jobpost_type.toString() == search ||
+                  item.jobpost_address.toString() == search
+              );
+
+              setJobs(result);
+              filteredJob = result;
+            }}
           ></i>
         </div>
       </div>

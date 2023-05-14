@@ -65,18 +65,6 @@ const SideNav = (props) => {
           </li>
 
           <li className=" p-3 text-white   px-5 items-center">
-            <a href="/edit-profile" className="flex gap-2 items-center">
-              <i class="fa-solid fa-lock"></i>
-              <p
-                className="text-lg  tracking-wide"
-                style={{ fontFamily: "Poppins", fontWeight: 400 }}
-              >
-                Change Password
-              </p>
-            </a>
-          </li>
-
-          <li className=" p-3 text-white   px-5 items-center">
             <a
               href={`/subscription?userid=${sessionStorage.getItem("userid")}`}
               className="flex gap-2 items-center"

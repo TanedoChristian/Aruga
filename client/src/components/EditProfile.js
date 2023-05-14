@@ -118,7 +118,7 @@ const EditProfile = () => {
       address: addressValue === undefined ? user.address : addressValue,
       mobileno: mobileValue === undefined ? user.mobileno : mobileValue,
       email: emailValue === undefined ? user.email : emailValue,
-      img: file === null ? user.img : file
+      img: file === null ? user.img : file,
     };
 
     axios({
@@ -161,11 +161,11 @@ const EditProfile = () => {
   // console.log(!errorFile)
   // console.log(checkValid)
 
-  console.log(errorFirstname)
+  console.log(errorFirstname);
   // console.log(isTouchedFirstName)
   // console.log(firstNameValue)
 
-  console.log(errorEmail)
+  console.log(errorEmail);
   // console.log(isTouchedEmail)
   // console.log(emailValue)
 
@@ -194,7 +194,9 @@ const EditProfile = () => {
                 onChange={handleFirstname}
                 name="firstname"
                 className="border border-gray-300 text-gray-900 sm:text-sm rounded-lg  w-full p-2.5 shadow-md bg-white outline-0"
-                value={firstNameValue === undefined ? user.firstname : firstNameValue}
+                value={
+                  firstNameValue === undefined ? user.firstname : firstNameValue
+                }
                 onBlur={blurFirstname}
                 required=""
               />
@@ -213,7 +215,9 @@ const EditProfile = () => {
                 name="lastname"
                 onChange={handleLastname}
                 className="border border-gray-300 text-gray-900 sm:text-sm rounded-lg  shadow-md  otuline-0 w-full p-2.5"
-                value={lastNameValue === undefined ? user.lastname : lastNameValue}
+                value={
+                  lastNameValue === undefined ? user.lastname : lastNameValue
+                }
                 onBlur={blurLastname}
                 required=""
               />
@@ -256,7 +260,6 @@ const EditProfile = () => {
               onBlur={blurMobile}
               required=""
             />
-            {!errorMobile && isTouchedMobile && showError("mobile number")}
           </div>
 
           <div>
@@ -274,7 +277,7 @@ const EditProfile = () => {
               value={emailValue === undefined ? user.email : emailValue}
               onBlur={blurEmail}
               required=""
-            />
+            />{" "}
             {errorEmail && isTouchedEmail && showError("email")}
           </div>
 

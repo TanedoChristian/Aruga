@@ -34,4 +34,9 @@ class ReviewController extends Controller
         return response()->json(['message' => 'success'], 200);
 
     }
+
+
+    public function getRatings(){
+        return DB::select("select babysitter_id, round(avg(review_ratings)) as ratings from reviews group by babysitter_id");
+    }
 }
