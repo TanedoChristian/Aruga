@@ -12,7 +12,6 @@ import moment from "moment";
 
 const DashboardBabysitter = (props) => {
   const [jobs, setJobs] = useState([]);
-
   const [user, setUser] = useState({});
 
   useEffect(() => {
@@ -27,10 +26,11 @@ const DashboardBabysitter = (props) => {
   const [isShowModal, setShowModal] = useState(false);
   const [showNav, setShowNav] = useState(false);
   const [isShowSort, setShowSort] = useState(false);
-  const [salary, setSalary] = useState({ min: 0.0, max: 0.0 });
+  const [salary, setSalary] = useState({ min: 0.0, max: 20000.0 });
   const [isSort, setSort] = useState(false);
   const [isShowAlert, setAlert] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [search, setSearch] = useState();
 
   const handleShow = () => {
     setShowNav(!showNav);
@@ -48,12 +48,14 @@ const DashboardBabysitter = (props) => {
     setSalary((prev) => {
       return { ...prev, min: e.target.value };
     });
+    setSort(false);
   };
 
   const handleMaxSlider = (e) => {
     setSalary((prev) => {
       return { ...prev, max: e.target.value };
     });
+    setSort(false);
   };
 
   const handleAlert = () => {
@@ -87,6 +89,13 @@ const DashboardBabysitter = (props) => {
       console.log(data);
     });
   };
+
+  let filteredJob = jobs.filter(
+    (job) =>
+      (parseFloat(job.salary) >= salary.min &&
+        parseFloat(job.salary) <= salary.max) ||
+      job.jobpost_type.toLowerCase() == search.toLowerCase()
+  );
 
   return (
     <div className="pb-20">
@@ -128,7 +137,7 @@ const DashboardBabysitter = (props) => {
             onClick={handleShowModal}
           ></i>
         </div>
-        <h1 className="text-xl font-medium p-3">Date</h1>
+        {/* <h1 className="text-xl font-medium p-3">Date</h1>
         <div className="flex gap-3 items-center  p-3 bg-gray-100 rounded-lg justify-around">
           <div className="flex items-center">
             <input
@@ -155,7 +164,7 @@ const DashboardBabysitter = (props) => {
               Old
             </label>
           </div>
-        </div>
+        </div> */}
 
         <div className="px-4 py-6 bg-gray-100">
           <h3 className="-mx-2 -my-3 flow-root">
@@ -197,7 +206,14 @@ const DashboardBabysitter = (props) => {
             </div>
           </h3>
         </div>
-        <button className="fixed bottom-5 p-3 bg-rose-400 text-white font-medium text-lg  right-5 w-[50%] rounded-md">
+
+        <button
+          className="fixed bottom-5 p-3 bg-rose-400 text-white font-medium text-lg  right-5 w-[50%] rounded-md"
+          onClick={() => {
+            setSort(true);
+            // setSort(false);
+          }}
+        >
           Apply
         </button>
       </div>
@@ -236,11 +252,26 @@ const DashboardBabysitter = (props) => {
             type="text"
             className="px-5 py-3 w-[95%] rounded-2xl bg-white border border-gray-100 shadow-md outline-none hover:border-rose-500"
             placeholder="Search for jobs"
+            onChange={(e) => {
+              setSearch(e.target.value);
+            }}
           />
 
           <i
             className="fa-solid fa-search text-xl font-bold text-white absolute right-6  bg-rose-400 p-2 px-3 mt-1 text-center rounded-full"
-            onClick={handleShow}
+            onClick={() => {
+              console.log(search);
+
+              filteredJob.filter((item) => item.jobpost_type != search);
+              let result = jobs.filter(
+                (item) =>
+                  item.jobpost_type.toString() == search ||
+                  item.jobpost_address.toString() == search
+              );
+
+              setJobs(result);
+              filteredJob = result;
+            }}
           ></i>
         </div>
       </div>
@@ -308,7 +339,7 @@ const DashboardBabysitter = (props) => {
       </div>
       {isSort ? (
         <div className="flex  flex-col items-center gap-4 h-full border mt-5  rounded-t-3xl bg-white ">
-          {jobs
+          {filteredJob
             .slice(0)
             .reverse()
             .map((job) => (

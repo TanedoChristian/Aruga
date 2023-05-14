@@ -7,7 +7,27 @@ import useFetchApi from "../hooks/useFetchApi";
 import Background from "../img/background.png";
 
 const Jobs = () => {
-  const { datas } = useFetchApi(`${SetUp.SERVER_URL()}/users`);
+  const [datas, setDatas] = useState([]);
+  const [ratings, setRatings] = useState([]);
+  useEffect(() => {
+    axios.get(`${SetUp.SERVER_URL()}/users`).then(({ data }) => {
+      console.log(data);
+      setDatas(data);
+    });
+
+    axios.get(`${SetUp.SERVER_URL()}/review/ratings`).then(({ data }) => {
+      console.log(data);
+      setRatings(data);
+    });
+
+    Object.keys(datas).map((key) => {
+      if (ratings.hasOwnProperty(key)) {
+        ratings.status = true;
+      }
+    });
+
+    console.log(ratings);
+  }, []);
 
   return (
     <div className="w-full overflow-scroll flex justify-center   rounded-t-2xl   pb-20">

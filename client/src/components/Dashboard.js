@@ -17,6 +17,7 @@ const Dashboard = (props) => {
 
   const [user, setUser] = useState([]);
   const [showNav, setShowNav] = useState(false);
+  const [ratings, setRatings] = useState([]);
   const handleShow = () => {
     setShowNav(!showNav);
   };
