@@ -19,26 +19,20 @@ const SideNav = (props) => {
 
       <ul className="flex flex-col justify-between h-[90%] p-1 mt-5">
         <div>
-          {sessionStorage.getItem("type") === "babysitter" ? (
-            <li className=" p-3 text-white   px-5 items-center ">
-              <a
-                href={`/user-details?userid=${sessionStorage.getItem(
-                  "userid"
-                )}`}
-                className="flex gap-2 items-center"
+          <li className=" p-3 text-white   px-5 items-center ">
+            <a
+              href={`/user-details?userid=${sessionStorage.getItem("userid")}`}
+              className="flex gap-2 items-center"
+            >
+              <i class="fa-solid fa-user"></i>
+              <p
+                className="text-lg text-white tracking-wide"
+                style={{ fontFamily: "Poppins", fontWeight: 400 }}
               >
-                <i class="fa-solid fa-user"></i>
-                <p
-                  className="text-lg text-white tracking-wide"
-                  style={{ fontFamily: "Poppins", fontWeight: 400 }}
-                >
-                  My Profile
-                </p>
-              </a>
-            </li>
-          ) : (
-            ""
-          )}
+                My Profile
+              </p>
+            </a>
+          </li>
 
           <li className=" p-3 text-white   px-5 items-center ">
             <a href="/edit-profile" className="flex gap-2 items-center">
@@ -51,7 +45,6 @@ const SideNav = (props) => {
               </p>
             </a>
           </li>
-
           <li className=" p-3 text-white   px-5 items-center ">
             <a href="/inbox" className="flex gap-2 items-center">
               <i class="fa-regular fa-envelope"></i>
@@ -63,7 +56,6 @@ const SideNav = (props) => {
               </p>
             </a>
           </li>
-
           <li className=" p-3 text-white   px-5 items-center">
             <a
               href={`/subscription?userid=${sessionStorage.getItem("userid")}`}
@@ -78,7 +70,6 @@ const SideNav = (props) => {
               </p>
             </a>
           </li>
-
           <li className=" p-3 text-white   px-5 items-center ">
             <a href={`user-blog`} className="flex gap-2 items-center">
               <i className={`fa-solid fa-pen-to-square`}></i>
@@ -115,7 +106,6 @@ const SideNav = (props) => {
               </a>
             </li>
           )}
-
           {sessionStorage.getItem("type") != "parent" ? (
             <li className=" p-3 text-white   px-5 items-center ">
               <a href="/job-details" className="flex gap-2 items-center">
@@ -132,7 +122,6 @@ const SideNav = (props) => {
           ) : (
             ""
           )}
-
           <li
             className=" p-3 text-white   px-5 items-center flex items-center gap-2 "
             onClick={handleLogout}
@@ -145,7 +134,6 @@ const SideNav = (props) => {
               Logout
             </p>
           </li>
-
           {/* <li className=" p-3 text-white   px-5  border-t border-gray-200  flex items-center bg-white justify-center">
             <button className="text-xl text-rose-400" onClick={handleLogout}>
               Logout

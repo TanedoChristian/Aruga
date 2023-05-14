@@ -21,8 +21,7 @@ class HireController extends Controller
 
 
     public function show(Request $request) {
-
-        return DB::select('SELECT DISTINCT  users.firstname, users.img, users.lastname, hire.parent_id, hire.babysitter_id from hire  inner join users on users.user_id = hire.parent_id where hire.babysitter_id = ?', [$request->route("id")]);
+        return DB::select('SELECT DISTINCT  users.firstname, users.img, users.lastname, hire.parent_id, hire.babysitter_id from hire  inner join users on users.user_id = hire.parent_id where hire.babysitter_id = ? or hire.parent_id = ?', [$request->route("id"), $request->route("id")]);
     }
 
     public function showUserDetails(Request $request) {

@@ -8,7 +8,9 @@ const BioInfo = (props) => {
         <div className="mt-5 text-center pb-5">
           <div className="flex  gap-2 w-full justify-center items-center">
             <i className="fa-solid fa-location-dot text-red-500 text-md"></i>
-            <p className="font-light text-gray-600 text-md ">{props.address}</p>
+            <p className="font-light text-gray-600 text-md text-xs">
+              {props.address}
+            </p>
           </div>
         </div>
       </div>

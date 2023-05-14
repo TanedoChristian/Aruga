@@ -15,7 +15,12 @@ class ReviewController extends Controller
 
     public function getById(Request $request){
 
-        $result = DB::select('SELECT REVIEWS.*, USERS.firstname, USERS.lastname, users.img FROM REVIEWS INNER JOIN USERS ON USERS.USER_ID = REVIEWS.PARENT_ID where reviews.babysitter_id = ?', [$request->route('id')]);
+        $result = DB::select('SELECT REVIEWS.*, USERS.firstname, USERS.lastname, users.img FROM REVIEWS INNER JOIN USERS ON USERS.USER_ID = REVIEWS.PARENT_ID where reviews.babysitter_id = ? and reviews.review_target = ?', [$request->route('id'), $request->route('target')]);
+        return $result;
+    }
+
+    public function getByIdParent(Request $request){
+        $result = DB::select('SELECT REVIEWS.*, USERS.firstname, USERS.lastname, users.img FROM REVIEWS INNER JOIN USERS ON USERS.USER_ID = REVIEWS.babysitter_id where reviews.parent_id = ? and reviews.review_target = ? ', [$request->route('id'), $request->route('target')]);
         return $result;
     }
     public function insert(Request $request){
@@ -29,6 +34,7 @@ class ReviewController extends Controller
         $review->review_ratings = $request->review_ratings;
         $review->review_details = $request->review_details;
         $review->review_deleted = 0;
+        $review->review_target = $request->target;
         $review->save();
 
         return response()->json(['message' => 'success'], 200);

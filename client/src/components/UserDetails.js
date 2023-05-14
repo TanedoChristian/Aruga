@@ -17,32 +17,41 @@ const UserDetails = () => {
   const [showModal, setShowModal] = useState(false);
   const [reviewsData, setReviewsData] = useState([]);
   const [success, setSuccess] = useState(false);
-  const [isSuccessHire, setSuccessHire] = useState(false)
+  const [isSuccessHire, setSuccessHire] = useState(false);
 
   const [hireDetails, setHireDetails] = useState([]);
 
   useEffect(() => {
     axios
-      .get(
-        `${SetUp.SERVER_URL()}/hire/${sessionStorage.getItem(
-          "userid"
-        )}/${userid}`
-      )
+      .get(`${SetUp.SERVER_URL()}/hire/${sessionStorage.getItem("userid")}`)
       .then(({ data }) => {
         console.log(data.length);
         setHireDetails(data);
       });
   }, [isSuccessHire]);
 
-  useEffect(() => {
-    axios.get(`${SetUp.SERVER_URL()}/review/${userid}`).then(({ data }) => {
-      setReviewsData(data);
-    });
-  }, [success]);
+  if (sessionStorage.getItem("type") == "parent") {
+    useEffect(() => {
+      axios
+        .get(`${SetUp.SERVER_URL()}/review/${userid}/${userid}`)
+        .then(({ data }) => {
+          setReviewsData(data);
+        });
+    }, [success]);
+  } else {
+    useEffect(() => {
+      axios
+        .get(`${SetUp.SERVER_URL()}/review/parent/${userid}/${userid}`)
+        .then(({ data }) => {
+          setReviewsData(data);
+        });
+    }, [success]);
+  }
 
   useEffect(() => {
     axios.get(`${SetUp.SERVER_URL()}/users/${userid}`).then(({ data }) => {
       setUser(data[0]);
+      console.log(user);
     });
   }, []);
 
@@ -66,6 +75,24 @@ const UserDetails = () => {
         ...newReview,
         babysitter_id: userid,
         parent_id: sessionStorage.getItem("userid"),
+        target: userid,
+      },
+    }).then((data) => {
+      console.log(data);
+      setSuccess(!success);
+    });
+    setShowModal(false);
+  };
+
+  const submitReviewParent = () => {
+    axios({
+      method: "post",
+      url: SetUp.SERVER_URL() + "/review",
+      data: {
+        ...newReview,
+        parent_id: userid,
+        babysitter_id: sessionStorage.getItem("userid"),
+        target: userid,
       },
     }).then((data) => {
       console.log(data);
@@ -180,15 +207,25 @@ const UserDetails = () => {
                       </div>
                     </div>
                   </div>
-
-                  <div className="flex">
-                    <button
-                      className="p-4 bg-rose-400 text-white text-md rounded-lg w-full  w-[50%]"
-                      onClick={submitReview}
-                    >
-                      Post Now
-                    </button>
-                  </div>
+                  {sessionStorage.getItem("type") == "parent" ? (
+                    <div className="flex">
+                      <button
+                        className="p-4 bg-rose-400 text-white text-md rounded-lg w-full  w-[50%]"
+                        onClick={submitReview}
+                      >
+                        Post Now
+                      </button>
+                    </div>
+                  ) : (
+                    <div className="flex">
+                      <button
+                        className="p-4 bg-rose-400 text-white text-md rounded-lg w-full  w-[50%]"
+                        onClick={submitReviewParent}
+                      >
+                        Post Now
+                      </button>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -236,6 +273,7 @@ const UserDetails = () => {
                   onClick={() => {
                     setComponent("reviews");
                   }}
+                  style={{ display: user.type == "parent" ? "none" : "block" }}
                 >
                   Resume
                 </li>
@@ -256,12 +294,7 @@ const UserDetails = () => {
               >
                 Reviews
               </h1>
-              <div
-                className="flex flex-col h-full bg-white mb-20 h-[screen] h-[250px] overflow-auto relative"
-                style={{
-                  display: showModal ? "none" : "flex",
-                }}
-              >
+              <div className="flex flex-col h-full bg-white mb-20 h-[screen] h-[250px] overflow-auto relative">
                 {sessionStorage.getItem("userid") != userid ? (
                   <div className="flex justify-end p-2 ">
                     <button
@@ -412,7 +445,7 @@ const UserDetails = () => {
                       },
                     }).then((data) => {
                       setModalOpen(false);
-                      setSuccessHire(!isSuccessHire)
+                      setSuccessHire(!isSuccessHire);
                     });
               }
             }}
@@ -430,7 +463,8 @@ const UserDetails = () => {
         </div>
       </ConfirmModal>
 
-      {sessionStorage.getItem("userid") == userid ? (
+      {sessionStorage.getItem("userid") == userid ||
+      sessionStorage.getItem("parent_id") ? (
         ""
       ) : (
         <div

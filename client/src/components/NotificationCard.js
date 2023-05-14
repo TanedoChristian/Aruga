@@ -129,8 +129,8 @@ const NotificationCard = (props) => {
             <div
               className="jobs-container flex justify-center w-full flex-col bg-white p-2  "
               onClick={() => {
-                sessionStorage.setItem("chatpid", data.parent_id);
-                window.location.href = "/message";
+                sessionStorage.setItem("parent_id", data.parent_id);
+                window.location.href = "/user-details?userid=" + data.parent_id;
               }}
             >
               <div className="flex items-center    w-[95%]  ">
@@ -148,9 +148,11 @@ const NotificationCard = (props) => {
               <div className="w-full flex gap-2 justify-end">
                 <button
                   className="p-1 bg-rose-400 text-white text-sm rounded-md shadow-md"
-                  onClick={() =>
-                    handleNotification(data.babysitter_id, data.apply_id)
-                  }
+                  onClick={() => {
+                    handleNotification(data.babysitter_id, data.apply_id);
+                    sessionStorage.setItem("chatpid", data.parent_id);
+                    window.location.href = "/message";
+                  }}
                 >
                   Message Now
                 </button>
