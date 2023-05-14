@@ -88,6 +88,10 @@ const JobsCard = (props) => {
               {props.address}
             </p>
           </div>
+          <div className="flex items-center gap-1">
+           <i class="fa-regular fa-calendar-days text-rose-500"></i>
+            <p className="mt text-xs font-medium text-gray-600">18 years old</p>
+          </div>
         </div>
       </div>
     </div>

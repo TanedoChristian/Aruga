@@ -16,6 +16,8 @@ const passwordValidation = (validationData) =>
   );
 const spaceValidation = (validationData) => /\S/.test(validationData);
 
+const ageValidate = (validationData) => validationData >= 18 ? true : false;
+
 const Register = () => {
   const [user, setUser] = useState({});
   const [file, setFile] = useState({});
@@ -37,6 +39,14 @@ const Register = () => {
     onBlurHandler: blurLastname,
     hasError: errorLastname,
   } = useValidate(nameValidate);
+
+  const {
+    value: ageValue,
+    isTouched: isTouchedAge,
+    onChangeHandler: handleAge,
+    onBlurHandler: blurAge,
+    hasError: errorAge
+  } = useValidate(ageValidate)
 
   const {
     value: addressValue,
@@ -134,6 +144,7 @@ const Register = () => {
       email: emailValue,
       username: usernameValue,
       password: passwordValue,
+      age: ageValue,
     };
 
     new Compressor(user?.file, {
@@ -174,6 +185,7 @@ const Register = () => {
   if (
     !errorFirstname &&
     !errorLastname &&
+    !errorAge &&
     !errorAddress &&
     !errorTelNo &&
     !errorMobile &&
@@ -187,15 +199,6 @@ const Register = () => {
   ) {
     checkValid = false;
   }
-  // console.log(!errorFirstname)
-  // console.log(!errorLastname)
-  // console.log(!errorAddress)
-  // console.log(!errorTelNo)
-  // console.log(!errorMobile)
-  // console.log(!errorEmail)
-  // console.log(!errorUsername)
-  // console.log(!errorPassword)
-  // console.log(matchPassword())
 
   return (
     <section className="">
@@ -263,6 +266,26 @@ const Register = () => {
                   {errorLastname && isTouchedLastName && showError("last name")}
                 </div>
               </div>
+
+              <div>
+                <label
+                  for="age"
+                  className="block mb-2 text-sm font-medium text-gray-900 "
+                >
+                  Age
+                </label>
+                <input
+                  type="number"
+                  onChange={handleAge}
+                  name="age"
+                  className="border border-gray-300 text-gray-900 sm:text-sm rounded-lg  outline-0 shadow-md w-full p-2.5"
+                  placeholder="18"
+                  onBlur={blurAge}
+                  required=""
+                />
+                {errorAge && isTouchedAge && showError("age (Age must be above 18 years old)")}
+              </div>
+
 
               <div>
                 <label

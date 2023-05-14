@@ -49,14 +49,11 @@ const Resume = (props) => {
 
   return (
     <div className="w-full flex p-6 flex-col gap-5">
-     
       <div
         className="fixed top-0 left-0 w-[100%]  h-screen py-20 z-100 bg-white"
         style={{ display: showModal ? "block" : "none" }}
       >
-        
         <div className="p-5">
-        
           <h1 className="p-5 text-xl font-bold tracking-wide">Update Resume</h1>
           <form
             className="space-y-4 md:space-y-6 w-full"
@@ -135,7 +132,21 @@ const Resume = (props) => {
 
       <div className="w-full flex flex-col gap-3 p-5 items-center border border-gray-300 rounded-xl shadow-xl">
         <div className="flex flex-col gap-5 items-center  justify-between w-[80%]">
-          <label className="text-lg  justify-between text-rose-500">Category:</label>
+          <label className="text-lg  justify-between text-rose-500">Age:</label>
+          <p className="text-sm">18 Years old</p>
+        </div>
+        {/* <div className="flex flex-col gap-5 items-center  justify-between w-[80%]">
+          <label className="text-lg  justify-between text-rose-500">Phone Number:</label>
+          <p className="text-sm">09226045736</p>
+        </div>
+        <div className="flex flex-col gap-5 items-center  justify-between w-[80%]">
+          <label className="text-lg  justify-between text-rose-500">Telephone Number:</label>
+          <p className="text-sm">261-2713</p>
+        </div> */}
+        <div className="flex flex-col gap-5 items-center  justify-between w-[80%]">
+          <label className="text-lg  justify-between text-rose-500">
+            Category:
+          </label>
           <p className="text-sm">{resume?.category}</p>
         </div>
         <div className="flex flex-col gap-5 items-center justify-between w-[80%]">
