@@ -12,6 +12,7 @@ const BioInfo = (props) => {
               {props.address}
             </p>
           </div>
+          <p className="font-light text-gray-600 text-md text-xs">20 yrs old</p>
         </div>
       </div>
     </div>
